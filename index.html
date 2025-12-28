@@ -5,24 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>A More Beauty</title>
     <style>
-        /* 讓 iframe 佔滿整個螢幕，看起來就像原生網站 */
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* 防止出現雙重滾動條 */
-            background-color: #fdfbfb; /* 設定跟你官網一樣的背景色，避免載入時白屏 */
+            overflow: hidden;
+            background-color: #F9F7F5;
         }
-        iframe {
+        #app-frame {
             width: 100%;
             height: 100%;
             border: none;
             display: block;
         }
+        /* 載入中的提示畫面 */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #F9F7F5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #C4A484;
+            font-family: serif;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: opacity 0.5s;
+        }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycby0hXP3i07bmZ0PiMyAV9CLUMa6oglQIaEAi_C-5o5-bi81OrRcOfHNH-9TtH6Hxdqs/exec"></iframe>
+
+    <div id="loader">Loading A More Beauty...</div>
+
+    <iframe id="app-frame" allow="camera;microphone;geolocation"></iframe>
+
+    <script>
+        // ⚠️ 這裡填入你 Google Apps Script 的網址 (結尾是 /exec)
+        const gasUrl = "https://script.google.com/macros/s/AKfycby0hXP3i07bmZ0PiMyAV9CLUMa6oglQIaEAi_C-5o5-bi81OrRcOfHNH-9TtH6Hxdqs/exec";
+
+        // 1. 抓取目前 Vercel 網址後面的所有參數 (例如 ?uid=123&page=booking)
+        const currentParams = window.location.search;
+
+        // 2. 組合新的網址：GAS 網址 + 參數
+        // 這樣 IG 或 LIFF 傳來的參數才不會不見
+        const finalUrl = gasUrl + currentParams;
+
+        // 3. 設定 iframe
+        const iframe = document.getElementById('app-frame');
+        iframe.src = finalUrl;
+
+        // 4. 簡單的載入優化
+        iframe.onload = function() {
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+            }, 500);
+        };
+    </script>
 </body>
 </html>

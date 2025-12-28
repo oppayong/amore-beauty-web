@@ -6,42 +6,95 @@
     <title>A More Beauty | 預約系統</title>
     <style>
         body {
-            background-color: #F9F7F5; /* 米色背景 */
+            background-color: #F9F7F5;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: "Times New Roman", serif;
-            color: #C4A484; /* 金色文字 */
+            font-family: "Playfair Display", "Noto Sans TC", serif;
+            color: #4A4A4A;
+            text-align: center;
         }
-        .loader {
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            animation: pulse 1.5s infinite;
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background-color: #C4A484;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(196, 164, 132, 0.3);
         }
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
+        h1 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            color: #C4A484;
+        }
+        p {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        /* 金色按鈕 */
+        .btn-gold {
+            background-color: #C4A484;
+            color: white;
+            padding: 12px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(196, 164, 132, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .btn-gold:active {
+            transform: scale(0.95);
+            background-color: #b08d6b;
+        }
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 10px;
+            color: #ccc;
         }
     </style>
-    <script>
-        // ⚠️ 請務必確認這裡是你最新的 Google Apps Script 網址
-        // 結尾必須是 /exec
-        var targetUrl = "https://script.google.com/macros/s/AKfycby0hXP3i07bmZ0PiMyAV9CLUMa6oglQIaEAi_C-5o5-bi81OrRcOfHNH-9TtH6Hxdqs/exec";
-
-        // 保留網址後面的參數 (例如 LIFF 轉過來的參數)
-        var params = window.location.search;
-
-        // 立即執行轉址
-        window.location.replace(targetUrl + params);
-    </script>
 </head>
 <body>
-    <div class="loader">A MORE BEAUTY</div>
-    <div style="margin-top: 10px; font-size: 0.8rem; color: #999;">Loading...</div>
+
+    <div class="logo-circle">AM</div>
+    
+    <h1>A MORE BEAUTY</h1>
+    <p>Unveil more beauty and glow within</p>
+
+    <a id="booking-link" href="#" class="btn-gold">前往預約</a>
+
+    <div class="footer">Premium Beauty Salon</div>
+
+    <script>
+        // ⚠️ 請務必填入正確的 GAS /exec 網址
+        var gasUrl = "https://script.google.com/macros/s/AKfycby0hXP3i07bmZ0PiMyAV9CLUMa6oglQIaEAi_C-5o5-bi81OrRcOfHNH-9TtH6Hxdqs/exec";
+
+        // 取得網址參數 (保留 LIFF 或其他來源參數)
+        var params = window.location.search;
+        
+        // 設定按鈕連結
+        var finalUrl = gasUrl + params;
+        document.getElementById('booking-link').href = finalUrl;
+
+        // (選用) 為了保險起見，我們還是嘗試一次自動點擊
+        // 如果瀏覽器允許，客人會直接跳轉；如果不允許，他會看到漂亮的按鈕可以按
+        setTimeout(function() {
+             window.location.href = finalUrl; 
+        }, 1500); 
+    </script>
 </body>
 </html>
-

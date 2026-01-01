@@ -2,12 +2,21 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>A More Beauty</title>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #fdfbfb; }
-        iframe { width: 100%; height: 100%; border: none; display: block; }
         
+        /* Iframe 設定：填滿螢幕，隱藏邊框 */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            opacity: 0; /* 一開始先隱藏，等載入完再顯示 */
+            transition: opacity 0.5s ease;
+        }
+
         /* Loading 遮罩 */
         #loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -15,16 +24,25 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 0.5s ease;
         }
+
+        /* 您的品牌 Loading 動畫 */
         .spinner {
-            width: 50px; height: 50px; border: 3px solid rgba(183, 110, 121, 0.3);
-            border-radius: 50%; border-top-color: #b76e79;
-            animation: spin 1s ease-in-out infinite; margin-bottom: 20px;
+            width: 50px; height: 50px; 
+            border: 3px solid rgba(183, 110, 121, 0.3);
+            border-top-color: #b76e79;
+            border-radius: 50%;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
         }
+        .loading-text {
+            color: #4a4a4a; font-family: sans-serif; letter-spacing: 2px; font-size: 14px;
+        }
+
         @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-text { color: #4a4a4a; font-family: sans-serif; letter-spacing: 2px; }
     </style>
 </head>
 <body>
+
     <div id="loader">
         <div class="spinner"></div>
         <div class="loading-text">A MORE BEAUTY</div>
@@ -32,20 +50,26 @@
 
     <iframe 
         id="gas-frame"
-        src="https://script.google.com/macros/s/AKfycbwGOjLa33Sz3E1nKIIVi6enNlJbZ9qKRaxc807sShcj1k1hPeBVLq0sCXBryAG_Eyjh/exec"
+        src="https://script.google.com/macros/s/AKfycbxvn2KhszNFtcEAczf11vGCb7fRN7RJGHMWvRIr9mP6rgo6-_9tEHs754Bwci77DdKj/exec"
         sandbox="allow-scripts allow-top-navigation allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox">
     </iframe>
 
     <script>
         const iframe = document.getElementById('gas-frame');
         const loader = document.getElementById('loader');
-        
-        // 當 Google 內容載入完成時，移除遮罩
+
+        // 當 iframe 載入完成時
         iframe.onload = function() {
+            // 延遲 1 秒再顯示內容，讓使用者體驗更順暢
             setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }, 1000); 
+                loader.style.opacity = '0';     // 淡出 Loading
+                iframe.style.opacity = '1';     // 淡入 Iframe
+                
+                // 移除 Loading 元素
+                setTimeout(() => { 
+                    loader.style.display = 'none'; 
+                }, 500);
+            }, 1000);
         };
     </script>
 </body>

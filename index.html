@@ -2,101 +2,90 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>A More Beauty | 預約系統</title>
-    <style>
-        body {
-            background-color: #F9F7F5;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>載入中...</title> <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* 防止出現雙重卷軸 */
+        }
+
+        /* Loading 遮罩樣式 */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff; /* 背景顏色 */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: "Playfair Display", "Noto Sans TC", serif;
-            color: #4A4A4A;
-            text-align: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
-        .logo-circle {
-            width: 80px;
-            height: 80px;
-            background-color: #C4A484;
+
+        /* 旋轉圈圈動畫 */
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db; /* 轉圈圈的顏色 */
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(196, 164, 132, 0.3);
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
         }
-        h1 {
-            font-size: 20px;
-            margin: 0 0 10px 0;
-            color: #C4A484;
-        }
-        p {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-        /* 金色按鈕 */
-        .btn-gold {
-            background-color: #C4A484;
-            color: white;
-            padding: 12px 40px;
-            border-radius: 50px;
-            text-decoration: none;
+
+        .loading-text {
+            margin-top: 20px;
+            font-family: sans-serif;
+            color: #555;
             font-size: 16px;
-            box-shadow: 0 4px 15px rgba(196, 164, 132, 0.4);
-            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Iframe 樣式 */
+        iframe {
+            width: 100%;
+            height: 100%;
             border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .btn-gold:active {
-            transform: scale(0.95);
-            background-color: #b08d6b;
-        }
-        .footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 10px;
-            color: #ccc;
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <div class="logo-circle">AM</div>
-    
-    <h1>A MORE BEAUTY</h1>
-    <p>Unveil more beauty and glow within</p>
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loading-text">系統載入中，請稍候...</div>
+    </div>
 
-    <a id="booking-link" href="#" class="btn-gold">前往預約</a>
-
-    <div class="footer">Premium Beauty Salon</div>
+    <iframe 
+        id="gas-frame"
+        src="https://script.google.com/macros/s/AKfycbwGOjLa33Sz3E1nKIIVi6enNlJbZ9qKRaxc807sShcj1k1hPeBVLq0sCXBryAG_Eyjh/exec"
+        sandbox="allow-scripts allow-top-navigation allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+    ></iframe>
 
     <script>
-        // ⚠️ 請務必填入正確的 GAS /exec 網址
-        var gasUrl = "https://script.google.com/macros/s/AKfycbwGOjLa33Sz3E1nKIIVi6enNlJbZ9qKRaxc807sShcj1k1hPeBVLq0sCXBryAG_Eyjh/exec";
+        const iframe = document.getElementById('gas-frame');
+        const loader = document.getElementById('loader');
 
-        // 取得網址參數 (保留 LIFF 或其他來源參數)
-        var params = window.location.search;
-        
-        // 設定按鈕連結
-        var finalUrl = gasUrl + params;
-        document.getElementById('booking-link').href = finalUrl;
-
-        // (選用) 為了保險起見，我們還是嘗試一次自動點擊
-        // 如果瀏覽器允許，客人會直接跳轉；如果不允許，他會看到漂亮的按鈕可以按
-        setTimeout(function() {
-             window.location.href = finalUrl; 
-        }, 1500); 
+        // 監聽 iframe 載入完成事件
+        iframe.onload = function() {
+            // 為了讓使用者體驗更好，建議多延遲 0.5 ~ 1 秒再消失，避免畫面閃爍
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                // 等待淡出動畫結束後，將 loader 移除
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 800); 
+        };
     </script>
 </body>
 </html>
-
-

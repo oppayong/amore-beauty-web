@@ -3,68 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A More Beauty - 載入中</title>
+    <title>A More Beauty</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background-color: #fdfbfb; /* 使用您原本的背景色 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-
-        .loader-container {
-            text-align: center;
-            opacity: 1;
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #fdfbfb; }
+        iframe { width: 100%; height: 100%; border: none; display: block; }
+        
+        /* Loading 遮罩 */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fdfbfb; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 0.5s ease;
         }
-
-        /* 您的品牌色 Loading 動畫 */
         .spinner {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(183, 110, 121, 0.3); /* #b76e79 的淺色版 */
-            border-radius: 50%;
-            border-top-color: #b76e79; /* 您的主色調 */
-            animation: spin 1s ease-in-out infinite;
-            margin-bottom: 20px;
+            width: 50px; height: 50px; border: 3px solid rgba(183, 110, 121, 0.3);
+            border-radius: 50%; border-top-color: #b76e79;
+            animation: spin 1s ease-in-out infinite; margin-bottom: 20px;
         }
-
-        .loading-text {
-            color: #4a4a4a; /* 您的深色文字色 */
-            font-size: 16px;
-            letter-spacing: 2px;
-            font-weight: 400;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { color: #4a4a4a; font-family: sans-serif; letter-spacing: 2px; }
     </style>
 </head>
 <body>
-
-    <div class="loader-container" id="loader">
+    <div id="loader">
         <div class="spinner"></div>
         <div class="loading-text">A MORE BEAUTY</div>
-        <div style="font-size: 12px; color: #888; margin-top: 5px;">SYSTEM LOADING...</div>
     </div>
 
-    <script>
-        // 設定您的 Google Apps Script 網址
-        const targetUrl = "https://script.google.com/macros/s/AKfycbwGOjLa33Sz3E1nKIIVi6enNlJbZ9qKRaxc807sShcj1k1hPeBVLq0sCXBryAG_Eyjh/exec";
+    <iframe 
+        id="gas-frame"
+        src="https://script.google.com/macros/s/AKfycbwGOjLa33Sz3E1nKIIVi6enNlJbZ9qKRaxc807sShcj1k1hPeBVLq0sCXBryAG_Eyjh/exec"
+        sandbox="allow-scripts allow-top-navigation allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+    </iframe>
 
-        window.onload = function() {
-            // 設定停留時間 (毫秒)，例如 1500 = 1.5 秒
-            // 讓使用者看得到 Logo 和動畫，增加質感
+    <script>
+        const iframe = document.getElementById('gas-frame');
+        const loader = document.getElementById('loader');
+        
+        // 當 Google 內容載入完成時，移除遮罩
+        iframe.onload = function() {
             setTimeout(() => {
-                // 執行跳轉
-                window.location.replace(targetUrl);
-            }, 1500);
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }, 1000); 
         };
     </script>
 </body>

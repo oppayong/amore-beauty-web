@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>A More Beauty</title>
+    
+    <title>A More Beauty 官方網站</title>
+    <meta name="google-site-verification" content="fPC8Ev3jsINSPgeVzRf8XdxXGsEqGZiwiMzX_f6P4DM" />
+    <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭地區的專業美容、做臉、女生保養與放鬆服務。提供AGEs抗糖膠原調理、體雕、精油舒壓 SPA 等全方位課程，喚醒肌膚原本的光彩。">
+    
+    <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 做臉, 放鬆, 女生保養, 宜蘭做臉, 台北做臉, AGEs抗糖膠原調理, 晶鑽生肌煥膚, 緊緻微波拉提, 完美無瑕液態薇秒, 精油舒壓 SPA, 頭部抗壓 SPA, 耳燭 SPA, 小香肩美形雕塑, 女神美背無暇嫩膚調理, 婦科暖宮護理, 彈力美胸護理, 體雕, 纖體熱能脂雕, 爆脂音塑體雕">
+    
+    <meta property="og:title" content="A More Beauty 官方網站 | 喚醒肌膚光彩">
+    <meta property="og:description" content="台北宜蘭美容首選。提供AGEs抗糖調理、精油舒壓、體雕塑身等多項專業課程。點擊查看 VIP 資訊與詳細介紹。">
+    <meta property="og:url" content="https://amore-beauty-web.vercel.app/">
+    <meta property="og:type" content="website">
+
+    <meta property="og:image" content="https://i.ibb.co/mCNmPL3s/amore-logo.png"> 
+
+    <link rel="canonical" href="https://amore-beauty-web.vercel.app/">
+
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #fdfbfb; }
         
@@ -17,7 +32,7 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Loading 遮罩 */
+        /* Loading 遮罩 (保留原本樣式) */
         #loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #fdfbfb; z-index: 9999;
@@ -43,6 +58,27 @@
 </head>
 <body>
 
+    <div style="display:none;">
+        <h1>A More Beauty 官方網站 - 台北宜蘭美容做臉首選</h1>
+        <p>專為女生保養設計的放鬆空間，提供以下專業課程：</p>
+        <ul>
+            <li>AGEs抗糖膠原調理</li>
+            <li>晶鑽生肌煥膚</li>
+            <li>緊緻微波拉提</li>
+            <li>完美無瑕液態薇秒</li>
+            <li>精油舒壓 SPA</li>
+            <li>頭部抗壓 SPA</li>
+            <li>耳燭 SPA</li>
+            <li>小香肩美形雕塑</li>
+            <li>女神美背無暇嫩膚調理</li>
+            <li>婦科暖宮護理</li>
+            <li>彈力美胸護理</li>
+            <li>體雕 - 方案 A：纖體熱能脂雕 (RF)</li>
+            <li>體雕 - 方案 B：爆脂音塑體雕</li>
+        </ul>
+        <p>服務地區包含：台北、宜蘭。歡迎預約體驗。</p>
+    </div>
+
     <div id="loader">
         <div class="spinner"></div>
         <div class="loading-text">A MORE BEAUTY</div>
@@ -62,8 +98,8 @@
         iframe.onload = function() {
             // 延遲 1 秒再顯示內容，讓使用者體驗更順暢
             setTimeout(() => {
-                loader.style.opacity = '0';     // 淡出 Loading
-                iframe.style.opacity = '1';     // 淡入 Iframe
+                loader.style.opacity = '0';      // 淡出 Loading
+                iframe.style.opacity = '1';      // 淡入 Iframe
                 
                 // 移除 Loading 元素
                 setTimeout(() => { 

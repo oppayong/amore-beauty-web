@@ -4,35 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>A More Beauty 官方網站</title>
+    <title>A More Beauty 官方網站 | 宜蘭台北美容做臉首選</title>
     <meta name="google-site-verification" content="fPC8Ev3jsINSPgeVzRf8XdxXGsEqGZiwiMzX_f6P4DM" />
+    <meta name="robots" content="index, follow">
+    
     <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭地區的專業美容、做臉、女生保養與放鬆服務。提供AGEs抗糖膠原調理、體雕、精油舒壓 SPA 等全方位課程，喚醒肌膚原本的光彩。">
-    
     <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 做臉, 放鬆, 女生保養, 宜蘭做臉, 台北做臉, AGEs抗糖膠原調理, 晶鑽生肌煥膚, 緊緻微波拉提, 完美無瑕液態薇秒, 精油舒壓 SPA, 頭部抗壓 SPA, 耳燭 SPA, 小香肩美形雕塑, 女神美背無暇嫩膚調理, 婦科暖宮護理, 彈力美胸護理, 體雕, 纖體熱能脂雕, 爆脂音塑體雕">
-    
+
     <meta property="og:title" content="A More Beauty 官方網站 | 喚醒肌膚光彩">
     <meta property="og:description" content="台北宜蘭美容首選。提供AGEs抗糖調理、精油舒壓、體雕塑身等多項專業課程。點擊查看 VIP 資訊與詳細介紹。">
     <meta property="og:url" content="https://amore-beauty-web.vercel.app/">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="A More Beauty">
+    <meta property="og:image" content="https://i.ibb.co/mCNmPL3s/amore-logo.png">
 
-    <meta property="og:image" content="https://i.ibb.co/mCNmPL3s/amore-logo.png"> 
-
+    <link rel="icon" href="https://i.ibb.co/mCNmPL3s/amore-logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/mCNmPL3s/amore-logo.png">
     <link rel="canonical" href="https://amore-beauty-web.vercel.app/">
+
+    <link rel="preconnect" href="https://script.google.com">
+    <link rel="preconnect" href="https://googleusercontent.com">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "A More Beauty",
+      "image": "https://i.ibb.co/mCNmPL3s/amore-logo.png",
+      "@id": "https://amore-beauty-web.vercel.app/",
+      "url": "https://amore-beauty-web.vercel.app/",
+      "telephone": "", 
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "宜蘭 & 台北",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 24.675,
+        "longitude": 121.766
+      },
+      "sameAs": [
+        "https://www.instagram.com/a.more_beauty___/",
+        "https://www.facebook.com/profile.php?id=61562202471725"
+      ],
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AGEs抗糖膠原調理" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "晶鑽生肌煥膚" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "緊緻微波拉提" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "完美無瑕液態薇秒" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "精油舒壓 SPA" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "頭部抗壓 SPA" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "耳燭 SPA" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "小香肩美形雕塑" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "女神美背無暇嫩膚調理" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "婦科暖宮護理" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "彈力美胸護理" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "體雕 - 纖體熱能脂雕 (RF)" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "體雕 - 爆脂音塑體雕" } }
+      ]
+    }
+    </script>
 
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #fdfbfb; }
         
-        /* Iframe 設定：填滿螢幕，隱藏邊框 */
+        /* Iframe 設定 */
         iframe {
             width: 100%;
             height: 100%;
             border: none;
             display: block;
-            opacity: 0; /* 一開始先隱藏，等載入完再顯示 */
+            opacity: 0; 
             transition: opacity 0.5s ease;
         }
 
-        /* Loading 遮罩 (保留原本樣式) */
+        /* Loading 遮罩 */
         #loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #fdfbfb; z-index: 9999;
@@ -40,7 +88,7 @@
             transition: opacity 0.5s ease;
         }
 
-        /* 您的品牌 Loading 動畫 */
+        /* Loading 動畫 */
         .spinner {
             width: 50px; height: 50px; 
             border: 3px solid rgba(183, 110, 121, 0.3);
@@ -76,7 +124,8 @@
             <li>體雕 - 方案 A：纖體熱能脂雕 (RF)</li>
             <li>體雕 - 方案 B：爆脂音塑體雕</li>
         </ul>
-        <p>服務地區包含：台北、宜蘭。歡迎預約體驗。</p>
+        <p>服務地區包含：台北、宜蘭。歡迎透過 Instagram 或官方 LINE 預約體驗。</p>
+        <p>官方 Instagram: <a href="https://www.instagram.com/a.more_beauty___/">@a.more_beauty___</a></p>
     </div>
 
     <div id="loader">
@@ -98,10 +147,9 @@
         iframe.onload = function() {
             // 延遲 1 秒再顯示內容，讓使用者體驗更順暢
             setTimeout(() => {
-                loader.style.opacity = '0';      // 淡出 Loading
-                iframe.style.opacity = '1';      // 淡入 Iframe
+                loader.style.opacity = '0';      
+                iframe.style.opacity = '1';      
                 
-                // 移除 Loading 元素
                 setTimeout(() => { 
                     loader.style.display = 'none'; 
                 }, 500);

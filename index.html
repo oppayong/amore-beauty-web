@@ -1,1110 +1,171 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <base target="_top">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>A More Beauty 官方網站 | 宜蘭台北美容美體保養首選</title>
-  <meta name="google-site-verification" content="fPC8Ev3jsINSPgeVzRf8XdxXGsEqGZiwiMzX_f6P4DM" />
-  <meta name="robots" content="index, follow">
-  <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭、羅東地區的專業美容、做臉、女生保養與放鬆服務。">
-  <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 羅東美容, 做臉, 保養, 放鬆, 羅東做臉, 無痛清粉刺, 婚前保養, 體雕, 精油舒壓">
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BeautySalon",
-    "name": "A More Beauty",
-    "image": "https://i.ibb.co/C31bZpM/2025-01-26-4-19-15.png",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "宜蘭 & 台北",
-      "addressCountry": "TW"
-    },
-    "url": "https://amore-beauty-web.vercel.app/",
-    "telephone": "請透過官方LINE預約",
-    "priceRange": "$$"
-  }
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  
-  <style>
-    /* --- 變數定義 --- */
-    :root {
-      --primary-color: #b76e79;
-      --accent-color: #d4af37;
-      --text-dark: #4a4a4a;
-      --text-light: #888888;
-      --bg-color: #fdfbfb;
-      --light-bg: #fff0f5;
-      --white: #ffffff;
-      --shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
-
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-dark);
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* --- Logo 區塊 --- */
-    #logo-container {
-      background-color: transparent;
-      padding: 10px 0 5px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #logo-container img {
-      width: 150px;
-      height: auto;
-    }
-
-    /* --- 選單區塊 --- */
-    .menu-bar {
-      display: flex;
-      justify-content: center;
-      background-color: transparent;
-      padding: 5px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-    }
-    .menu-item {
-      font-size: 14px;
-      color: var(--text-dark);
-      padding: 10px 20px;
-      margin: 0 5px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      position: relative;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-    .menu-item::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 2px;
-      background-color: var(--primary-color);
-      transition: width 0.3s ease;
-    }
-    .menu-item:hover { color: var(--primary-color); }
-    .menu-item:hover::after { width: 60%; }
-
-    /* --- 頁面容器 --- */
-    .view-section {
-      display: none;
-      padding: 20px 20px 80px 20px;
-      max-width: 600px;
-      margin: 0 auto;
-      animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* --- VIP 登入區 --- */
-    .login-container {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 40px 30px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      margin-top: 20px;
-      border: 1px solid rgba(183,110,121,0.1);
-    }
-    .login-title {
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
-      color: var(--primary-color);
-      margin-bottom: 5px;
-      letter-spacing: 2px;
-    }
-    .login-subtitle {
-      font-size: 13px;
-      color: var(--text-light);
-      margin-bottom: 30px;
-      letter-spacing: 1px;
-    }
-    .input-group { position: relative; margin-bottom: 25px; }
-    .input-group input {
-      width: 85%;
-      padding: 15px 20px;
-      font-size: 16px;
-      border: 1px solid #e0e0e0;
-      border-radius: 30px;
-      outline: none;
-      text-align: center;
-      transition: all 0.3s;
-      background-color: #fafafa;
-      letter-spacing: 1px;
-    }
-    .input-group input:focus {
-      border-color: var(--primary-color);
-      background-color: var(--white);
-      box-shadow: 0 0 0 3px rgba(183,110,121,0.1);
-    }
-    .input-group input::placeholder { color: #bbb; font-weight: 300; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    .btn {
-      width: 100%;
-      padding: 15px;
-      font-size: 16px;
-      color: var(--white);
-      background: linear-gradient(135deg, var(--primary-color), #d08b96);
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 500;
-      letter-spacing: 2px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(183,110,121,0.3);
-    }
-    .error-msg {
-      color: #d9534f;
-      font-size: 13px;
-      margin-top: -15px;
-      margin-bottom: 15px;
-      display: none;
-    }
-
-    /* --- VIP 結果區 --- */
-    .result-container {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 30px 20px;
-      box-shadow: var(--shadow);
-      margin-top: 10px;
-      border: 1px solid rgba(183,110,121,0.1);
-    }
-    .result-header {
-      text-align: center;
-      margin-bottom: 25px;
-      position: relative;
-    }
-    .result-header h2 {
-      font-size: 22px;
-      color: var(--text-dark);
-      margin: 0;
-      font-weight: 600;
-    }
-    .result-header p {
-      font-size: 13px;
-      color: var(--text-light);
-      margin: 5px 0 0 0;
-    }
-    .balance-card {
-      background: linear-gradient(135deg, #fdfbfb, var(--light-bg));
-      border-radius: 15px;
-      padding: 25px;
-      text-align: center;
-      margin-bottom: 25px;
-      border: 1px solid rgba(183,110,121,0.2);
-      position: relative;
-      overflow: hidden;
-    }
-    .balance-card::before {
-      content: '';
-      position: absolute;
-      top: -20px;
-      right: -20px;
-      width: 80px;
-      height: 80px;
-      background: rgba(183,110,121,0.05);
-      border-radius: 50%;
-    }
-    .balance-label {
-      font-size: 14px;
-      color: var(--text-light);
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-    }
-    .balance-amount {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--primary-color);
-      font-family: 'Playfair Display', serif;
-    }
-    .balance-amount span { font-size: 20px; margin-right: 5px; font-family: 'Noto Sans TC', sans-serif;}
-
-    /* 給您的專屬訊息區塊 (預設隱藏) */
-    .custom-msg-card {
-      background: #fcf8f2; /* 溫柔的米色背景 */
-      border-left: 4px solid var(--accent-color);
-      border-radius: 10px;
-      padding: 15px 20px;
-      margin-bottom: 25px;
-      display: none; /* 透過 JS 控制顯示 */
-    }
-    .custom-msg-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #b8860b;
-      margin-bottom: 5px;
-      display: flex;
-      align-items: center;
-    }
-    .custom-msg-title svg {
-      width: 16px;
-      height: 16px;
-      margin-right: 6px;
-      fill: currentColor;
-    }
-    .custom-msg-content {
-      font-size: 14px;
-      color: var(--text-dark);
-      line-height: 1.6;
-    }
-
-    /* 活動推播方塊 */
-    .promo-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-      border: 1px solid #f0f0f0;
-      margin-bottom: 25px;
-      overflow: hidden;
-      cursor: pointer;
-      display: none; /* 預設隱藏，由程式控制 */
-    }
-    .promo-header {
-      background: linear-gradient(135deg, #e6d3d6, #f2e6e8);
-      padding: 12px 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--text-dark);
-    }
-    .promo-title { font-weight: 600; font-size: 14px; display: flex; align-items: center;}
-    .promo-title span { margin-left: 8px; }
-    .promo-icon {
-      background: var(--accent-color);
-      color: white;
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-    .promo-body {
-      padding: 15px;
-      font-size: 14px;
-      color: var(--text-light);
-      display: none;
-      line-height: 1.5;
-      background: var(--white);
-    }
-    .promo-card.open .promo-body { display: block; animation: slideDown 0.3s ease;}
-
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .info-list {
-      background: var(--white);
-      border-radius: 12px;
-      border: 1px solid #f0f0f0;
-    }
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      border-bottom: 1px solid #f9f9f9;
-    }
-    .info-item:last-child { border-bottom: none; }
-    .info-item span:first-child { color: var(--text-light); font-size: 14px; }
-    .info-item span:last-child { color: var(--text-dark); font-weight: 500; font-size: 14px; }
-
-    /* 熱銷資訊區塊 */
-    .hot-info-card {
-      margin-top: 25px;
-      background: var(--white);
-      border-radius: 12px;
-      border: 1px solid #f0f0f0;
-      padding: 20px;
-    }
-    .hot-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--primary-color);
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-    }
-    .hot-title svg {
-      width: 16px;
-      height: 16px;
-      margin-right: 8px;
-      fill: currentColor;
-    }
-    .hot-item {
-      margin-bottom: 12px;
-    }
-    .hot-item:last-child { margin-bottom: 0; }
-    .hot-label {
-      font-size: 12px;
-      color: var(--text-light);
-      margin-bottom: 4px;
-    }
-    .hot-value {
-      font-size: 14px;
-      color: var(--text-dark);
-      font-weight: 500;
-      padding-left: 10px;
-      border-left: 2px solid var(--accent-color);
-    }
-
-    /* --- 消費紀錄區 (分頁) --- */
-    .history-container {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 30px 20px;
-      box-shadow: var(--shadow);
-      margin-top: 10px;
-      border: 1px solid rgba(183,110,121,0.1);
-      display: none; /* 預設隱藏 */
-    }
-    .history-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 25px;
-    }
-    .back-btn {
-      background: none;
-      border: none;
-      color: var(--primary-color);
-      font-size: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      padding: 0;
-    }
-    .back-btn svg { width: 18px; height: 18px; margin-right: 5px; fill: currentColor;}
-    .history-header h2 {
-      flex-grow: 1;
-      text-align: center;
-      font-size: 18px;
-      margin: 0;
-      padding-right: 23px; /* 平衡 back-btn 的寬度 */
-      color: var(--text-dark);
-    }
-    .vip-timeline {
-      position: relative;
-      padding-left: 20px;
-    }
-    .vip-timeline::before {
-      content: '';
-      position: absolute;
-      left: 6px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background-color: #f0f0f0;
-    }
-    .vip-timeline-item {
-      position: relative;
-      margin-bottom: 20px;
-    }
-    .vip-timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -20px;
-      top: 5px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: var(--primary-color);
-      border: 2px solid var(--white);
-      box-shadow: 0 0 0 2px rgba(183,110,121,0.2);
-    }
-    .vip-t-date {
-      font-size: 12px;
-      color: var(--accent-color);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .vip-t-content {
-      background: #fafafa;
-      border-radius: 8px;
-      padding: 12px;
-      border: 1px solid #f0f0f0;
-    }
-    .vip-t-item {
-      font-size: 14px;
-      color: var(--text-dark);
-      font-weight: 500;
-    }
-
-    /* VIP 頁面切換按鈕群 */
-    .vip-tabs {
-      display: flex;
-      margin-top: 20px;
-      gap: 10px;
-    }
-    .vip-tab-btn {
-      flex: 1;
-      padding: 12px;
-      text-align: center;
-      background: var(--white);
-      border: 1px solid var(--primary-color);
-      color: var(--primary-color);
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .vip-tab-btn:hover {
-      background: var(--light-bg);
-    }
-
-    /* --- 首頁 (品牌理念) --- */
-    .hero-section {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .hero-image {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      box-shadow: var(--shadow);
-    }
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-size: 26px;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    .hero-text {
-      font-size: 14px;
-      color: var(--text-light);
-      line-height: 1.8;
-      padding: 0 10px;
-    }
-
-    /* 水平滑動推薦區 */
-    .carousel-container {
-      margin-top: 30px;
-      position: relative;
-    }
-    .carousel-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 15px;
-      padding-left: 5px;
-    }
-    .carousel-track {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 15px;
-      padding-bottom: 15px;
-      scrollbar-width: none; /* Firefox */
-    }
-    .carousel-track::-webkit-scrollbar { display: none; } /* Chrome */
-    .carousel-card {
-      min-width: 280px;
-      background: var(--white);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      scroll-snap-align: start;
-      border: 1px solid #f0f0f0;
-    }
-    .c-img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-    .c-content { padding: 15px; }
-    .c-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--primary-color);
-      margin: 0 0 5px 0;
-    }
-    .c-desc {
-      font-size: 13px;
-      color: var(--text-light);
-      margin: 0;
-      line-height: 1.5;
-    }
-    /* 隱藏預設滑動條 */
-    .scroll-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.8);
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-    .scroll-btn.left { left: -10px; }
-    .scroll-btn.right { right: -10px; }
-
-    /* --- 課程介紹區 --- */
-    .course-menu {
-      display: flex;
-      background: var(--white);
-      border-radius: 10px;
-      padding: 5px;
-      margin-bottom: 20px;
-      box-shadow: var(--shadow);
-    }
-    .c-menu-btn {
-      flex: 1;
-      padding: 10px;
-      text-align: center;
-      font-size: 14px;
-      color: var(--text-light);
-      cursor: pointer;
-      border-radius: 8px;
-      transition: all 0.3s;
-    }
-    .c-menu-btn.active {
-      background: var(--primary-color);
-      color: var(--white);
-      font-weight: 500;
-    }
-    .tab-content { display: none; animation: fadeIn 0.4s ease; }
-    .tab-content.active { display: block; }
+    <title>A More Beauty 官方網站 | 宜蘭台北美容美體保養首選</title>
+    <meta name="google-site-verification" content="fPC8Ev3jsINSPgeVzRf8XdxXGsEqGZiwiMzX_f6P4DM" />
+    <meta name="robots" content="index, follow">
     
-    .accordion {
-      background: var(--white);
-      border-radius: 12px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-      border: 1px solid #f0f0f0;
-      overflow: hidden;
-    }
-    .acc-header {
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      background: var(--white);
-      transition: background 0.3s;
-    }
-    .acc-header:hover { background: #fafafa; }
-    .acc-title { font-weight: 500; font-size: 15px; color: var(--text-dark); }
-    .acc-icon {
-      color: var(--primary-color);
-      font-weight: 300;
-      transition: transform 0.3s;
-    }
-    .acc-body {
-      padding: 0 20px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      background: #fafafa;
-    }
-    .acc-body p {
-      font-size: 13px;
-      color: var(--text-light);
-      margin: 15px 0;
-      line-height: 1.6;
-    }
-    .accordion.active .acc-icon { transform: rotate(45deg); }
-    .accordion.active .acc-body { max-height: 500px; padding: 5px 20px 15px 20px; }
+    <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭、羅東地區的專業美容、做臉、女生保養與放鬆服務。提供AGEs抗糖膠原調理、體雕、精油舒壓 SPA 等全方位課程，喚醒肌膚原本的光彩。">
+    <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 羅東美容, 做臉, 保養, 放鬆, 女生保養, 羅東做臉, 宜蘭做臉, 台北做臉, AGEs抗糖膠原調理, 晶鑽生肌煥膚, 緊緻微波拉提, 完美無瑕液態薇秒, 精油舒壓 SPA, 頭部抗壓 SPA, 耳燭 SPA, 小香肩美形雕塑, 女神美背無暇嫩膚調理, 婦科暖宮護理, 彈力美胸護理, 體雕, 纖體熱能脂雕, 爆脂音塑體雕">
 
-    /* --- 預約資訊區 --- */
-    .contact-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      margin-bottom: 20px;
-    }
-    .contact-card svg {
-      width: 40px;
-      height: 40px;
-      fill: var(--primary-color);
-      margin-bottom: 15px;
-    }
-    .contact-card h3 {
-      font-size: 18px;
-      color: var(--text-dark);
-      margin: 0 0 10px 0;
-    }
-    .contact-card p {
-      font-size: 14px;
-      color: var(--text-light);
-      margin: 0 0 20px 0;
-    }
-    .line-btn {
-      display: inline-block;
-      background-color: #00B900;
-      color: white;
-      text-decoration: none;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 15px rgba(0,185,0,0.3);
-      transition: transform 0.2s;
-    }
-    .line-btn:hover { transform: translateY(-2px); }
+    <meta property="og:title" content="A More Beauty 官方網站 | 喚醒肌膚光彩">
+    <meta property="og:description" content="台北宜蘭美容首選。提供AGEs抗糖調理、精油舒壓、體雕塑身等多項專業課程。點擊查看 VIP 資訊與詳細介紹。">
+    <meta property="og:url" content="https://amore-beauty-web.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="A More Beauty">
+    <meta property="og:image" content="https://i.ibb.co/mCNmPL3s/amore-logo.png">
 
-    .footer {
-      text-align: center;
-      padding: 20px;
-      color: #ccc;
-      font-size: 12px;
-      margin-top: 20px;
+    <link rel="icon" href="https://i.ibb.co/mCNmPL3s/amore-logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/mCNmPL3s/amore-logo.png">
+    <link rel="canonical" href="https://amore-beauty-web.vercel.app/">
+
+    <link rel="preconnect" href="https://script.google.com">
+    <link rel="preconnect" href="https://googleusercontent.com">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "A More Beauty",
+      "image": "https://i.ibb.co/mCNmPL3s/amore-logo.png",
+      "@id": "https://amore-beauty-web.vercel.app/",
+      "url": "https://amore-beauty-web.vercel.app/", 
+      "priceRange": "TWD799-TWD2000",
+      "address":[
+        {
+            "@type": "PostalAddress",
+            "addressLocality": "宜蘭縣",
+            "addressRegion": "羅東鎮",
+            "addressCountry": "TW"
+        },
+        {
+            "@type": "PostalAddress",
+            "addressLocality": "台北市",
+            "addressRegion": "中山區",
+            "addressCountry": "TW"
+        }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 24.675,
+        "longitude": 121.766
+      },
+      "sameAs": [
+        "https://www.instagram.com/a.more_beauty___/",
+        "https://www.facebook.com/profile.php?id=61562202471725"
+      ],
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AGEs抗糖膠原調理" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "晶鑽生肌煥膚" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "緊緻微波拉提" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "完美無瑕液態薇秒" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "精油舒壓 SPA" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "頭部抗壓 SPA" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "耳燭 SPA" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "小香肩美形雕塑" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "女神美背無暇嫩膚調理" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "婦科暖宮護理" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "彈力美胸護理" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "體雕 - 纖體熱能脂雕 (RF)" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "體雕 - 爆脂音塑體雕" } }
+      ]
     }
-  </style>
+    </script>
+
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #fdfbfb; }
+        
+        /* Iframe 設定 */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            opacity: 0; 
+            transition: opacity 0.5s ease;
+        }
+
+        /* Loading 遮罩 */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fdfbfb; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Loading 動畫 */
+        .spinner {
+            width: 50px; height: 50px; 
+            border: 3px solid rgba(183, 110, 121, 0.3);
+            border-top-color: #b76e79;
+            border-radius: 50%;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        .loading-text {
+            color: #4a4a4a; font-family: sans-serif; letter-spacing: 2px; font-size: 14px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
 </head>
 <body>
 
-  <div style="display:none;">
-      <h1>A More Beauty 官方網站 - 台北宜蘭美容美體保養首選</h1>
-      <p>專為女生保養設計的放鬆空間，服務範圍涵蓋宜蘭、羅東與台北。我們專注於解決您的肌膚困擾與放鬆課程並提供以下專業課程：</p>
-      <h2>熱門美容服務項目</h2>
-      <ul>
-          <li>AGEs抗糖膠原調理</li>
-          <li>晶鑽生肌煥膚</li>
-          <li>緊緻微波拉提</li>
-          <li>完美無瑕液態薇秒</li>
-          <li>精油舒壓 SPA</li>
-          <li>頭部抗壓 SPA</li>
-          <li>耳燭 SPA</li>
-          <li>小香肩美形雕塑</li>
-          <li>女神美背無暇嫩膚調理</li>
-          <li>婦科暖宮護理</li>
-          <li>彈力美胸護理</li>
-          <li>體雕 - 方案 A：纖體熱能脂雕 (RF)</li>
-          <li>體雕 - 方案 B：爆脂音塑體雕</li>
-      </ul>
-      <p>服務地區包含：台北、宜蘭。歡迎透過 Instagram 或官方 LINE 預約體驗。</p>
-      <p>官方 Instagram: <a href="https://www.instagram.com/a.more_beauty___/">@a.more_beauty___</a></p>
-  </div>
-
-  <div id="logo-container">
-    <img src="https://i.ibb.co/C31bZpM/2025-01-26-4-19-15.png" alt="A More Beauty Logo">
-  </div>
-
-  <div class="menu-bar">
-    <div class="menu-item" onclick="switchPage('view-home')">首頁</div>
-    <div class="menu-item" onclick="switchPage('view-course')">課程介紹</div>
-    <div class="menu-item" onclick="switchPage('view-vip')">VIP專區</div>
-    <div class="menu-item" onclick="switchPage('view-contact')">預約</div>
-  </div>
-
-  <div id="view-home" class="view-section" style="display: block;">
-    <div class="hero-section">
-      <img class="hero-image" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=800&q=80" alt="Spa Environment">
-      <h1 class="hero-title">A More Beauty</h1>
-      <p class="hero-text">
-        喚醒肌膚原本的光彩。<br>
-        專為女生設計的專屬放鬆空間，提供最純粹、最專業的保養體驗。
-      </p>
+    <div style="display:none;">
+        <h1>A More Beauty 官方網站 - 台北宜蘭美容美體保養首選</h1>
+        <p>專為女生保養設計的放鬆空間，服務範圍涵蓋宜蘭、羅東與台北。我們專注於解決您的肌膚困擾與放鬆課程並提供以下專業課程：</p>
+        <h2>熱門美容服務項目</h2>
+        <ul>
+            <li>AGEs抗糖膠原調理</li>
+            <li>晶鑽生肌煥膚</li>
+            <li>緊緻微波拉提</li>
+            <li>完美無瑕液態薇秒</li>
+            <li>精油舒壓 SPA</li>
+            <li>頭部抗壓 SPA</li>
+            <li>耳燭 SPA</li>
+            <li>小香肩美形雕塑</li>
+            <li>女神美背無暇嫩膚調理</li>
+            <li>婦科暖宮護理</li>
+            <li>彈力美胸護理</li>
+            <li>體雕 - 方案 A：纖體熱能脂雕 (RF)</li>
+            <li>體雕 - 方案 B：爆脂音塑體雕</li>
+        </ul>
+        <p>服務地區包含：台北、宜蘭。歡迎透過 Instagram 或官方 LINE 預約體驗。</p>
+        <p>官方 Instagram: <a href="https://www.instagram.com/a.more_beauty___/">@a.more_beauty___</a></p>
     </div>
 
-    <div class="carousel-container">
-      <div class="carousel-title">精選推薦</div>
-      <button class="scroll-btn left" onclick="scrollCarousel(-1)">&#10094;</button>
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-card">
-          <img class="c-img" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=500&q=80" alt="Facial">
-          <div class="c-content">
-            <h3 class="c-title">AGEs抗醣膠原調理</h3>
-            <p class="c-desc">深層清潔與導入，恢復肌膚彈性與透亮光澤。</p>
-          </div>
-        </div>
-        <div class="carousel-card">
-          <img class="c-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=500&q=80" alt="Massage">
-          <div class="c-content">
-            <h3 class="c-title">精油舒壓 SPA</h3>
-            <p class="c-desc">嚴選植萃精油，釋放深層疲勞，舒緩身心。</p>
-          </div>
-        </div>
-        <div class="carousel-card">
-          <img class="c-img" src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=500&q=80" alt="Body">
-          <div class="c-content">
-            <h3 class="c-title">纖體熱能脂雕</h3>
-            <p class="c-desc">針對局部線條雕塑，找回自信輕盈體態。</p>
-          </div>
-        </div>
-      </div>
-      <button class="scroll-btn right" onclick="scrollCarousel(1)">&#10095;</button>
-    </div>
-  </div>
-
-  <div id="view-course" class="view-section">
-    <div class="course-menu">
-      <div class="c-menu-btn active" onclick="openTab('tab-face', this)">臉部保養</div>
-      <div class="c-menu-btn" onclick="openTab('tab-body', this)">身體放鬆</div>
-      <div class="c-menu-btn" onclick="openTab('tab-shape', this)">體雕美形</div>
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loading-text">A MORE BEAUTY</div>
     </div>
 
-    <div id="tab-face" class="tab-content active">
-      <div class="accordion">
-        <div class="acc-header">
-          <div class="acc-title">AGEs抗醣膠原調理</div>
-          <div class="acc-icon">+</div>
-        </div>
-        <div class="acc-body">
-          <p>針對肌膚糖化現象，有效改善暗沉、蠟黃，注入滿滿膠原蛋白，讓肌膚恢復彈潤透亮。適合熬夜、膚色不均者。</p>
-        </div>
-      </div>
-      <div class="accordion">
-        <div class="acc-header">
-          <div class="acc-title">晶鑽生肌煥膚</div>
-          <div class="acc-icon">+</div>
-        </div>
-        <div class="acc-body">
-          <p>溫和代謝老廢角質，深層淨化毛孔，改善粗糙粉刺，重現平滑細緻的水煮蛋肌。</p>
-        </div>
-      </div>
-      <div class="accordion">
-        <div class="acc-header">
-          <div class="acc-title">緊緻微波拉提</div>
-          <div class="acc-icon">+</div>
-        </div>
-        <div class="acc-body">
-          <p>非侵入式微波技術，刺激深層肌膚，拉提臉部輪廓線條，對抗地心引力，打造精緻小V臉。</p>
-        </div>
-      </div>
-    </div>
+    <iframe 
+        id="gas-frame"
+        src="https://script.google.com/macros/s/AKfycbxvn2KhszNFtcEAczf11vGCb7fRN7RJGHMWvRIr9mP6rgo6-_9tEHs754Bwci77DdKj/exec"
+        sandbox="allow-scripts allow-top-navigation allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+    </iframe>
 
-    <div id="tab-body" class="tab-content">
-      <div class="accordion">
-        <div class="acc-header">
-          <div class="acc-title">精油舒壓 SPA</div>
-          <div class="acc-icon">+</div>
-        </div>
-        <div class="acc-body">
-          <p>客製化調配純淨精油，配合專業按摩手技，深層放鬆緊繃肌肉，舒緩長期累積的壓力與疲勞。</p>
-        </div>
-      </div>
-      <div class="accordion">
-        <div class="acc-header">
-          <div class="acc-title">婦科暖宮護理</div>
-          <div class="acc-icon">+</div>
-        </div>
-        <div class="acc-body">
-          <p>專為女性設計，透過溫熱草本精華與腹部穴位按摩，改善虛寒體質，舒緩經期不適。</p>
-        </div>
-      </div>
-    </div>
+    <script>
+        const iframe = document.getElementById('gas-frame');
+        const loader = document.getElementById('loader');
 
-    <div id="tab-shape" class="tab-content">
-      <div class="accordion">
-        <div class="acc-header">
-          <div class="acc-title">纖體熱能脂雕 (RF)</div>
-          <div class="acc-icon">+</div>
-        </div>
-        <div class="acc-body">
-          <p>利用 RF 熱能技術深入皮下，促進局部代謝，改善橘皮組織，緊實鬆弛肌膚。</p>
-        </div>
-      </div>
-      <div class="accordion">
-        <div class="acc-header">
-          <div class="acc-title">爆脂音塑體雕</div>
-          <div class="acc-icon">+</div>
-        </div>
-        <div class="acc-body">
-          <p>透過特定音頻震盪，針對頑固脂肪區域進行雕塑，打造理想的身形曲線。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="view-contact" class="view-section">
-    <div class="contact-card">
-      <svg viewBox="0 0 24 24">
-        <path d="M20,22H4C2.9,22 2,21.1 2,20V4C2,2.9 2.9,2 4,2H20C21.1,2 22,2.9 22,4V20C22,21.1 21.1,22 20,22M4,4V20H20V4H4M16.5,14.6C16.5,14.6 15.3,16 14.6,16.5C13.8,17 12.9,17.2 12,17C11.1,16.8 10.2,16.4 9.5,15.8C8.8,15.2 8.2,14.5 7.8,13.6C7.4,12.7 7.2,11.8 7.3,10.9C7.4,10 7.8,9.1 8.4,8.4C8.9,7.7 10.3,6.5 10.3,6.5C10.3,6.5 10.8,6.1 11.2,6.4C11.6,6.7 11.9,7.4 12.1,8.1C12.3,8.8 12.2,9.3 11.8,9.7C11.4,10.1 10.9,10.3 10.9,10.3C10.9,10.3 11.2,11.2 11.9,11.9C12.6,12.6 13.5,12.9 13.5,12.9C13.5,12.9 13.7,12.4 14.1,12C14.5,11.6 15.1,11.5 15.8,11.7C16.5,11.9 17.2,12.2 17.4,12.6C17.7,13 17.3,13.5 17.3,13.5L16.5,14.6Z" />
-      </svg>
-      <h3>線上預約諮詢</h3>
-      <p>所有課程採完全預約制<br>歡迎加入官方 LINE 獲取專屬服務</p>
-      <a href="https://line.me/R/ti/p/@799kwwys?oat_content=url" target="_blank" class="line-btn">
-        加入官方 LINE
-      </a>
-    </div>
-  </div>
-
-  <div id="view-vip" class="view-section">
-    <div id="vip-login" class="login-container">
-      <div class="login-title">VIP LOUNGE</div>
-      <div class="login-subtitle">會員專屬服務查詢</div>
-      
-      <div class="input-group">
-        <input type="tel" id="vip-phone" placeholder="請輸入手機號碼 (例: 0912345678)" autocomplete="off">
-      </div>
-      <div id="vip-error-box" class="error-msg">查無此會員，請確認手機號碼。</div>
-      <button class="btn vip-btn" onclick="verifyPhone()">查詢我的餘額</button>
-    </div>
-
-    <div id="vip-result" style="display:none;">
-      <div class="result-container">
-        <div class="result-header">
-          <h2>Welcome, <span id="vip-name-display" style="color:var(--primary-color);"></span></h2>
-          <p>最後消費日：<span id="vip-lastdate"></span></p>
-        </div>
-
-        <div id="vip-custom-msg-card" class="custom-msg-card">
-          <div class="custom-msg-title">
-            <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
-            <span id="promo-header">美容師貼心提醒</span>
-          </div>
-          <div id="vip-custom-msg" class="custom-msg-content" style="white-space: pre-line;"></div>
-        </div>
-
-        <div class="balance-card">
-          <div class="balance-label">目前儲值金餘額</div>
-          <div class="balance-amount"><span>$</span><span id="vip-balance-display"></span></div>
-        </div>
-
-        <div id="vip-promo-box" class="promo-card" onclick="togglePromo()">
-          <div class="promo-header">
-            <div class="promo-title">
-              <span class="promo-icon">HOT</span>
-              <span>會員專屬最新優惠</span>
-            </div>
-            <span style="font-size:12px; color:#aaa;">點擊查看 ▼</span>
-          </div>
-          <div class="promo-body" id="promo-body">
-            </div>
-        </div>
-
-        <div class="info-list">
-          <div class="info-item">
-            <span>會員點數</span>
-            <span>0 pt</span>
-          </div>
-          <div class="info-item">
-            <span>會員等級</span>
-            <span style="color:var(--accent-color);">Gold Member</span>
-          </div>
-        </div>
-
-        <div class="hot-info-card">
-          <div class="hot-title">
-            <svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-            本月熱門推薦
-          </div>
-          <div class="hot-item">
-            <div class="hot-label">熱銷課程</div>
-            <div class="hot-value" id="top-service">讀取中...</div>
-          </div>
-          <div class="hot-item">
-            <div class="hot-label">人氣產品</div>
-            <div class="hot-value" id="top-product">讀取中...</div>
-          </div>
-        </div>
-        
-        <div class="vip-tabs">
-          <div class="vip-tab-btn" onclick="switchVipPage('history')">查看消費紀錄</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="vip-history" class="history-container">
-      <div class="history-header">
-        <button class="back-btn" onclick="switchVipPage('result')">
-          <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
-          返回
-        </button>
-        <h2>歷史消費紀錄</h2>
-      </div>
-      <div id="history-content">
-        </div>
-    </div>
-
-  </div>
-
-  <div class="footer">
-    © 2025 A More Beauty. All Rights Reserved.
-  </div>
-
-  <script>
-      var globalHistory = [];
-      
-      function switchPage(pageId) {
-          document.querySelectorAll('.view-section').forEach(el => el.style.display = 'none');
-          const target = document.getElementById(pageId);
-          if (target) {
-              target.style.display = 'block';
-              window.scrollTo(0, 0);
-          }
-      }
-
-      function openTab(tabId, btn) {
-          document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-          document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
-          document.getElementById(tabId).classList.add('active');
-          btn.classList.add('active');
-      }
-
-      document.querySelectorAll('.accordion').forEach(acc => {
-          acc.querySelector('.acc-header').addEventListener('click', () => {
-              acc.classList.toggle('active');
-          });
-      });
-
-      const track = document.getElementById('carouselTrack');
-      function scrollCarousel(dir) {
-          if(track) {
-              const scrollAmount = 295;
-              track.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
-          }
-      }
-
-      function verifyPhone() {
-          var phoneInput = document.getElementById('vip-phone');
-          var phone = phoneInput ? phoneInput.value.trim() : "";
-          var tp = document.getElementById('top-product');
-          var ts = document.getElementById('top-service');
-
-          if (!phone) {
-              alert("請輸入手機號碼");
-              return;
-          }
-
-          var btn = document.querySelector('.vip-btn');
-          btn.innerText = "查詢中...";
-          btn.style.opacity = "0.7";
-          btn.disabled = true;
-
-          // ★ 前端呼叫隱形 API
-          fetch('/api/vip', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ phone: phone })
-          })
-          .then(response => response.json())
-          .then(d => {
-              btn.innerText = "查詢我的餘額"; 
-              btn.style.opacity = "1"; 
-              btn.disabled = false;
-
-              if (d.status === "error") {
-                  var errBox = document.getElementById('vip-error-box');
-                  if(errBox) {
-                      errBox.innerText = d.message || "查無此會員，請確認手機號碼是否正確。";
-                      errBox.style.display = "block";
-                  } else {
-                      alert(d.message || "查無此會員或手機號碼錯誤，請確認後再試。");
-                  }
-                  return;
-              }
-
-              var errBox = document.getElementById('vip-error-box');
-              if(errBox) errBox.style.display = "none";
-
-              var nameSpan = document.getElementById('vip-name-display');
-              var balanceSpan = document.getElementById('vip-balance-display');
-              var dateSpan = document.getElementById('vip-lastdate');
-              var msgArea = document.getElementById('vip-custom-msg');
-              var msgAreaCard = document.getElementById('vip-custom-msg-card');
-              var resultArea = document.getElementById('vip-result');
-              var loginArea = document.getElementById('vip-login');
-
-              if(nameSpan) nameSpan.innerText = d.name;
-              if(balanceSpan) balanceSpan.innerText = d.balance;
-              if(dateSpan) dateSpan.innerText = d.lastDate;
-
-              if(msgArea) {
-                  if(d.message && d.message.trim() !== "") {
-                      msgArea.innerText = d.message;
-                      msgArea.style.display = "block";
-                  } else {
-                      msgArea.style.display = "none";
-                  }
-              }
-              
-              if(msgAreaCard) {
-                  if(d.promoHeader || d.promoBody) {
-                      document.getElementById('promo-header').innerText = d.promoHeader || "最新優惠";
-                      document.getElementById('promo-body').innerText = d.promoBody || "";
-                      msgAreaCard.style.display = "block";
-                  } else {
-                      msgAreaCard.style.display = "none";
-                  }
-              }
-
-              if(ts) ts.innerText = d.topService || "AGEs抗醣膠原調理、彈力美胸護理";
-              if(tp) tp.innerText = d.topProduct || "極光緊緻微波霜、無暇嫩白奇蹟露";
-
-              globalHistory = d.history || [];
-              renderHistory();
-              
-              if(resultArea) resultArea.style.display = "block"; 
-              if(loginArea) loginArea.style.display = "none"; 
-          })
-          .catch(error => {
-              console.error("連線錯誤:", error);
-              btn.innerText = "查詢我的餘額"; 
-              btn.style.opacity = "1"; 
-              btn.disabled = false;
-              alert("伺服器連線失敗，請稍後再試。");
-          });
-      }
-
-      function renderHistory() {
-          var container = document.getElementById('history-content');
-          if(!container) return; 
-          
-          if (globalHistory.length === 0) { 
-              container.innerHTML = '<div style="color:#999;text-align:center;">近期無消費紀錄</div>'; 
-              return; 
-          }
-          var html = '<div class="vip-timeline">';
-          globalHistory.forEach(function(item) {
-              html += `<div class="vip-timeline-item"><div class="vip-t-date">${item.date}</div><div class="vip-t-content"><div class="vip-t-item">${item.item}</div></div></div>`;
-          });
-          html += '</div>';
-          container.innerHTML = html;
-      }
-
-      function switchVipPage(page) {
-          var res = document.getElementById('vip-result');
-          var hist = document.getElementById('vip-history');
-          if(res && hist) {
-              if(page === 'history') {
-                  res.style.display = 'none';
-                  hist.style.display = 'block';
-              } else {
-                  hist.style.display = 'none';
-                  res.style.display = 'block';
-              }
-          }
-      }
-
-      function togglePromo() {
-          var box = document.getElementById('vip-promo-box');
-          if(box) box.classList.toggle('open');
-      }
-
-      window.onload = function() {
-          switchPage('view-home');
-      };
-  </script>
+        // 當 iframe 載入完成時
+        iframe.onload = function() {
+            // 延遲 1 秒再顯示內容，讓使用者體驗更順暢
+            setTimeout(() => {
+                loader.style.opacity = '0';      
+                iframe.style.opacity = '1';      
+                
+                setTimeout(() => { 
+                    loader.style.display = 'none'; 
+                }, 500);
+            }, 1000);
+        };
+    </script>
 </body>
 </html>
+
+

@@ -1,171 +1,642 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>A More Beauty 官方網站 | 宜蘭台北美容美體保養首選</title>
-    <meta name="google-site-verification" content="fPC8Ev3jsINSPgeVzRf8XdxXGsEqGZiwiMzX_f6P4DM" />
-    <meta name="robots" content="index, follow">
-    
-    <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭、羅東地區的專業美容、做臉、女生保養與放鬆服務。提供AGEs抗糖膠原調理、體雕、精油舒壓 SPA 等全方位課程，喚醒肌膚原本的光彩。">
-    <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 羅東美容, 做臉, 保養, 放鬆, 女生保養, 羅東做臉, 宜蘭做臉, 台北做臉, AGEs抗糖膠原調理, 晶鑽生肌煥膚, 緊緻微波拉提, 完美無瑕液態薇秒, 精油舒壓 SPA, 頭部抗壓 SPA, 耳燭 SPA, 小香肩美形雕塑, 女神美背無暇嫩膚調理, 婦科暖宮護理, 彈力美胸護理, 體雕, 纖體熱能脂雕, 爆脂音塑體雕">
-
-    <meta property="og:title" content="A More Beauty 官方網站 | 喚醒肌膚光彩">
-    <meta property="og:description" content="台北宜蘭美容首選。提供AGEs抗糖調理、精油舒壓、體雕塑身等多項專業課程。點擊查看 VIP 資訊與詳細介紹。">
-    <meta property="og:url" content="https://amore-beauty-web.vercel.app/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="A More Beauty">
-    <meta property="og:image" content="https://i.ibb.co/mCNmPL3s/amore-logo.png">
-
-    <link rel="icon" href="https://i.ibb.co/mCNmPL3s/amore-logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="https://i.ibb.co/mCNmPL3s/amore-logo.png">
-    <link rel="canonical" href="https://amore-beauty-web.vercel.app/">
-
-    <link rel="preconnect" href="https://script.google.com">
-    <link rel="preconnect" href="https://googleusercontent.com">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BeautySalon",
-      "name": "A More Beauty",
-      "image": "https://i.ibb.co/mCNmPL3s/amore-logo.png",
-      "@id": "https://amore-beauty-web.vercel.app/",
-      "url": "https://amore-beauty-web.vercel.app/", 
-      "priceRange": "TWD799-TWD2000",
-      "address":[
-        {
-            "@type": "PostalAddress",
-            "addressLocality": "宜蘭縣",
-            "addressRegion": "羅東鎮",
-            "addressCountry": "TW"
-        },
-        {
-            "@type": "PostalAddress",
-            "addressLocality": "台北市",
-            "addressRegion": "中山區",
-            "addressCountry": "TW"
-        }
-      ],
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 24.675,
-        "longitude": 121.766
-      },
-      "sameAs": [
-        "https://www.instagram.com/a.more_beauty___/",
-        "https://www.facebook.com/profile.php?id=61562202471725"
-      ],
-      "makesOffer": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AGEs抗糖膠原調理" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "晶鑽生肌煥膚" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "緊緻微波拉提" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "完美無瑕液態薇秒" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "精油舒壓 SPA" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "頭部抗壓 SPA" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "耳燭 SPA" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "小香肩美形雕塑" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "女神美背無暇嫩膚調理" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "婦科暖宮護理" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "彈力美胸護理" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "體雕 - 纖體熱能脂雕 (RF)" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "體雕 - 爆脂音塑體雕" } }
-      ]
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A More Beauty 官方網站 | 宜蘭台北美容美體保養首選</title>
+  <meta name="google-site-verification" content="fPC8Ev3jsINSPgeVzRf8XdxXGsEqGZiwiMzX_f6P4DM" />
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭、羅東地區的專業美容、做臉、女生保養與放鬆服務。">
+  <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 羅東美容, 做臉, 保養, 放鬆, 羅東做臉, 無痛清粉刺, 婚前保養, 體雕, 精油舒壓">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "A More Beauty",
+    "image": "https://i.ibb.co/C31bZpM/2025-01-26-4-19-15.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "宜蘭 & 台北",
+      "addressCountry": "TW"
+    },
+    "url": "https://amore-beauty-web.vercel.app/",
+    "telephone": "請透過官方LINE預約",
+    "priceRange": "$$"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* --- 變數定義 --- */
+    :root {
+      --primary-color: #b76e79;
+      --accent-color: #d4af37;
+      --text-dark: #4a4a4a;
+      --text-light: #888888;
+      --bg-color: #fdfbfb;
+      --light-bg: #fff0f5;
+      --white: #ffffff;
+      --shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
-    </script>
 
-    <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #fdfbfb; }
-        
-        /* Iframe 設定 */
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-            opacity: 0; 
-            transition: opacity 0.5s ease;
-        }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      margin: 0; padding: 0;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
 
-        /* Loading 遮罩 */
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #fdfbfb; z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.5s ease;
-        }
+    .view-section {
+      width: 100%;
+      min-height: 100vh;
+      display: none; 
+      opacity: 1 !important; 
+      visibility: visible !important;
+    }
 
-        /* Loading 動畫 */
-        .spinner {
-            width: 50px; height: 50px; 
-            border: 3px solid rgba(183, 110, 121, 0.3);
-            border-top-color: #b76e79;
-            border-radius: 50%;
-            animation: spin 1s ease-in-out infinite;
-            margin-bottom: 20px;
-        }
-        .loading-text {
-            color: #4a4a4a; font-family: sans-serif; letter-spacing: 2px; font-size: 14px;
-        }
+    .nav-bar { position: sticky;
+      top: 0; left: 0; width: 100%; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); box-sizing: border-box;
+    }
+    
+    .nav-brand { font-family: 'Cinzel', serif; font-weight: 600; color: var(--primary-color); font-size: 18px;
+      text-decoration: none; letter-spacing: 1px; display: flex; align-items: center; cursor: pointer; }
+    .nav-brand img { width: 30px;
+      height: 30px; border-radius: 50%; margin-right: 10px; object-fit: cover; border: 1px solid #fff; }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
+    .hero { text-align: center;
+      padding: 60px 20px 20px; background: linear-gradient(180deg, var(--light-bg) 0%, var(--bg-color) 100%); }
+    .main-logo-container { width: 130px; height: 130px;
+      margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 4px solid var(--white); box-shadow: 0 10px 30px rgba(183, 110, 121, 0.2);
+    }
+    .main-logo-img { width: 100%; height: 100%; object-fit: cover;
+    }
+    .hero h1 { font-family: 'Cinzel', serif; font-size: 26px; color: var(--primary-color); margin: 15px 0 5px; letter-spacing: 2px;
+    }
+    .hero p { font-family: 'Playfair Display', serif; font-style: italic; color: #999; font-size: 14px; margin-bottom: 15px;
+    }
+    .hero-tag { font-size: 12px; color: #b76e79; background: white; padding: 4px 15px; border-radius: 20px; display: inline-block;
+      border: 1px solid #eee; letter-spacing: 1px; }
+
+    .hero-actions { display: flex; justify-content: center; gap: 15px; margin-top: 30px;
+    }
+    .btn-base { padding: 12px 30px; border-radius: 50px; font-size: 14px; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
+      border: 1px solid var(--primary-color); text-decoration: none; display: inline-block;}
+    .btn-booking { background: var(--primary-color); color: white;
+      box-shadow: 0 8px 20px rgba(183, 110, 121, 0.3); }
+    .btn-booking:hover { background: #a05d68; transform: translateY(-2px);
+    }
+    .btn-vip { background: transparent; color: var(--primary-color); }
+    .btn-vip:hover { background: var(--light-bg);
+    }
+
+    .portfolio-section { padding: 20px 0 50px; overflow: hidden; position: relative; }
+    .carousel-wrapper { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; }
+    .carousel-track { display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 5%; width: 100%;
+      scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none; align-items: center; will-change: transform; }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .p-item { flex: 0 0 280px; width: 280px; cursor: pointer; scroll-snap-align: center; }
+    
+    .p-img-box { width: 100%; height: 380px; overflow: hidden; border-radius: 8px; position: relative; background: #f0f0f0; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+    .p-img-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; z-index: 1; }
+    @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    
+    .p-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; position: relative; z-index: 2; animation: fadeInImg 0.5s forwards; }
+    @keyframes fadeInImg { from { opacity: 0; } to { opacity: 1; } }
+    .p-item:hover .p-img-box img { transform: scale(1.05); }
+    
+    .c-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: 1px solid #eee; cursor: pointer; z-index: 5; color: #555; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+    .c-nav-btn:hover { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+    .c-nav-btn.prev { left: 10px; } .c-nav-btn.next { right: 10px; }
+    @media (max-width: 768px) { .c-nav-btn { display: none; } }
+
+    .menu-container { padding: 0 15px; max-width: 800px; margin: 0 auto; }
+    .menu-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+    .menu-btn { font-size: 14px; color: #999; cursor: pointer; padding: 8px 12px; transition: all 0.3s ease; font-weight: 500; position: relative; }
+    .menu-btn:hover { color: var(--primary-color); }
+    .menu-btn.active { color: var(--primary-color); font-weight: 700; }
+    .menu-btn::after { content: ""; position: absolute; bottom: -17px; left: 0; width: 0%; height: 3px; background: var(--primary-color); transition: width 0.3s ease; }
+    .menu-btn.active::after { width: 100%; }
+
+    .content-display { max-width: 800px; margin: 0 auto 80px; padding: 0 20px; min-height: 400px; }
+    .tab-content { display: none; animation: fadeIn 0.5s; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .course-category { margin-bottom: 30px; }
+    .cat-title { font-size: 16px; color: var(--primary-color); font-weight: 700; padding-bottom: 8px; border-bottom: 1px solid #eee; margin-bottom: 15px; letter-spacing: 1px; }
+    .accordion { margin-bottom: 12px; border-radius: 8px; overflow: hidden; border: 1px solid #f9f9f9; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+    .acc-header { padding: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 500; color: #555; transition: 0.3s; }
+    .acc-header:hover { color: var(--primary-color); }
+    .acc-header::after { content: "+"; color: #ddd; font-size: 18px; font-weight: 300; }
+    .accordion.active .acc-header { color: var(--primary-color); font-weight: 600; background: #fffafc; }
+    .accordion.active .acc-header::after { content: "-"; color: var(--primary-color); }
+    .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: #fff; padding: 0 15px; font-size: 13px; color: #666; line-height: 1.8; text-align: justify; }
+    .accordion.active .acc-body { padding: 15px; max-height: 1000px; border-top: 1px dashed #eee; }
+    
+    .price-tag { display: block; margin-top: 12px; padding-top: 10px; border-top: 1px solid #f5f5f5; color: #333; font-weight: 600; font-size: 13px; }
+
+    .price-frame { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #eee; line-height: 0; }
+    .price-img { width: 100%; display: block; border-radius: 5px; }
+    .care-block { margin-bottom: 30px; }
+    .care-head { font-size: 16px; font-weight: 500; color: var(--primary-color); margin-bottom: 8px; display: flex; align-items: center; }
+    .care-head::before { content: "•"; margin-right: 10px; font-size: 20px; }
+    .care-text { font-size: 14px; color: #777; text-align: justify; padding-left: 20px; }
+    .rule-item { display: flex; margin-bottom: 18px; align-items: flex-start; }
+    .rule-num { color: var(--accent-color); font-family: 'Cinzel', serif; font-weight: 700; margin-right: 12px; min-width: 25px; font-size: 16px; }
+    .rule-text { font-size: 13px; color: #666; text-align: justify; line-height: 1.7; }
+
+    .footer { text-align: center; padding: 50px 20px; background: #fafafa; border-top: 1px solid #eee; margin-top: 50px; }
+    .social-big-btn { display: block; width: 100%; max-width: 320px; margin: 15px auto; padding: 14px; border-radius: 50px; text-decoration: none; color: white; font-size: 15px; letter-spacing: 1px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer;}
+    .social-big-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+    
+    .btn-line { background: #06c755; }
+    .btn-ig { background: linear-gradient(45deg, #f09433, #bc1888); }
+    .copyright { font-size: 11px; color: #ccc; letter-spacing: 1px; margin-top: 30px; }
+
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 9999; display: none; justify-content: center; align-items: center; }
+    
+    #view-vip .vip-wrapper { width: 100%; max-width: 420px; margin: 20px auto; background: rgba(255,255,255,0.98); padding: 40px 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.05); text-align: center; position: relative; min-height: 600px; display: flex; flex-direction: column; box-sizing: border-box; }
+    #view-vip .vip-logo-container { margin: 0 auto 20px auto; width: 130px; height: 130px; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 10px 25px rgba(183, 110, 121, 0.2); display: flex; justify-content: center; align-items: center; background: #fff; }
+    #view-vip .vip-logo-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #view-vip .vip-h1 { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; color: var(--primary-color); margin: 0 0 5px 0; letter-spacing: 2px; }
+    #view-vip .vip-subtitle { font-size: 12px; color: #999; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; }
+    #view-vip .vip-input { width: 100%; padding: 15px; border: 1px solid #eee; border-radius: 50px; font-size: 16px; text-align: center; outline: none; background: #fafafa; transition: 0.3s; box-sizing: border-box; margin-bottom: 15px; letter-spacing: 1px; }
+    #view-vip .vip-input:focus { border-color: var(--primary-color); background: #fff; }
+    #view-vip .vip-btn { width: 100%; padding: 15px; font-size: 16px; font-weight: 500; letter-spacing: 2px; background: var(--primary-color); color: white; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 8px 20px rgba(183, 110, 121, 0.3); transition: 0.2s; }
+    #view-vip .vip-error { color: #b76e79; background: #fff5f8; padding: 25px; border-radius: 15px; text-align: center; border: 1px solid #fce4ec; margin-top: 20px; display: none; font-size: 14px; }
+    
+    #vip-result-container { display: none; animation: slideUp 0.5s ease; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    #view-vip .vip-card { background: #fff; padding: 30px 20px; border-radius: 20px; border: 1px solid #f0f0f0; position: relative; overflow: hidden; z-index: 10; margin-top: 20px; }
+    #view-vip .vip-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent-color); }
+    #view-vip .vip-balance { font-family: 'Cinzel', serif; font-size: 42px; color: var(--primary-color); font-weight: 700; margin: 10px 0; }
+    #view-vip .vip-welcome { font-size: 15px; color: #888; margin-bottom: 10px; }
+    #view-vip .vip-label { font-size: 14px; color: #bbb; letter-spacing: 1px; } 
+    #view-vip .vip-last-visit { padding-top: 15px; margin-top: 15px; border-top: 1px dashed #eee; font-size: 13px; color: #888; display: flex; align-items: center; justify-content: center; }
+    #view-vip .vip-msg-box { margin-top: 15px; padding: 15px; background: #fcfcfc; border-radius: 10px; font-size: 13px; line-height: 1.5; color: #666; }
+    #view-vip .vip-msg-good { border-left: 3px solid #81c784; }
+    #view-vip .vip-msg-urgent { border-left: 3px solid #e57373; color: var(--primary-color); font-weight: bold; }
+    #view-vip .vip-history-btn { background: transparent; border: 1px solid #eee; color: #999; margin-top: 20px; font-size: 13px; padding: 8px 20px; border-radius: 30px; cursor: pointer; margin: 0 auto; transition: 0.3s; }
+    #view-vip .vip-history-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+    #view-vip .vip-hot-section { margin-top: 25px; text-align: left; }
+    #view-vip .vip-hot-title { font-size: 14px; font-weight: bold; color: var(--primary-color); margin-bottom: 10px; display: flex; align-items: center; }
+    #view-vip .vip-hot-item { background: rgba(255,255,255,0.6); border: 1px solid #f0f0f0; padding: 10px 15px; border-radius: 10px; margin-bottom: 8px; font-size: 14px; color: #555; display: flex; justify-content: space-between; align-items: center; }
+    #view-vip .vip-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; color: white; background: var(--primary-color); }
+    #view-vip .vip-badge.product { background: #bcaaa4; }
+    #view-vip .vip-social-links { margin-top: auto; display: flex; flex-direction: column; gap: 15px; width: 100%; padding-top: 30px; }
+    #view-vip .vip-link-btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px; text-decoration: none; border-radius: 50px; font-size: 15px; transition: 0.3s; box-sizing: border-box; }
+    #view-vip .vip-line { background: #06c755; color: white; box-shadow: 0 5px 15px rgba(6, 199, 85, 0.2); }
+    #view-vip .vip-ig { background: linear-gradient(45deg, #f09433, #bc1888); color: white; box-shadow: 0 5px 15px rgba(188, 24, 136, 0.2); }
+    #view-vip #vip-promo-section { display: none; margin-bottom: 20px; width: 100%; text-align: left; }
+    #view-vip .vip-promo-box { border: 1px solid #fce4ec; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.3s ease; background: #fff; margin-bottom: 20px; }
+    #view-vip .vip-promo-header { background: linear-gradient(to right, #b76e79, #c48b9f); color: white; padding: 15px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    #view-vip .vip-promo-header::after { content: "▼"; font-size: 10px; transition: transform 0.3s; }
+    #view-vip .vip-promo-body { padding: 0 20px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease; font-size: 14px; line-height: 1.6; color: #555; }
+    #view-vip .vip-promo-box.open .vip-promo-header::after { transform: rotate(180deg); }
+    #view-vip .vip-promo-box.open .vip-promo-body { max-height: 500px; opacity: 1; padding: 20px; }
+    
+    #view-vip .vip-history-container { padding: 10px 5px; text-align: left; }
+    #view-vip .vip-history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+    #view-vip .vip-history-title { font-size: 18px; font-weight: bold; color: #444; }
+    #view-vip .vip-back-btn { background: #f5f5f5; border: none; padding: 8px 15px; border-radius: 20px; color: #666; font-size: 12px; cursor: pointer; }
+    #view-vip .vip-timeline { position: relative; padding-left: 20px; border-left: 2px solid #f0f0f0; text-align: left; margin-top: 10px; }
+    #view-vip .vip-timeline-item { position: relative; margin-bottom: 25px; }
+    #view-vip .vip-timeline-item:last-child { margin-bottom: 0; }
+    #view-vip .vip-timeline-item::before { content: ""; position: absolute; left: -26px; top: 6px; width: 10px; height: 10px; background: var(--primary-color); border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 2px #fce4ec; }
+    #view-vip .vip-t-date { font-size: 12px; color: #999; margin-bottom: 5px; font-weight: 500; }
+    #view-vip .vip-t-content { background: #fff; padding: 12px 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #f9f9f9; }
+    #view-vip .vip-t-item { font-size: 14px; color: #444; font-weight: 500; }
+
+    .back-home-link { position: absolute; top: 20px; left: 20px; font-size: 14px; color: #999; cursor: pointer; z-index: 20; }
+  </style>
 </head>
 <body>
 
-    <div style="display:none;">
-        <h1>A More Beauty 官方網站 - 台北宜蘭美容美體保養首選</h1>
-        <p>專為女生保養設計的放鬆空間，服務範圍涵蓋宜蘭、羅東與台北。我們專注於解決您的肌膚困擾與放鬆課程並提供以下專業課程：</p>
-        <h2>熱門美容服務項目</h2>
-        <ul>
-            <li>AGEs抗糖膠原調理</li>
-            <li>晶鑽生肌煥膚</li>
-            <li>緊緻微波拉提</li>
-            <li>完美無瑕液態薇秒</li>
-            <li>精油舒壓 SPA</li>
-            <li>頭部抗壓 SPA</li>
-            <li>耳燭 SPA</li>
-            <li>小香肩美形雕塑</li>
-            <li>女神美背無暇嫩膚調理</li>
-            <li>婦科暖宮護理</li>
-            <li>彈力美胸護理</li>
-            <li>體雕 - 方案 A：纖體熱能脂雕 (RF)</li>
-            <li>體雕 - 方案 B：爆脂音塑體雕</li>
-        </ul>
-        <p>服務地區包含：台北、宜蘭。歡迎透過 Instagram 或官方 LINE 預約體驗。</p>
-        <p>官方 Instagram: <a href="https://www.instagram.com/a.more_beauty___/">@a.more_beauty___</a></p>
+  <div style="display:none;">
+    <h1>A More Beauty 官方網站 - 台北宜蘭美容美體保養首選</h1>
+    <p>專為女生保養設計的放鬆空間，服務範圍涵蓋宜蘭、羅東與台北。我們專注於解決您的肌膚困擾與放鬆課程並提供以下專業課程：</p>
+    <h2>熱門美容服務項目</h2>
+    <ul>
+        <li>AGEs抗糖膠原調理</li><li>晶鑽生肌煥膚</li><li>緊緻微波拉提</li>
+        <li>完美無瑕液態薇秒</li><li>精油舒壓 SPA</li><li>頭部抗壓 SPA</li>
+        <li>耳燭 SPA</li><li>小香肩美形雕塑</li><li>女神美背無暇嫩膚調理</li>
+        <li>婦科暖宮護理</li><li>彈力美胸護理</li><li>體雕 - 方案 A：纖體熱能脂雕 (RF)</li>
+        <li>體雕 - 方案 B：爆脂音塑體雕</li>
+    </ul>
+    <p>服務地區包含：台北、宜蘭。歡迎透過 Instagram 或官方 LINE 預約體驗。</p>
+    <p>官方 Instagram: <a href="https://www.instagram.com/a.more_beauty___/">@a.more_beauty___</a></p>
+  </div>
+
+  <div style="display:none;">
+    <img id="logo-src" src="https://i.ibb.co/mCNmPL3s/amore-logo.png" />
+    <img id="price-src" src="https://i.ibb.co/fdP80h7F/S-40124418.jpg" />
+  </div>
+
+  <div id="view-home" class="view-section" style="display:block;">
+    <div class="nav-bar">
+      <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        <img class="logo-target" src=""> A More Beauty
+      </div>
+      <div style="font-size:12px; color:#b76e79; cursor:pointer;" onclick="switchView('vip')">VIP LOGIN</div>
     </div>
 
-    <div id="loader">
-        <div class="spinner"></div>
-        <div class="loading-text">A MORE BEAUTY</div>
+    <div class="hero">
+      <div class="main-logo-container"><img class="main-logo-img logo-target" src=""></div>
+      <h1>A More Beauty</h1>
+      <p>Unveil more beauty and glow within.</p>
+      <span class="hero-tag">Ladies Only / 僅服務女性</span>
+      <div class="hero-actions">
+        <a href="https://lin.ee/c6tfqdR" target="_blank" class="btn-base btn-booking">立即預約療程</a>
+        <div class="btn-base btn-vip" onclick="switchView('vip')">VIP 專屬空間</div>
+      </div>
     </div>
 
-    <iframe 
-        id="gas-frame"
-        src="https://script.google.com/macros/s/AKfycbxvn2KhszNFtcEAczf11vGCb7fRN7RJGHMWvRIr9mP6rgo6-_9tEHs754Bwci77DdKj/exec"
-        sandbox="allow-scripts allow-top-navigation allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox">
-    </iframe>
+    <section class="portfolio-section">
+      <div class="carousel-wrapper">
+        <button class="c-nav-btn prev" onclick="scrollCarousel(-1)">&#10094;</button>
+        <div class="carousel-track" id="portfolio-track">
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/N62sSHDc/OA-VISION-5-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/CKz4pPFj/OA-VISION-2-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/TDJGQj0R/OA-VISION-3-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/9HG2DCtt/OA-VISION-4-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/sJWVt0t3/2025-04-21-012828-226-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/8g9bB7kF/OA-VISION-6-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/vx0sC1dr/OA-VISION-7-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/KkHLv9J/OA-VISION-8-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/ZR4VX8PH/OA-VISION-10-0.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="https://i.ibb.co/Rk3zD6HM/OA-VISION-9-0.jpg"></div></div>
+        </div>
+        <button class="c-nav-btn next" onclick="scrollCarousel(1)">&#10095;</button>
+      </div>
+    </section>
 
-    <script>
-        const iframe = document.getElementById('gas-frame');
-        const loader = document.getElementById('loader');
+    <div class="menu-container">
+      <div class="menu-grid">
+        <div class="menu-btn active" id="btn-courses" onclick="showTab('courses')">課程介紹</div>
+        <div class="menu-btn" id="btn-price" onclick="showTab('price')">價目表</div>
+        <div class="menu-btn" id="btn-care" onclick="showTab('care')">居家美學保養</div>
+        <div class="menu-btn" id="btn-rules" onclick="showTab('rules')">預約須知</div>
+      </div>
+    </div>
 
-        // 當 iframe 載入完成時
-        iframe.onload = function() {
-            // 延遲 1 秒再顯示內容，讓使用者體驗更順暢
-            setTimeout(() => {
-                loader.style.opacity = '0';      
-                iframe.style.opacity = '1';      
-                
-                setTimeout(() => { 
-                    loader.style.display = 'none'; 
-                }, 500);
-            }, 1000);
-        };
-    </script>
+    <div class="content-display">
+      <div id="tab-courses" class="tab-content active">
+        <div class="course-category">
+          <div class="cat-title">臉部問題肌膚管理</div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">AGEs抗糖膠原調理</div>
+            <div class="acc-body">
+              <p>醫學研究指出飲食中的糖化反應是造成皮膚老化與身體疾病的元兇之一。AGEs 進入膠原蛋白使其糖化變黃、褐色，導致皮膚看起來鬆弛、有皺紋且暗沉蠟黃。</p>
+              <p><strong>適合對象：</strong>任何肌膚皆適合。</p>
+              <span class="price-tag">70 mins / 體驗價 $1,499 (原價 $1,800)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">晶鑽生肌煥膚</div>
+            <div class="acc-body">
+              <p>主要成份為海綿微晶，是自然、安全有效的物理換膚療程。經按摩後可平衡油脂分泌，淨化毛孔，幫助老化角質更新，提升肌膚緊緻度。</p>
+              <p><strong>適合對象：</strong>黑頭粉刺、青春痘、毛孔粗大、角質肥厚者、粗糙肌。</p>
+              <span class="price-tag">80 mins / 體驗價 $1,599 (原價 $1,900)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">緊緻微波拉提</div>
+            <div class="acc-body">
+              <p>RF微波拉提可改善細紋，撫平肌膚的動態紋及靜態紋，促進淋巴代謝，改善皮膚暗沉及鬆弛，幫助膠原蛋白的增生。</p>
+              <p><strong>適合對象：</strong>緊緻肌膚（非侵入性、安全性高、無需恢復期）。</p>
+              <span class="price-tag">60 mins / 體驗價 $1,599 (原價 $1,900)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">完美無瑕液態薇秒</div>
+            <div class="acc-body">
+              <p>使用杏仁酸、複方天然果酸、甘油等，作用溫和。對斑點、術後反黑的肌膚具瞬間美白的作用。可預防和阻斷黑色素的形成。</p>
+              <p><strong>適合對象：</strong>粉刺、青春痘、毛孔粗大、痘疤、膚色不均、膚色暗沉。</p>
+              <span class="price-tag">80 mins / 體驗價 $1,499 (原價 $1,800)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-category">
+          <div class="cat-title">身體紓壓與局部雕塑</div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">精油舒壓 SPA</div>
+            <div class="acc-body">
+              <p>使用甜橙、馬嬌蘭、馬鞭草等精油，搭配按摩手法來紓解放鬆身體緊繃的肌肉疲勞，進而釋放所有壓力。</p>
+              <p><strong>適合對象：</strong>放鬆、愉悅、舒緩、鎮定。</p>
+              <span class="price-tag">60 mins $1,500 / 90 mins $1,800 (體驗價)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">頭部抗壓 SPA</div>
+            <div class="acc-body">
+              <p>1次頭部按摩等於8小時深度睡眠！使用天竺葵、迷迭香、薰衣草等精油淨化頭皮，舒緩放鬆頭、肩頸。</p>
+              <span class="price-tag">30 mins / 體驗價 $699 (原價 $1,000)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">耳燭 SPA</div>
+            <div class="acc-body">
+              <p>利用耳燭燃燒產生的微熱力與真空效應，吸出耳內濕氣與雜質，釋放腦壓，改善睡眠品質。</p>
+              <span class="price-tag">體驗價 $699 (原價 $1,000)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">小香肩美形雕塑</div>
+            <div class="acc-body">
+              <p>專為長期久坐、聳肩族、高低肩 & 富貴包設計！結合專業手技舒壓與 RF 射頻深層熱能技術，深入放鬆肩頸與背部筋膜。</p>
+              <span class="price-tag">40 mins / 體驗價 $999 (原價 $1,500)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">女神美背無暇嫩膚調理</div>
+            <div class="acc-body">
+              <p>先進行背部去角質，接著以專業手法處理粉刺與痘痘區域。護理中使用溫和複合酸配方的液態皮秒精華油。</p>
+              <span class="price-tag">90 mins / 體驗價 $1,699 (原價 $2,000)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-category">
+          <div class="cat-title">機能調理與體雕</div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">婦科暖宮護理</div>
+            <div class="acc-body">
+              <p>以奧圖玫瑰、玫瑰果油等調理女性婦科問題，按摩著重在於腰部、八髎區、腹部。有助於排出體內毒素，緩解經痛。</p>
+              <span class="price-tag">40 mins / 體驗價 $999 (原價 $1,200)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">彈力美胸護理</div>
+            <div class="acc-body">
+              <p>透過精油按摩促進膠原蛋白生成，幫助保持胸部肌膚的緊緻和彈性。腋下按摩可以促進淋巴液流動，舒緩胸悶。</p>
+              <span class="price-tag">40 mins / 體驗價 $999 (原價 $1,200)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">體雕 - 方案 A：纖體熱能脂雕 (RF)</div>
+            <div class="acc-body">
+              <p>RF 高頻率生物熱能，促進血液和淋巴循環及脂肪分解，對抗橘皮、泡芙族腹部脂肪，刺激膠原緊緻肌膚。</p>
+              <span class="price-tag">40 mins / 體驗價 $999 (原價 $1,500)</span>
+            </div>
+          </div>
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">體雕 - 方案 B：爆脂音塑體雕</div>
+            <div class="acc-body">
+              <p>利用 40KHZ 強烈聲波，極速振動脂肪細胞，由內爆破徹底粉碎脂肪細胞，加強代謝使脂肪快速排出體外。</p>
+              <span class="price-tag">40 mins / 體驗價 $999 (原價 $1,500)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-price" class="tab-content">
+        <div class="price-frame">
+          <img class="price-img price-target" src="" alt="價目表">
+        </div>
+      </div>
+
+      <div id="tab-care" class="tab-content">
+        <div class="care-block">
+          <div class="care-head">美肌續航</div>
+          <div class="care-text">課程後肌膚吸收力大增，請於 3 天內加強保濕導入或敷臉，避免使用酸類產品，讓肌膚持續水嫩透亮。</div>
+        </div>
+        <div class="care-block">
+          <div class="care-head">防曬隔離</div>
+          <div class="care-text">肌膚代謝更新期間對紫外線較敏感，外出請務必擦拭防曬，預防色素沉澱，維持淨白膚質。</div>
+        </div>
+        <div class="care-block">
+          <div class="care-head">溫和清潔</div>
+          <div class="care-text">請使用溫水洗臉。術後一週內請避免使用酸類、美白、去角質產品。給予肌膚最溫柔的對待。</div>
+        </div>
+        <div class="care-block">
+          <div class="care-head">身心棲息</div>
+          <div class="care-text">美麗源自於充足的睡眠。請在午夜前入睡，讓身體與肌膚同步進行夜間修復工程，保持身心放鬆。</div>
+        </div>
+      </div>
+
+      <div id="tab-rules" class="tab-content">
+        <div class="rule-list">
+          <div class="rule-item"><span class="rule-num">01.</span><span class="rule-text">本店採完全預約制，請提前 3-7 天透過官方 LINE 預約，以確保您的理想時段。</span></div>
+          <div class="rule-item"><span class="rule-num">02.</span><span class="rule-text">如需取消或更改時間，請於預約日前 24 小時告知，當日取消將影響您未來的預約權益。</span></div>
+          <div class="rule-item"><span class="rule-num">03.</span><span class="rule-text">為維護服務品質，請準時抵達。遲到超過 15 分鐘視同取消，或縮短服務時間。</span></div>
+          <div class="rule-item"><span class="rule-num">04.</span><span class="rule-text">僅服務女性顧客 (Ladies Only)，男賓請止步，感謝您的配合。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://lin.ee/c6tfqdR" target="_blank" class="social-big-btn btn-line">官方 LINE 諮詢</a>
+      <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" target="_blank" class="social-big-btn btn-ig">追蹤我們的 Instagram</a>
+      <div class="copyright">© A MORE BEAUTY. All Rights Reserved.</div>
+    </div>
+  </div>
+
+  <div id="view-vip" class="view-section" style="display:none;">
+    <div class="vip-wrapper">
+      <div class="back-home-link" onclick="switchView('home')">⭠ 回首頁</div>
+      <div id="vip-page-main" class="vip-page active">
+        <div class="vip-logo-container"><img class="vip-logo-img logo-target" src=""></div>
+        <h1 class="vip-h1">A More Beauty</h1>
+        <div class="vip-subtitle">VIP 會員專屬空間</div>
+
+        <div id="login-area">
+          <input type="tel" id="vip-phone" class="vip-input" placeholder="請輸入手機號碼" maxlength="10">
+          <button class="vip-btn" onclick="doSearch()" id="searchBtn">查詢我的餘額</button>
+        </div>
+        <div class="vip-error" id="error-msg"></div>
+
+        <div id="vip-result-container">
+          <div id="vip-promo-section">
+            <div class="vip-promo-box" onclick="this.classList.toggle('open')">
+              <div class="vip-promo-header" id="promo-header"></div>
+              <div class="vip-promo-body" id="promo-body"></div>
+            </div>
+          </div>
+          <div class="vip-card">
+            <div class="vip-welcome" id="user-name"></div>
+            <div class="vip-balance" id="user-balance"></div>
+            <div class="vip-label">會員帳戶餘額</div>
+            <div class="vip-last-visit" id="last-date"></div>
+            <div class="vip-msg-box" id="smart-msg"></div>
+            <button class="vip-history-btn" onclick="switchVipPage('history')">📜 查看近期服務紀錄</button>
+          </div>
+          <div class="vip-hot-section">
+            <div class="vip-hot-title">本月人氣推薦 🔥</div>
+            <div class="vip-hot-item"><span class="vip-badge">熱門服務</span><span id="top-service"></span></div>
+            <div class="vip-hot-item"><span class="vip-badge product">熱銷產品</span><span id="top-product"></span></div>
+          </div>
+          
+          <div class="vip-social-links">
+            <a href="https://lin.ee/c6tfqdR" class="vip-link-btn vip-line" target="_blank">線上預約 / 諮詢</a>
+            <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" class="vip-link-btn vip-ig" target="_blank">追蹤我們的 Instagram</a>
+          </div>
+          <div style="margin-top:30px; font-size:11px; color:#ddd;">© A MORE BEAUTY VIP</div>
+        </div>
+      </div>
+
+      <div id="vip-page-history" class="vip-page" style="display:none;">
+        <div class="vip-history-container">
+          <div class="vip-history-header">
+            <div class="vip-history-title">近期服務紀錄</div>
+            <button class="vip-back-btn" onclick="switchVipPage('main')">← 返回</button>
+          </div>
+          <div id="history-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    window.onload = function() {
+      var logoEl = document.getElementById('logo-src');
+      var priceEl = document.getElementById('price-src');
+      if(logoEl) {
+          var logoTargets = document.getElementsByClassName('logo-target');
+          for(var i=0; i<logoTargets.length; i++) logoTargets[i].src = logoEl.src;
+      }
+      if(priceEl) {
+          var priceTargets = document.getElementsByClassName('price-target');
+          for(var i=0; i<priceTargets.length; i++) priceTargets[i].src = priceEl.src;
+      }
+    };
+
+    function showTab(tabId) {
+      var tabs = document.getElementsByClassName('tab-content');
+      for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+      var t = document.getElementById('tab-' + tabId);
+      if(t) t.classList.add('active');
+      
+      var btns = document.getElementsByClassName('menu-btn');
+      for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+      
+      var b = document.getElementById('btn-' + tabId);
+      if(b) b.classList.add('active');
+    }
+
+    function toggleAcc(el) { el.classList.toggle('active'); }
+
+    function switchView(viewName) {
+      var vHome = document.getElementById('view-home');
+      var vVip = document.getElementById('view-vip');
+      if(vHome) vHome.style.display = 'none';
+      if(vVip) vVip.style.display = 'none';
+      
+      var target = document.getElementById('view-' + viewName);
+      if (target) {
+        target.style.display = 'block';
+        window.scrollTo(0,0);
+      }
+    }
+
+    function scrollCarousel(direction) {
+      const track = document.getElementById('portfolio-track');
+      if(!track) return; 
+      const scrollAmount = 300;
+      if (direction === 1) track.scrollLeft += scrollAmount;
+      else track.scrollLeft -= scrollAmount;
+    }
+
+    var globalHistory = [];
+    
+    // ★★★ 已升級為解析您原始計算邏輯的連線腳本 ★★★
+    function doSearch() {
+      var phoneInput = document.getElementById('vip-phone');
+      var phone = phoneInput.value.trim(); 
+      var btn = document.getElementById('searchBtn');
+      var errorDiv = document.getElementById('error-msg');
+      var resultArea = document.getElementById('vip-result-container');
+      var loginArea = document.getElementById('login-area');
+
+      if(phone.length < 8) { alert("請輸入正確的手機號碼喔！"); return; }
+      
+      if(errorDiv) errorDiv.style.display = "none"; 
+      btn.innerText = "讀取中..."; btn.style.opacity = "0.7"; btn.disabled = true;
+
+      fetch('/api/vip', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone: phone })
+      })
+      .then(response => response.json())
+      .then(res => {
+          btn.innerText = "查詢我的餘額"; btn.style.opacity = "1"; btn.disabled = false;
+
+          // 解析您後端傳過來的 { status: "success", found: true, data: {...} }
+          if (res.status === "error" || res.found === false) {
+            if(errorDiv) {
+               errorDiv.innerHTML = res.message || "找不到此號碼，請洽詢官方 LINE";
+               errorDiv.style.display = "block"; 
+            }
+            if(resultArea) resultArea.style.display = "none";
+          } else {
+            var d = res.data; // 擷取裡面的 data
+            var safeName = (d.name && d.name !== "undefined") ? d.name : "VIP 會員";
+            var safeBalance = (d.balance !== undefined && d.balance !== null) ? d.balance : "0";
+            var safeDate = (d.lastDate && d.lastDate !== "undefined") ? d.lastDate : "無紀錄";
+            var safeMsg = (d.message && d.message !== "undefined") ? d.message : "";
+            
+            document.getElementById('user-name').innerText = "Dear " + safeName;
+            document.getElementById('user-balance').innerText = "$" + safeBalance;
+            document.getElementById('last-date').innerHTML = "🗓️ 上次護理：" + safeDate;
+            document.getElementById('smart-msg').innerHTML = safeMsg;
+            
+            if(d.promoHeader && d.promoHeader !== "undefined") {
+              var ph = document.getElementById('promo-header');
+              var pb = document.getElementById('promo-body');
+              var ps = document.getElementById('vip-promo-section');
+              if(ph) ph.innerText = d.promoHeader;
+              if(pb) pb.innerHTML = d.promoBody || "";
+              if(ps) ps.style.display = "block";
+            }
+            
+            if(d.topService) {
+               var ts = document.getElementById('top-service');
+               if(ts) ts.innerText = d.topService;
+            }
+            if(d.topProduct) {
+               var tp = document.getElementById('top-product');
+               if(tp) tp.innerText = d.topProduct;
+            }
+
+            globalHistory = d.history || [];
+            renderHistory();
+            if(resultArea) resultArea.style.display = "block"; 
+            if(loginArea) loginArea.style.display = "none"; 
+          }
+      })
+      .catch(error => {
+          btn.innerText = "查詢我的餘額"; btn.style.opacity = "1"; btn.disabled = false;
+          alert("伺服器連線失敗，請稍後再試。");
+      });
+    }
+
+    function renderHistory() {
+      var container = document.getElementById('history-content');
+      if(!container) return;
+      if (globalHistory.length === 0) { 
+          container.innerHTML = '<div style="color:#999;text-align:center;">無紀錄</div>'; 
+          return;
+      }
+      var html = '<div class="vip-timeline">';
+      globalHistory.forEach(function(item) {
+        html += `<div class="vip-timeline-item"><div class="vip-t-date">${item.date}</div><div class="vip-t-content"><div class="vip-t-item">${item.item}</div></div></div>`;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    function switchVipPage(page) {
+      var pm = document.getElementById('vip-page-main');
+      var ph = document.getElementById('vip-page-history');
+      if(pm) pm.style.display = page === 'main' ? 'block' : 'none';
+      if(ph) ph.style.display = page === 'history' ? 'block' : 'none';
+    }
+</script>
 </body>
 </html>
-
-

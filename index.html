@@ -49,24 +49,28 @@
       line-height: 1.6;
     }
 
-    /* --- 頂部質感公告列 --- */
+    /* --- 頂部質感公告列 (改為兩行) --- */
     .top-announcement {
       background: linear-gradient(to right, #b76e79, #c48b9f);
       color: #ffffff;
       text-align: center;
-      padding: 8px 15px;
+      padding: 10px 15px; /* 稍微增加上下間距 */
       font-size: 13px;
       letter-spacing: 1.5px;
       font-weight: 500;
       position: relative;
       z-index: 1001;
+      display: flex;
+      flex-direction: column; /* 讓內容直向排列 */
+      align-items: center;
+      gap: 5px; /* 兩行之間的間距 */
     }
     .top-announcement a {
       color: #fff0f5;
       text-decoration: underline;
       font-weight: 700;
-      margin-left: 10px;
       transition: 0.3s;
+      /* 移除 margin-left，因為現在是獨立一行 */
     }
     .top-announcement a:hover {
       color: var(--accent-color);
@@ -257,7 +261,7 @@
   </div>
 
   <div class="top-announcement">
-    ✨ 本月限定優惠：PDRN肌因水光護理 體驗價 $1,599
+    <span> 母親節限定優惠：暖宮腹燭｜美胸按摩｜頭部SPA｜耳燭SPA️ 任選2項$1500</span>
     <a href="https://lin.ee/c6tfqdR" target="_blank">預約卡位</a>
   </div>
 

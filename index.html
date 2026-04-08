@@ -8,7 +8,7 @@
   <meta name="google-site-verification" content="fPC8Ev3jsINSPgeVzRf8XdxXGsEqGZiwiMzX_f6P4DM" />
   <meta name="robots" content="index, follow">
   <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭、羅東地區的專業美容、做臉、女生保養與放鬆服務。">
-  <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 羅東美容, 做臉, 保養, 放鬆, 羅東做臉, 無痛清粉刺, 婚前保養, 體雕, 精油舒壓">
+  <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 羅東美容, 做臉, 保養, 放鬆, 羅東做臉, 無痛清粉刺, 婚前保養, 體雕, 精油舒壓, PDRN肌因水光護理">
   
   <script type="application/ld+json">
   {
@@ -222,6 +222,7 @@
     <p>專為女生保養設計的放鬆空間，服務範圍涵蓋宜蘭、羅東與台北。我們專注於解決您的肌膚困擾與放鬆課程並提供以下專業課程：</p>
     <h2>熱門美容服務項目</h2>
     <ul>
+        <li>PDRN肌因水光護理</li>
         <li>AGEs抗糖膠原調理</li><li>晶鑽生肌煥膚</li><li>緊緻微波拉提</li>
         <li>完美無瑕液態薇秒</li><li>精油舒壓 SPA</li><li>頭部抗壓 SPA</li>
         <li>耳燭 SPA</li><li>小香肩美形雕塑</li><li>女神美背無暇嫩膚調理</li>
@@ -288,6 +289,15 @@
       <div id="tab-courses" class="tab-content active">
         <div class="course-category">
           <div class="cat-title">臉部問題肌膚管理</div>
+          
+          <div class="accordion" onclick="toggleAcc(this)">
+            <div class="acc-header">PDRN肌因水光護理</div>
+            <div class="acc-body">
+              <p>以「雙重 PDRN × 外泌體 」為核心科技，結合導入儀等專業操作，打造媲美醫美級的高效保養體驗。從保濕、穩定到光澤多層次調理膚況，結合導入術，深層補水同時強化肌膚穩定度，舒緩乾燥與緊繃。療程後肌膚水潤透亮、觸感柔嫩細緻，連續護理可使膚況平衡、膚色勻亮，展現專業院線級柔光光澤肌。</p>
+              <p><strong>適合對象：</strong>任何肌膚皆適合。</p>
+              <span class="price-tag">70 mins / 體驗價 $1,599 (原價 $1,900)</span>
+            </div>
+          </div>
           <div class="accordion" onclick="toggleAcc(this)">
             <div class="acc-header">AGEs抗糖膠原調理</div>
             <div class="acc-body">
@@ -511,7 +521,6 @@
       for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
       var t = document.getElementById('tab-' + tabId);
       if(t) t.classList.add('active');
-      
       var btns = document.getElementsByClassName('menu-btn');
       for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
       
@@ -544,7 +553,6 @@
 
     var globalHistory = [];
     
-    // ★★★ 已升級為解析您原始計算邏輯的連線腳本 ★★★
     function doSearch() {
       var phoneInput = document.getElementById('vip-phone');
       var phone = phoneInput.value.trim(); 
@@ -552,10 +560,9 @@
       var errorDiv = document.getElementById('error-msg');
       var resultArea = document.getElementById('vip-result-container');
       var loginArea = document.getElementById('login-area');
-
       if(phone.length < 8) { alert("請輸入正確的手機號碼喔！"); return; }
       
-      if(errorDiv) errorDiv.style.display = "none"; 
+      if(errorDiv) errorDiv.style.display = "none";
       btn.innerText = "讀取中..."; btn.style.opacity = "0.7"; btn.disabled = true;
 
       fetch('/api/vip', {
@@ -567,7 +574,6 @@
       .then(res => {
           btn.innerText = "查詢我的餘額"; btn.style.opacity = "1"; btn.disabled = false;
 
-          // 解析您後端傳過來的 { status: "success", found: true, data: {...} }
           if (res.status === "error" || res.found === false) {
             if(errorDiv) {
                errorDiv.innerHTML = res.message || "找不到此號碼，請洽詢官方 LINE";
@@ -575,17 +581,15 @@
             }
             if(resultArea) resultArea.style.display = "none";
           } else {
-            var d = res.data; // 擷取裡面的 data
+            var d = res.data; 
             var safeName = (d.name && d.name !== "undefined") ? d.name : "VIP 會員";
             var safeBalance = (d.balance !== undefined && d.balance !== null) ? d.balance : "0";
             var safeDate = (d.lastDate && d.lastDate !== "undefined") ? d.lastDate : "無紀錄";
             var safeMsg = (d.message && d.message !== "undefined") ? d.message : "";
-            
             document.getElementById('user-name').innerText = "Dear " + safeName;
             document.getElementById('user-balance').innerText = "$" + safeBalance;
             document.getElementById('last-date').innerHTML = "🗓️ 上次護理：" + safeDate;
             document.getElementById('smart-msg').innerHTML = safeMsg;
-            
             if(d.promoHeader && d.promoHeader !== "undefined") {
               var ph = document.getElementById('promo-header');
               var pb = document.getElementById('promo-body');
@@ -607,7 +611,7 @@
             globalHistory = d.history || [];
             renderHistory();
             if(resultArea) resultArea.style.display = "block"; 
-            if(loginArea) loginArea.style.display = "none"; 
+            if(loginArea) loginArea.style.display = "none";
           }
       })
       .catch(error => {

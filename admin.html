@@ -3,94 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A More Beauty 隱藏控制台</title>
+  <title>A More Beauty 系統控制台</title>
   <style>
-    body { font-family: sans-serif; background-color: #fdfbfb; color: #4a4a4a; padding: 20px; }
-    .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    h1 { color: #b76e79; text-align: center; }
-    .form-group { margin-bottom: 20px; }
-    label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
-    input, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-    textarea { height: 100px; }
-    .note { font-size: 12px; color: #888; margin-top: 5px; }
-    .btn { width: 100%; padding: 12px; background: #b76e79; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 10px; }
-    .btn:hover { background: #a05d68; }
-    .btn-load { background: #d4af37; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7f9; color: #4a4a4a; padding: 20px; margin: 0; }
+    .container { max-width: 650px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    h1 { color: #b76e79; text-align: center; font-size: 24px; margin-bottom: 30px; letter-spacing: 2px; }
+    .form-group { margin-bottom: 25px; }
+    label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; color: #555; }
+    input[type="text"], input[type="password"], textarea { width: 100%; padding: 12px; border: 1px solid #e1e5eb; border-radius: 8px; box-sizing: border-box; font-size: 14px; transition: border-color 0.3s; background: #fafafa; }
+    input:focus, textarea:focus { border-color: #b76e79; outline: none; background: #fff; }
+    textarea { height: 100px; resize: vertical; }
+    .note { font-size: 12px; color: #999; margin-top: 6px; }
+    .btn { width: 100%; padding: 14px; background: #b76e79; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; letter-spacing: 1px; }
+    .btn:hover { background: #a05d68; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(183,110,121,0.3); }
+    
+    /* 登入畫面專屬 */
+    #login-screen { text-align: center; padding: 20px 0; }
+    #login-screen input { text-align: center; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; }
+    
+    /* 圖片專屬 10 宮格 */
+    .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .img-input-box { background: #fffafb; padding: 10px; border-radius: 8px; border: 1px dashed #fce4ec; }
+    .img-input-box label { font-size: 12px; color: #b76e79; margin-bottom: 4px; }
+    .img-input-box input { padding: 8px; font-size: 12px; }
+    
+    .section-title { font-size: 18px; color: #d4af37; border-bottom: 2px solid #fce4ec; padding-bottom: 10px; margin: 35px 0 20px; font-weight: bold; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>A More Beauty 官網控制台</h1>
+  <h1>A MORE BEAUTY<br><span style="font-size: 14px; color:#999; font-weight:normal;">系統控制台</span></h1>
   
-  <div class="form-group">
-    <label>🔒 老闆管理員密碼：</label>
-    <input type="password" id="adminPwd" placeholder="請輸入密碼" value="Amore888">
+  <div id="login-screen">
+    <div class="form-group">
+      <input type="password" id="adminPwd" placeholder="請輸入老闆專屬密碼">
+    </div>
+    <button class="btn" onclick="verifyLogin()">登入系統</button>
+    <p id="login-msg" style="color: #b76e79; margin-top: 15px; font-weight: bold;"></p>
   </div>
 
-  <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+  <div id="admin-dashboard" style="display: none;">
+    
+    <div class="section-title">📌 頂部跑馬燈設定</div>
+    <div class="form-group">
+      <label>公告文字</label>
+      <input type="text" id="topText">
+    </div>
+    <div class="form-group">
+      <label>點擊跳轉網址 (LINE連結)</label>
+      <input type="text" id="topLink">
+    </div>
 
-  <div class="form-group">
-    <label>📌 頂部跑馬燈公告 (文字)</label>
-    <input type="text" id="topText">
-  </div>
-  <div class="form-group">
-    <label>🔗 頂部公告連結 (網址)</label>
-    <input type="text" id="topLink">
+    <div class="section-title">👑 VIP 專區活動設定</div>
+    <div class="form-group">
+      <label>活動主標題</label>
+      <input type="text" id="vipHeader">
+    </div>
+    <div class="form-group">
+      <label>活動詳細內容 (可使用 &lt;br&gt; 換行)</label>
+      <textarea id="vipBody"></textarea>
+      <div class="note">這裡輸入的文字將 100% 絕對顯示於 VIP 首頁。</div>
+    </div>
+
+    <div class="section-title">🖼️ 首頁輪播圖設定 (共 10 張)</div>
+    <div class="note" style="margin-bottom: 15px;">請將圖床網址貼入下方格子中，若不想顯示那麼多張，格子留空即可。</div>
+    
+    <div class="img-grid" id="img-container">
+      </div>
+
+    <button class="btn" style="margin-top: 40px;" onclick="saveData()">💾 儲存並發布至官網</button>
+    <p id="statusMsg" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
   </div>
 
-  <div class="form-group">
-    <label>👑 VIP 專區：活動標題</label>
-    <input type="text" id="vipHeader">
-  </div>
-  <div class="form-group">
-    <label>💬 VIP 專區：活動內容 (可使用 &lt;br&gt; 換行)</label>
-    <textarea id="vipBody"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label>🖼️ 首頁輪播牆圖片 (請貼圖床網址，一行一張圖)</label>
-    <textarea id="carouselImgs" style="height: 150px;"></textarea>
-    <div class="note">若留空，將預設顯示原本官網內的 10 張美圖。<br>若要更換，請將獲得的 .jpg 或 .png 網址貼上來。</div>
-  </div>
-
-  <button class="btn btn-load" onclick="loadData()">🔄 讀取目前線上設定</button>
-  <button class="btn" onclick="saveData()">💾 儲存並發布到官網</button>
-  
-  <p id="statusMsg" style="text-align: center; color: green; font-weight: bold;"></p>
 </div>
 
 <script>
-  function loadData() {
-    document.getElementById('statusMsg').innerText = "讀取中...";
+  // 自動產生 10 個圖片輸入框
+  const imgContainer = document.getElementById('img-container');
+  for(let i = 0; i < 10; i++) {
+      imgContainer.innerHTML += `
+        <div class="img-input-box">
+          <label>圖片 ${i + 1}</label>
+          <input type="text" id="imgInput${i}" placeholder="貼上圖片網址...">
+        </div>
+      `;
+  }
+
+  let globalPassword = "";
+
+  // 登入驗證
+  function verifyLogin() {
+    globalPassword = document.getElementById('adminPwd').value;
+    if(!globalPassword) { alert("密碼不能為空"); return; }
+    
+    document.getElementById('login-msg').innerText = "驗證身分中...";
+    
     fetch('/api/cms', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: "getConfig" })
+      body: JSON.stringify({ action: "getConfig", adminPassword: globalPassword })
     }).then(r => r.json()).then(res => {
       if(res.status === "success") {
+        // 登入成功，切換畫面
+        document.getElementById('login-screen').style.display = "none";
+        document.getElementById('admin-dashboard').style.display = "block";
+        
+        // 載入線上資料
         document.getElementById('topText').value = res.data.topText;
         document.getElementById('topLink').value = res.data.topLink;
         document.getElementById('vipHeader').value = res.data.vipPromoHeader;
         document.getElementById('vipBody').value = res.data.vipPromoBody;
         
-        var imgs = [];
+        let imgs = [];
         try { imgs = JSON.parse(res.data.carouselImages); } catch(e){}
-        document.getElementById('carouselImgs').value = imgs.join('\n');
-        document.getElementById('statusMsg').innerText = "讀取成功！";
+        for(let i = 0; i < 10; i++) {
+            if(imgs[i]) document.getElementById('imgInput'+i).value = imgs[i];
+        }
+      } else {
+        document.getElementById('login-msg').innerText = "❌ " + res.message;
       }
+    }).catch(e => {
+        document.getElementById('login-msg').innerText = "連線失敗，請檢查網路。";
     });
   }
 
+  // 儲存資料
   function saveData() {
-    var pwd = document.getElementById('adminPwd').value;
-    if(!pwd) { alert("請輸入密碼"); return; }
-    
-    var imgArray = document.getElementById('carouselImgs').value.split('\n').map(u => u.trim()).filter(u => u !== "");
+    let imgArray = [];
+    for(let i = 0; i < 10; i++) {
+        let val = document.getElementById('imgInput'+i).value.trim();
+        if(val) imgArray.push(val);
+    }
 
-    var payload = {
+    let payload = {
       action: "saveConfig",
-      adminPassword: pwd,
+      adminPassword: globalPassword,
       topText: document.getElementById('topText').value,
       topLink: document.getElementById('topLink').value,
       vipPromoHeader: document.getElementById('vipHeader').value,
@@ -98,7 +146,9 @@
       carouselImages: JSON.stringify(imgArray)
     };
 
-    document.getElementById('statusMsg').innerText = "儲存中...";
+    document.getElementById('statusMsg').innerText = "儲存更新中...";
+    document.getElementById('statusMsg').style.color = "#d4af37";
+
     fetch('/api/cms', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -106,14 +156,13 @@
     }).then(r => r.json()).then(res => {
       if(res.status === "success") {
         document.getElementById('statusMsg').innerText = "✅ 儲存成功！官網已同步更新。";
+        document.getElementById('statusMsg').style.color = "green";
       } else {
         document.getElementById('statusMsg').innerText = "❌ 錯誤：" + res.message;
         document.getElementById('statusMsg').style.color = "red";
       }
     });
   }
-
-  window.onload = loadData;
 </script>
 </body>
 </html>

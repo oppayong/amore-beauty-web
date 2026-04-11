@@ -16,11 +16,7 @@
     "@type": "BeautySalon",
     "name": "A More Beauty",
     "image": "https://i.ibb.co/C31bZpM/2025-01-26-4-19-15.png",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "宜蘭 & 台北",
-      "addressCountry": "TW"
-    },
+    "address": { "@type": "PostalAddress", "addressLocality": "宜蘭 & 台北", "addressCountry": "TW" },
     "url": "https://amore-beauty-web.vercel.app/",
     "telephone": "請透過官方LINE預約",
     "priceRange": "$$"
@@ -28,118 +24,42 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
-    /* --- 變數定義 --- */
-    :root {
-      --primary-color: #b76e79;
-      --accent-color: #d4af37;
-      --text-dark: #4a4a4a;
-      --text-light: #888888;
-      --bg-color: #fdfbfb;
-      --light-bg: #fff0f5;
-      --white: #ffffff;
-      --shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
-
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-dark);
-      margin: 0; padding: 0;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* --- 頂部質感公告列 (改為兩行) --- */
-    .top-announcement {
-      background: linear-gradient(to right, #b76e79, #c48b9f);
-      color: #ffffff;
-      text-align: center;
-      padding: 10px 15px; /* 稍微增加上下間距 */
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      font-weight: 500;
-      position: relative;
-      z-index: 1001;
-      display: flex;
-      flex-direction: column; /* 讓內容直向排列 */
-      align-items: center;
-      gap: 5px; /* 兩行之間的間距 */
-    }
-    .top-announcement a {
-      color: #fff0f5;
-      text-decoration: underline;
-      font-weight: 700;
-      transition: 0.3s;
-      /* 移除 margin-left，因為現在是獨立一行 */
-    }
-    .top-announcement a:hover {
-      color: var(--accent-color);
-    }
-
-    .view-section {
-      width: 100%;
-      min-height: 100vh;
-      display: none; 
-      opacity: 1 !important; 
-      visibility: visible !important;
-    }
-
-    .nav-bar { position: sticky;
-      top: 0; left: 0; width: 100%; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); box-sizing: border-box;
-    }
-    
-    .nav-brand { font-family: 'Cinzel', serif; font-weight: 600; color: var(--primary-color); font-size: 18px;
-      text-decoration: none; letter-spacing: 1px; display: flex; align-items: center; cursor: pointer; }
-    .nav-brand img { width: 30px;
-      height: 30px; border-radius: 50%; margin-right: 10px; object-fit: cover; border: 1px solid #fff; }
-
-    .hero { text-align: center;
-      padding: 60px 20px 20px; background: linear-gradient(180deg, var(--light-bg) 0%, var(--bg-color) 100%); }
-    .main-logo-container { width: 130px; height: 130px;
-      margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 4px solid var(--white); box-shadow: 0 10px 30px rgba(183, 110, 121, 0.2);
-    }
-    .main-logo-img { width: 100%; height: 100%; object-fit: cover;
-    }
-    .hero h1 { font-family: 'Cinzel', serif; font-size: 26px; color: var(--primary-color); margin: 15px 0 5px; letter-spacing: 2px;
-    }
-    .hero p { font-family: 'Playfair Display', serif; font-style: italic; color: #999; font-size: 14px; margin-bottom: 15px;
-    }
-    .hero-tag { font-size: 12px; color: #b76e79; background: white; padding: 4px 15px; border-radius: 20px; display: inline-block;
-      border: 1px solid #eee; letter-spacing: 1px; }
-
-    .hero-actions { display: flex; justify-content: center; gap: 15px; margin-top: 30px;
-    }
-    .btn-base { padding: 12px 30px; border-radius: 50px; font-size: 14px; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
-      border: 1px solid var(--primary-color); text-decoration: none; display: inline-block;}
-    .btn-booking { background: var(--primary-color); color: white;
-      box-shadow: 0 8px 20px rgba(183, 110, 121, 0.3); }
-    .btn-booking:hover { background: #a05d68; transform: translateY(-2px);
-    }
+    :root { --primary-color: #b76e79; --accent-color: #d4af37; --text-dark: #4a4a4a; --text-light: #888888; --bg-color: #fdfbfb; --light-bg: #fff0f5; --white: #ffffff; --shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 0; overflow-x: hidden; line-height: 1.6; }
+    .top-announcement { background: linear-gradient(to right, #b76e79, #c48b9f); color: #ffffff; text-align: center; padding: 10px 15px; font-size: 13px; letter-spacing: 1.5px; font-weight: 500; position: relative; z-index: 1001; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .top-announcement a { color: #fff0f5; text-decoration: underline; font-weight: 700; transition: 0.3s; }
+    .top-announcement a:hover { color: var(--accent-color); }
+    .view-section { width: 100%; min-height: 100vh; display: none; opacity: 1 !important; visibility: visible !important; }
+    .nav-bar { position: sticky; top: 0; left: 0; width: 100%; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); box-sizing: border-box; }
+    .nav-brand { font-family: 'Cinzel', serif; font-weight: 600; color: var(--primary-color); font-size: 18px; text-decoration: none; letter-spacing: 1px; display: flex; align-items: center; cursor: pointer; }
+    .nav-brand img { width: 30px; height: 30px; border-radius: 50%; margin-right: 10px; object-fit: cover; border: 1px solid #fff; }
+    .hero { text-align: center; padding: 60px 20px 20px; background: linear-gradient(180deg, var(--light-bg) 0%, var(--bg-color) 100%); }
+    .main-logo-container { width: 130px; height: 130px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 4px solid var(--white); box-shadow: 0 10px 30px rgba(183, 110, 121, 0.2); }
+    .main-logo-img { width: 100%; height: 100%; object-fit: cover; }
+    .hero h1 { font-family: 'Cinzel', serif; font-size: 26px; color: var(--primary-color); margin: 15px 0 5px; letter-spacing: 2px; }
+    .hero p { font-family: 'Playfair Display', serif; font-style: italic; color: #999; font-size: 14px; margin-bottom: 15px; }
+    .hero-tag { font-size: 12px; color: #b76e79; background: white; padding: 4px 15px; border-radius: 20px; display: inline-block; border: 1px solid #eee; letter-spacing: 1px; }
+    .hero-actions { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+    .btn-base { padding: 12px 30px; border-radius: 50px; font-size: 14px; letter-spacing: 1px; cursor: pointer; transition: 0.3s; border: 1px solid var(--primary-color); text-decoration: none; display: inline-block;}
+    .btn-booking { background: var(--primary-color); color: white; box-shadow: 0 8px 20px rgba(183, 110, 121, 0.3); }
+    .btn-booking:hover { background: #a05d68; transform: translateY(-2px); }
     .btn-vip { background: transparent; color: var(--primary-color); }
-    .btn-vip:hover { background: var(--light-bg);
-    }
-
+    .btn-vip:hover { background: var(--light-bg); }
     .portfolio-section { padding: 20px 0 50px; overflow: hidden; position: relative; }
     .carousel-wrapper { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; }
-    .carousel-track { display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 5%; width: 100%;
-      scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none; align-items: center; will-change: transform; }
+    .carousel-track { display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 5%; width: 100%; scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none; align-items: center; will-change: transform; }
     .carousel-track::-webkit-scrollbar { display: none; }
     .p-item { flex: 0 0 280px; width: 280px; cursor: pointer; scroll-snap-align: center; }
-    
     .p-img-box { width: 100%; height: 380px; overflow: hidden; border-radius: 8px; position: relative; background: #f0f0f0; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
     .p-img-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; z-index: 1; }
     @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-    
     .p-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; position: relative; z-index: 2; animation: fadeInImg 0.5s forwards; }
     @keyframes fadeInImg { from { opacity: 0; } to { opacity: 1; } }
     .p-item:hover .p-img-box img { transform: scale(1.05); }
-    
     .c-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: 1px solid #eee; cursor: pointer; z-index: 5; color: #555; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; display: flex; align-items: center; justify-content: center; }
     .c-nav-btn:hover { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
     .c-nav-btn.prev { left: 10px; } .c-nav-btn.next { right: 10px; }
     @media (max-width: 768px) { .c-nav-btn { display: none; } }
-
     .menu-container { padding: 0 15px; max-width: 800px; margin: 0 auto; }
     .menu-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
     .menu-btn { font-size: 14px; color: #999; cursor: pointer; padding: 8px 12px; transition: all 0.3s ease; font-weight: 500; position: relative; }
@@ -147,12 +67,10 @@
     .menu-btn.active { color: var(--primary-color); font-weight: 700; }
     .menu-btn::after { content: ""; position: absolute; bottom: -17px; left: 0; width: 0%; height: 3px; background: var(--primary-color); transition: width 0.3s ease; }
     .menu-btn.active::after { width: 100%; }
-
     .content-display { max-width: 800px; margin: 0 auto 80px; padding: 0 20px; min-height: 400px; }
     .tab-content { display: none; animation: fadeIn 0.5s; }
     .tab-content.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
     .course-category { margin-bottom: 30px; }
     .cat-title { font-size: 16px; color: var(--primary-color); font-weight: 700; padding-bottom: 8px; border-bottom: 1px solid #eee; margin-bottom: 15px; letter-spacing: 1px; }
     .accordion { margin-bottom: 12px; border-radius: 8px; overflow: hidden; border: 1px solid #f9f9f9; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
@@ -163,9 +81,7 @@
     .accordion.active .acc-header::after { content: "-"; color: var(--primary-color); }
     .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: #fff; padding: 0 15px; font-size: 13px; color: #666; line-height: 1.8; text-align: justify; }
     .accordion.active .acc-body { padding: 15px; max-height: 1000px; border-top: 1px dashed #eee; }
-    
     .price-tag { display: block; margin-top: 12px; padding-top: 10px; border-top: 1px solid #f5f5f5; color: #333; font-weight: 600; font-size: 13px; }
-
     .price-frame { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #eee; line-height: 0; }
     .price-img { width: 100%; display: block; border-radius: 5px; }
     .care-block { margin-bottom: 30px; }
@@ -175,15 +91,12 @@
     .rule-item { display: flex; margin-bottom: 18px; align-items: flex-start; }
     .rule-num { color: var(--accent-color); font-family: 'Cinzel', serif; font-weight: 700; margin-right: 12px; min-width: 25px; font-size: 16px; }
     .rule-text { font-size: 13px; color: #666; text-align: justify; line-height: 1.7; }
-
     .footer { text-align: center; padding: 50px 20px; background: #fafafa; border-top: 1px solid #eee; margin-top: 50px; }
     .social-big-btn { display: block; width: 100%; max-width: 320px; margin: 15px auto; padding: 14px; border-radius: 50px; text-decoration: none; color: white; font-size: 15px; letter-spacing: 1px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer;}
     .social-big-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
-    
     .btn-line { background: #06c755; }
     .btn-ig { background: linear-gradient(45deg, #f09433, #bc1888); }
     .copyright { font-size: 11px; color: #ccc; letter-spacing: 1px; margin-top: 30px; }
-
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 9999; display: none; justify-content: center; align-items: center; }
     
     #view-vip .vip-wrapper { width: 100%; max-width: 420px; margin: 20px auto; background: rgba(255,255,255,0.98); padding: 40px 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.05); text-align: center; position: relative; min-height: 600px; display: flex; flex-direction: column; box-sizing: border-box; }
@@ -195,10 +108,8 @@
     #view-vip .vip-input:focus { border-color: var(--primary-color); background: #fff; }
     #view-vip .vip-btn { width: 100%; padding: 15px; font-size: 16px; font-weight: 500; letter-spacing: 2px; background: var(--primary-color); color: white; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 8px 20px rgba(183, 110, 121, 0.3); transition: 0.2s; }
     #view-vip .vip-error { color: #b76e79; background: #fff5f8; padding: 25px; border-radius: 15px; text-align: center; border: 1px solid #fce4ec; margin-top: 20px; display: none; font-size: 14px; }
-    
     #vip-result-container { display: none; animation: slideUp 0.5s ease; }
     @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
     #view-vip .vip-card { background: #fff; padding: 30px 20px; border-radius: 20px; border: 1px solid #f0f0f0; position: relative; overflow: hidden; z-index: 10; margin-top: 20px; }
     #view-vip .vip-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent-color); }
     #view-vip .vip-balance { font-family: 'Cinzel', serif; font-size: 42px; color: var(--primary-color); font-weight: 700; margin: 10px 0; }
@@ -226,7 +137,6 @@
     #view-vip .vip-promo-body { padding: 0 20px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease; font-size: 14px; line-height: 1.6; color: #555; }
     #view-vip .vip-promo-box.open .vip-promo-header::after { transform: rotate(180deg); }
     #view-vip .vip-promo-box.open .vip-promo-body { max-height: 500px; opacity: 1; padding: 20px; }
-    
     #view-vip .vip-history-container { padding: 10px 5px; text-align: left; }
     #view-vip .vip-history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
     #view-vip .vip-history-title { font-size: 18px; font-weight: bold; color: #444; }
@@ -238,7 +148,6 @@
     #view-vip .vip-t-date { font-size: 12px; color: #999; margin-bottom: 5px; font-weight: 500; }
     #view-vip .vip-t-content { background: #fff; padding: 12px 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #f9f9f9; }
     #view-vip .vip-t-item { font-size: 14px; color: #444; font-weight: 500; }
-
     .back-home-link { position: absolute; top: 20px; left: 20px; font-size: 14px; color: #999; cursor: pointer; z-index: 20; }
   </style>
 </head>
@@ -249,8 +158,7 @@
     <p>專為女生保養設計的放鬆空間，服務範圍涵蓋宜蘭、羅東與台北。我們專注於解決您的肌膚困擾與放鬆課程並提供以下專業課程：</p>
     <h2>熱門美容服務項目</h2>
     <ul>
-        <li>PDRN肌因水光護理</li>
-        <li>AGEs抗糖膠原調理</li><li>晶鑽生肌煥膚</li><li>緊緻微波拉提</li>
+        <li>PDRN肌因水光護理</li><li>AGEs抗糖膠原調理</li><li>晶鑽生肌煥膚</li><li>緊緻微波拉提</li>
         <li>完美無瑕液態薇秒</li><li>精油舒壓 SPA</li><li>頭部抗壓 SPA</li>
         <li>耳燭 SPA</li><li>小香肩美形雕塑</li><li>女神美背無暇嫩膚調理</li>
         <li>婦科暖宮護理</li><li>彈力美胸護理</li><li>體雕 - 方案 A：纖體熱能脂雕 (RF)</li>
@@ -261,8 +169,8 @@
   </div>
 
   <div class="top-announcement">
-    <span> 母親節限定優惠：暖宮腹燭｜美胸按摩｜頭部SPA｜耳燭SPA️ 任選2項$1500</span>
-    <a href="https://lin.ee/c6tfqdR" target="_blank">預約卡位</a>
+    <span id="dyn-top-text">✨ 本月限定優惠：讀取中...</span>
+    <a id="dyn-top-link" href="#" target="_blank">預約卡位</a>
   </div>
 
   <div style="display:none;">
@@ -321,7 +229,6 @@
       <div id="tab-courses" class="tab-content active">
         <div class="course-category">
           <div class="cat-title">臉部問題肌膚管理</div>
-          
           <div class="accordion" onclick="toggleAcc(this)">
             <div class="acc-header">PDRN肌因水光護理</div>
             <div class="acc-body">
@@ -546,6 +453,40 @@
           var priceTargets = document.getElementsByClassName('price-target');
           for(var i=0; i<priceTargets.length; i++) priceTargets[i].src = priceEl.src;
       }
+
+      // ★★★ 秘密武器：進站瞬間自動抓取您的後台設定 ★★★
+      fetch('/api/cms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: "getConfig" })
+      })
+      .then(r => r.json())
+      .then(res => {
+          if(res.status === "success" && res.data) {
+              var d = res.data;
+              // 1. 更換頂部文字與連結
+              if(d.topText) document.getElementById('dyn-top-text').innerText = d.topText;
+              if(d.topLink) document.getElementById('dyn-top-link').href = d.topLink;
+              
+              // 2. 更換輪播圖 (如果有上傳的話)
+              if(d.carouselImages && d.carouselImages !== "[]") {
+                  try {
+                      var imgs = JSON.parse(d.carouselImages);
+                      if(imgs.length > 0) {
+                          var track = document.getElementById('portfolio-track');
+                          if(track) {
+                              track.innerHTML = ""; // 清空舊圖
+                              imgs.forEach(function(url) {
+                                  if(url.trim() !== "") {
+                                      track.innerHTML += '<div class="p-item"><div class="p-img-box"><img loading="lazy" src="'+url.trim()+'"></div></div>';
+                                  }
+                              });
+                          }
+                      }
+                  } catch(e) {}
+              }
+          }
+      }).catch(e => console.log("設定讀取中..."));
     };
 
     function showTab(tabId) {
@@ -555,26 +496,18 @@
       if(t) t.classList.add('active');
       var btns = document.getElementsByClassName('menu-btn');
       for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
-      
       var b = document.getElementById('btn-' + tabId);
       if(b) b.classList.add('active');
     }
-
     function toggleAcc(el) { el.classList.toggle('active'); }
-
     function switchView(viewName) {
       var vHome = document.getElementById('view-home');
       var vVip = document.getElementById('view-vip');
       if(vHome) vHome.style.display = 'none';
       if(vVip) vVip.style.display = 'none';
-      
       var target = document.getElementById('view-' + viewName);
-      if (target) {
-        target.style.display = 'block';
-        window.scrollTo(0,0);
-      }
+      if (target) { target.style.display = 'block'; window.scrollTo(0,0); }
     }
-
     function scrollCarousel(direction) {
       const track = document.getElementById('portfolio-track');
       if(!track) return; 
@@ -597,20 +530,17 @@
       if(errorDiv) errorDiv.style.display = "none";
       btn.innerText = "讀取中..."; btn.style.opacity = "0.7"; btn.disabled = true;
 
-      fetch('/api/vip', {
+      // ★ 改成走 cms 的通道去查 VIP 餘額
+      fetch('/api/cms', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone: phone })
+          body: JSON.stringify({ action: "checkBalance", phone: phone })
       })
       .then(response => response.json())
       .then(res => {
           btn.innerText = "查詢我的餘額"; btn.style.opacity = "1"; btn.disabled = false;
-
           if (res.status === "error" || res.found === false) {
-            if(errorDiv) {
-               errorDiv.innerHTML = res.message || "找不到此號碼，請洽詢官方 LINE";
-               errorDiv.style.display = "block"; 
-            }
+            if(errorDiv) { errorDiv.innerHTML = res.message || "找不到此號碼，請洽詢官方 LINE"; errorDiv.style.display = "block"; }
             if(resultArea) resultArea.style.display = "none";
           } else {
             var d = res.data; 
@@ -630,15 +560,8 @@
               if(pb) pb.innerHTML = d.promoBody || "";
               if(ps) ps.style.display = "block";
             }
-            
-            if(d.topService) {
-               var ts = document.getElementById('top-service');
-               if(ts) ts.innerText = d.topService;
-            }
-            if(d.topProduct) {
-               var tp = document.getElementById('top-product');
-               if(tp) tp.innerText = d.topProduct;
-            }
+            if(d.topService) { var ts = document.getElementById('top-service'); if(ts) ts.innerText = d.topService; }
+            if(d.topProduct) { var tp = document.getElementById('top-product'); if(tp) tp.innerText = d.topProduct; }
 
             globalHistory = d.history || [];
             renderHistory();
@@ -655,14 +578,9 @@
     function renderHistory() {
       var container = document.getElementById('history-content');
       if(!container) return;
-      if (globalHistory.length === 0) { 
-          container.innerHTML = '<div style="color:#999;text-align:center;">無紀錄</div>'; 
-          return;
-      }
+      if (globalHistory.length === 0) { container.innerHTML = '<div style="color:#999;text-align:center;">無紀錄</div>'; return; }
       var html = '<div class="vip-timeline">';
-      globalHistory.forEach(function(item) {
-        html += `<div class="vip-timeline-item"><div class="vip-t-date">${item.date}</div><div class="vip-t-content"><div class="vip-t-item">${item.item}</div></div></div>`;
-      });
+      globalHistory.forEach(function(item) { html += `<div class="vip-timeline-item"><div class="vip-t-date">${item.date}</div><div class="vip-t-content"><div class="vip-t-item">${item.item}</div></div></div>`; });
       html += '</div>';
       container.innerHTML = html;
     }

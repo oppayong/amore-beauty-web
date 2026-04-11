@@ -441,6 +441,41 @@
   </div>
 
 <script>
+    // ★★★ 秘密武器 1：進站「瞬間」讀取快取，客人一秒都不用等 ★★★
+    document.addEventListener("DOMContentLoaded", function() {
+        var cache = localStorage.getItem('amore_cms_cache');
+        if (cache) {
+            try {
+                var d = JSON.parse(cache);
+                applyCMSDataToDOM(d); // 瞬間替換畫面
+            } catch(e) {}
+        }
+    });
+
+    // 負責將後台資料填入畫面的專屬函數
+    function applyCMSDataToDOM(d) {
+        if(d.topText) document.getElementById('dyn-top-text').innerText = d.topText;
+        if(d.topLink) document.getElementById('dyn-top-link').href = d.topLink;
+        
+        if(d.carouselImages && d.carouselImages !== "[]") {
+            try {
+                var imgs = JSON.parse(d.carouselImages);
+                if(imgs.length > 0) {
+                    var track = document.getElementById('portfolio-track');
+                    if(track) {
+                        var newHtml = "";
+                        imgs.forEach(function(url) {
+                            if(url.trim() !== "") {
+                                newHtml += '<div class="p-item"><div class="p-img-box"><img loading="lazy" src="'+url.trim()+'"></div></div>';
+                            }
+                        });
+                        if(newHtml !== "") track.innerHTML = newHtml;
+                    }
+                }
+            } catch(e) {}
+        }
+    }
+
     window.onload = function() {
       var logoEl = document.getElementById('logo-src');
       var priceEl = document.getElementById('price-src');
@@ -453,40 +488,21 @@
           for(var i=0; i<priceTargets.length; i++) priceTargets[i].src = priceEl.src;
       }
 
-      // ★★★ 秘密武器：進站瞬間在背景自動抓取您的後台設定 ★★★
+      // ★★★ 秘密武器 2：在背景默默去後台問最新資料，如果有更新就覆蓋並存入記憶體 ★★★
       fetch('/api/cms', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: "getConfig", adminPassword: "Amore888" }) // 提供讀取權限
+          body: JSON.stringify({ action: "getConfig", adminPassword: "Amore888" })
       })
       .then(r => r.json())
       .then(res => {
           if(res.status === "success" && res.data) {
-              var d = res.data;
-              // 1. 更換頂部文字與連結
-              if(d.topText) document.getElementById('dyn-top-text').innerText = d.topText;
-              if(d.topLink) document.getElementById('dyn-top-link').href = d.topLink;
-              
-              // 2. 更換輪播圖 (如果有上傳有效網址的話)
-              if(d.carouselImages && d.carouselImages !== "[]") {
-                  try {
-                      var imgs = JSON.parse(d.carouselImages);
-                      if(imgs.length > 0) {
-                          var track = document.getElementById('portfolio-track');
-                          if(track) {
-                              var newHtml = "";
-                              imgs.forEach(function(url) {
-                                  if(url.trim() !== "") {
-                                      newHtml += '<div class="p-item"><div class="p-img-box"><img loading="lazy" src="'+url.trim()+'"></div></div>';
-                                  }
-                              });
-                              if(newHtml !== "") track.innerHTML = newHtml; // 確保有新圖才覆蓋
-                          }
-                      }
-                  } catch(e) {}
-              }
+              // 1. 把最新資料永遠存進客人的手機/電腦裡
+              localStorage.setItem('amore_cms_cache', JSON.stringify(res.data));
+              // 2. 如果資料有變，立刻更新目前畫面
+              applyCMSDataToDOM(res.data);
           }
-      }).catch(e => console.log("設定載入完成"));
+      }).catch(e => console.log("背景同步完成"));
     };
 
     function showTab(tabId) {

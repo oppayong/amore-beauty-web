@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A More Beauty 隱藏控制台</title>
+  <style>
+    body { font-family: sans-serif; background-color: #fdfbfb; color: #4a4a4a; padding: 20px; }
+    .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    h1 { color: #b76e79; text-align: center; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
+    input, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+    textarea { height: 100px; }
+    .note { font-size: 12px; color: #888; margin-top: 5px; }
+    .btn { width: 100%; padding: 12px; background: #b76e79; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 10px; }
+    .btn:hover { background: #a05d68; }
+    .btn-load { background: #d4af37; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>A More Beauty 官網控制台</h1>
+  
+  <div class="form-group">
+    <label>🔒 老闆管理員密碼：</label>
+    <input type="password" id="adminPwd" placeholder="請輸入密碼" value="Amore888">
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+  <div class="form-group">
+    <label>📌 頂部跑馬燈公告 (文字)</label>
+    <input type="text" id="topText">
+  </div>
+  <div class="form-group">
+    <label>🔗 頂部公告連結 (網址)</label>
+    <input type="text" id="topLink">
+  </div>
+
+  <div class="form-group">
+    <label>👑 VIP 專區：活動標題</label>
+    <input type="text" id="vipHeader">
+  </div>
+  <div class="form-group">
+    <label>💬 VIP 專區：活動內容 (可使用 &lt;br&gt; 換行)</label>
+    <textarea id="vipBody"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>🖼️ 首頁輪播牆圖片 (請貼圖床網址，一行一張圖)</label>
+    <textarea id="carouselImgs" style="height: 150px;"></textarea>
+    <div class="note">若留空，將預設顯示原本官網內的 10 張美圖。<br>若要更換，請將獲得的 .jpg 或 .png 網址貼上來。</div>
+  </div>
+
+  <button class="btn btn-load" onclick="loadData()">🔄 讀取目前線上設定</button>
+  <button class="btn" onclick="saveData()">💾 儲存並發布到官網</button>
+  
+  <p id="statusMsg" style="text-align: center; color: green; font-weight: bold;"></p>
+</div>
+
+<script>
+  function loadData() {
+    document.getElementById('statusMsg').innerText = "讀取中...";
+    fetch('/api/cms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: "getConfig" })
+    }).then(r => r.json()).then(res => {
+      if(res.status === "success") {
+        document.getElementById('topText').value = res.data.topText;
+        document.getElementById('topLink').value = res.data.topLink;
+        document.getElementById('vipHeader').value = res.data.vipPromoHeader;
+        document.getElementById('vipBody').value = res.data.vipPromoBody;
+        
+        var imgs = [];
+        try { imgs = JSON.parse(res.data.carouselImages); } catch(e){}
+        document.getElementById('carouselImgs').value = imgs.join('\n');
+        document.getElementById('statusMsg').innerText = "讀取成功！";
+      }
+    });
+  }
+
+  function saveData() {
+    var pwd = document.getElementById('adminPwd').value;
+    if(!pwd) { alert("請輸入密碼"); return; }
+    
+    var imgArray = document.getElementById('carouselImgs').value.split('\n').map(u => u.trim()).filter(u => u !== "");
+
+    var payload = {
+      action: "saveConfig",
+      adminPassword: pwd,
+      topText: document.getElementById('topText').value,
+      topLink: document.getElementById('topLink').value,
+      vipPromoHeader: document.getElementById('vipHeader').value,
+      vipPromoBody: document.getElementById('vipBody').value,
+      carouselImages: JSON.stringify(imgArray)
+    };
+
+    document.getElementById('statusMsg').innerText = "儲存中...";
+    fetch('/api/cms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(r => r.json()).then(res => {
+      if(res.status === "success") {
+        document.getElementById('statusMsg').innerText = "✅ 儲存成功！官網已同步更新。";
+      } else {
+        document.getElementById('statusMsg').innerText = "❌ 錯誤：" + res.message;
+        document.getElementById('statusMsg').style.color = "red";
+      }
+    });
+  }
+
+  window.onload = loadData;
+</script>
+</body>
+</html>

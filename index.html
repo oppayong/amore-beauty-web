@@ -97,7 +97,6 @@
     .btn-line { background: #06c755; }
     .btn-ig { background: linear-gradient(45deg, #f09433, #bc1888); }
     .copyright { font-size: 11px; color: #ccc; letter-spacing: 1px; margin-top: 30px; }
-    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 9999; display: none; justify-content: center; align-items: center; }
     
     #view-vip .vip-wrapper { width: 100%; max-width: 420px; margin: 20px auto; background: rgba(255,255,255,0.98); padding: 40px 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.05); text-align: center; position: relative; min-height: 600px; display: flex; flex-direction: column; box-sizing: border-box; }
     #view-vip .vip-logo-container { margin: 0 auto 20px auto; width: 130px; height: 130px; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 10px 25px rgba(183, 110, 121, 0.2); display: flex; justify-content: center; align-items: center; background: #fff; }
@@ -169,8 +168,8 @@
   </div>
 
   <div class="top-announcement">
-    <span id="dyn-top-text">✨ 本月限定優惠：讀取中...</span>
-    <a id="dyn-top-link" href="#" target="_blank">預約卡位</a>
+    <span id="dyn-top-text">✨ 母親節限定優惠：暖宮腹燭｜美胸按摩｜頭部SPA｜耳燭SPA️ 任選2項$1500</span>
+    <a id="dyn-top-link" href="https://lin.ee/c6tfqdR" target="_blank">預約卡位</a>
   </div>
 
   <div style="display:none;">
@@ -454,11 +453,11 @@
           for(var i=0; i<priceTargets.length; i++) priceTargets[i].src = priceEl.src;
       }
 
-      // ★★★ 秘密武器：進站瞬間自動抓取您的後台設定 ★★★
+      // ★★★ 秘密武器：進站瞬間在背景自動抓取您的後台設定 ★★★
       fetch('/api/cms', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: "getConfig" })
+          body: JSON.stringify({ action: "getConfig", adminPassword: "Amore888" }) // 提供讀取權限
       })
       .then(r => r.json())
       .then(res => {
@@ -468,25 +467,26 @@
               if(d.topText) document.getElementById('dyn-top-text').innerText = d.topText;
               if(d.topLink) document.getElementById('dyn-top-link').href = d.topLink;
               
-              // 2. 更換輪播圖 (如果有上傳的話)
+              // 2. 更換輪播圖 (如果有上傳有效網址的話)
               if(d.carouselImages && d.carouselImages !== "[]") {
                   try {
                       var imgs = JSON.parse(d.carouselImages);
                       if(imgs.length > 0) {
                           var track = document.getElementById('portfolio-track');
                           if(track) {
-                              track.innerHTML = ""; // 清空舊圖
+                              var newHtml = "";
                               imgs.forEach(function(url) {
                                   if(url.trim() !== "") {
-                                      track.innerHTML += '<div class="p-item"><div class="p-img-box"><img loading="lazy" src="'+url.trim()+'"></div></div>';
+                                      newHtml += '<div class="p-item"><div class="p-img-box"><img loading="lazy" src="'+url.trim()+'"></div></div>';
                                   }
                               });
+                              if(newHtml !== "") track.innerHTML = newHtml; // 確保有新圖才覆蓋
                           }
                       }
                   } catch(e) {}
               }
           }
-      }).catch(e => console.log("設定讀取中..."));
+      }).catch(e => console.log("設定載入完成"));
     };
 
     function showTab(tabId) {
@@ -530,7 +530,6 @@
       if(errorDiv) errorDiv.style.display = "none";
       btn.innerText = "讀取中..."; btn.style.opacity = "0.7"; btn.disabled = true;
 
-      // ★ 改成走 cms 的通道去查 VIP 餘額
       fetch('/api/cms', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -552,6 +551,7 @@
             document.getElementById('user-balance').innerText = "$" + safeBalance;
             document.getElementById('last-date').innerHTML = "🗓️ 上次護理：" + safeDate;
             document.getElementById('smart-msg').innerHTML = safeMsg;
+            
             if(d.promoHeader && d.promoHeader !== "undefined") {
               var ph = document.getElementById('promo-header');
               var pb = document.getElementById('promo-body');

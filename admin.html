@@ -6,26 +6,27 @@
   <title>A More Beauty 系統控制台</title>
   <style>
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7f9; color: #4a4a4a; padding: 20px; margin: 0; }
-    .container { max-width: 650px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .container { max-width: 750px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     h1 { color: #b76e79; text-align: center; font-size: 24px; margin-bottom: 30px; letter-spacing: 2px; }
     .form-group { margin-bottom: 25px; }
     label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; color: #555; }
     input[type="text"], input[type="password"], textarea { width: 100%; padding: 12px; border: 1px solid #e1e5eb; border-radius: 8px; box-sizing: border-box; font-size: 14px; transition: border-color 0.3s; background: #fafafa; }
     input:focus, textarea:focus { border-color: #b76e79; outline: none; background: #fff; }
     textarea { height: 100px; resize: vertical; }
-    .note { font-size: 12px; color: #999; margin-top: 6px; }
+    .note { font-size: 12px; color: #999; margin-top: 6px; line-height: 1.5; }
     .btn { width: 100%; padding: 14px; background: #b76e79; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; letter-spacing: 1px; }
     .btn:hover { background: #a05d68; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(183,110,121,0.3); }
     
-    /* 登入畫面專屬 */
     #login-screen { text-align: center; padding: 20px 0; }
     #login-screen input { text-align: center; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; }
     
-    /* 圖片專屬 10 宮格 */
+    /* 10宮格預覽小圖樣式 */
     .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .img-input-box { background: #fffafb; padding: 10px; border-radius: 8px; border: 1px dashed #fce4ec; }
-    .img-input-box label { font-size: 12px; color: #b76e79; margin-bottom: 4px; }
-    .img-input-box input { padding: 8px; font-size: 12px; }
+    @media (max-width: 600px) { .img-grid { grid-template-columns: 1fr; } }
+    .img-input-box { background: #fffafb; padding: 15px; border-radius: 12px; border: 1px dashed #fce4ec; }
+    .img-input-box label { font-size: 12px; color: #b76e79; margin-bottom: 8px; }
+    .img-input-wrapper { display: flex; gap: 12px; align-items: center; }
+    .img-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 1px solid #e1e5eb; background: #eee; flex-shrink: 0; }
     
     .section-title { font-size: 18px; color: #d4af37; border-bottom: 2px solid #fce4ec; padding-bottom: 10px; margin: 35px 0 20px; font-weight: bold; }
   </style>
@@ -44,7 +45,6 @@
   </div>
 
   <div id="admin-dashboard" style="display: none;">
-    
     <div class="section-title">📌 頂部跑馬燈設定</div>
     <div class="form-group">
       <label>公告文字</label>
@@ -63,11 +63,11 @@
     <div class="form-group">
       <label>活動詳細內容 (可使用 &lt;br&gt; 換行)</label>
       <textarea id="vipBody"></textarea>
-      <div class="note">這裡輸入的文字將 100% 絕對顯示於 VIP 首頁。</div>
+      <div class="note">輸入的內容將 100% 顯示於前台。若要分行，請在句子中間加入 &lt;br&gt;。</div>
     </div>
 
     <div class="section-title">🖼️ 首頁輪播圖設定 (共 10 張)</div>
-    <div class="note" style="margin-bottom: 15px;">請將圖床網址貼入下方格子中，若不想顯示那麼多張，格子留空即可。</div>
+    <div class="note" style="margin-bottom: 15px;">已為您載入原本的 10 張預設美圖。<br>若要更換，直接覆蓋網址即可（旁邊會即時預覽）。若把格子清空，系統會自動幫您補回原本的預設圖，不用擔心破版！</div>
     
     <div class="img-grid" id="img-container">
       </div>
@@ -75,24 +75,42 @@
     <button class="btn" style="margin-top: 40px;" onclick="saveData()">💾 儲存並發布至官網</button>
     <p id="statusMsg" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
   </div>
-
 </div>
 
 <script>
-  // 自動產生 10 個圖片輸入框
+  // 您原本完美的 10 張不死預設圖
+  const defaultImages = [
+    "https://i.ibb.co/N62sSHDc/OA-VISION-5-0.jpg",
+    "https://i.ibb.co/CKz4pPFj/OA-VISION-2-0.jpg",
+    "https://i.ibb.co/TDJGQj0R/OA-VISION-3-0.jpg",
+    "https://i.ibb.co/9HG2DCtt/OA-VISION-4-0.jpg",
+    "https://i.ibb.co/sJWVt0t3/2025-04-21-012828-226-0.jpg",
+    "https://i.ibb.co/8g9bB7kF/OA-VISION-6-0.jpg",
+    "https://i.ibb.co/vx0sC1dr/OA-VISION-7-0.jpg",
+    "https://i.ibb.co/KkHLv9J/OA-VISION-8-0.jpg",
+    "https://i.ibb.co/ZR4VX8PH/OA-VISION-10-0.jpg",
+    "https://i.ibb.co/Rk3zD6HM/OA-VISION-9-0.jpg"
+  ];
+
   const imgContainer = document.getElementById('img-container');
   for(let i = 0; i < 10; i++) {
       imgContainer.innerHTML += `
         <div class="img-input-box">
           <label>圖片 ${i + 1}</label>
-          <input type="text" id="imgInput${i}" placeholder="貼上圖片網址...">
+          <div class="img-input-wrapper">
+            <img id="preview${i}" class="img-preview" src="${defaultImages[i]}">
+            <input type="text" id="imgInput${i}" placeholder="貼上新網址..." oninput="updatePreview(${i}, this.value)">
+          </div>
         </div>
       `;
   }
 
+  function updatePreview(index, val) {
+      document.getElementById('preview'+index).src = val.trim() || defaultImages[index];
+  }
+
   let globalPassword = "";
 
-  // 登入驗證
   function verifyLogin() {
     globalPassword = document.getElementById('adminPwd').value;
     if(!globalPassword) { alert("密碼不能為空"); return; }
@@ -105,20 +123,21 @@
       body: JSON.stringify({ action: "getConfig", adminPassword: globalPassword })
     }).then(r => r.json()).then(res => {
       if(res.status === "success") {
-        // 登入成功，切換畫面
         document.getElementById('login-screen').style.display = "none";
         document.getElementById('admin-dashboard').style.display = "block";
         
-        // 載入線上資料
         document.getElementById('topText').value = res.data.topText;
         document.getElementById('topLink').value = res.data.topLink;
         document.getElementById('vipHeader').value = res.data.vipPromoHeader;
         document.getElementById('vipBody').value = res.data.vipPromoBody;
         
-        let imgs = [];
-        try { imgs = JSON.parse(res.data.carouselImages); } catch(e){}
+        let savedImgs = [];
+        try { savedImgs = JSON.parse(res.data.carouselImages); } catch(e){}
+        
         for(let i = 0; i < 10; i++) {
-            if(imgs[i]) document.getElementById('imgInput'+i).value = imgs[i];
+            let url = savedImgs[i] || defaultImages[i];
+            document.getElementById('imgInput'+i).value = url;
+            document.getElementById('preview'+i).src = url;
         }
       } else {
         document.getElementById('login-msg').innerText = "❌ " + res.message;
@@ -128,12 +147,12 @@
     });
   }
 
-  // 儲存資料
   function saveData() {
     let imgArray = [];
     for(let i = 0; i < 10; i++) {
         let val = document.getElementById('imgInput'+i).value.trim();
-        if(val) imgArray.push(val);
+        // 防呆：如果留白，自動塞回預設圖片
+        imgArray.push(val || defaultImages[i]); 
     }
 
     let payload = {

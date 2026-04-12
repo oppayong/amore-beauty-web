@@ -155,7 +155,6 @@
     /* ★ 遇見 A MORE 專屬美學設計 ★ */
     .brand-story { text-align: center; padding: 30px 20px 50px; position: relative; }
     .brand-quote-mark { font-family: 'Playfair Display', serif; font-size: 80px; color: rgba(183, 110, 121, 0.08); position: absolute; top: -10px; left: 50%; transform: translateX(-50%); z-index: 0; line-height: 1; }
-    /* ★ 自動縮放且強制不換行的標題設計 ★ */
     .brand-story-title { font-family: 'Cinzel', serif; font-size: clamp(11px, 3.2vw, 16px); color: var(--primary-color); letter-spacing: 1px; margin-bottom: 25px; position: relative; z-index: 1; font-weight: 600; white-space: nowrap; }
     .brand-story-text { font-size: 14px; color: #666; line-height: 2.2; position: relative; z-index: 1; max-width: 600px; margin: 0 auto; letter-spacing: 1px; }
     
@@ -170,10 +169,11 @@
     .beautician-desc { font-size: 13.5px; color: #555; line-height: 2; margin-bottom: 15px; letter-spacing: 0.5px; }
     .beautician-sign { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary-color); margin-top: 35px; font-style: italic; opacity: 0.8; }
     
+    /* ★ 修正 2：加入 text-align: justify 完美左右對齊文字 ★ */
     @media (max-width: 768px) {
       .beautician-section { flex-direction: column; gap: 35px; }
       .beautician-img-box::after { bottom: -10px; right: -10px; }
-      .beautician-text-box { text-align: left; }
+      .beautician-text-box { text-align: justify; text-justify: inter-ideograph; }
     }
 
     /* ★ 骨架屏與引言優化 ★ */
@@ -398,11 +398,9 @@
           <div class="brand-quote-mark">“</div>
           <div class="brand-story-title">Unveil more beauty and glow within.</div>
           <div class="brand-story-text">
-            每一個妳，都值得被極致溫柔以待。<br><br>
-            A More Beauty 的信念很簡單：<br>
-            「為妳拂去歲月與壓力的痕跡，點亮原生的肌膚光澤。」<br><br>
-            在每一次的呼吸與放鬆之間，我們不只保養肌膚，更撫慰靈魂。<br>
-            歡迎來到 A More Beauty，遇見那個更好的妳。
+            <div style="margin-bottom: 1.5em;">每一個妳，都值得被極致溫柔以待。</div>
+            <div style="margin-bottom: 1.5em;">A More Beauty 的信念很簡單：<br>「為妳拂去歲月與壓力的痕跡，<br>點亮原生的肌膚光澤。」</div>
+            <div>在每一次的呼吸與放鬆之間，<br>我們不只保養肌膚，更撫慰靈魂。<br>歡迎來到 A More Beauty，<br>遇見那個更好的妳。</div>
           </div>
         </div>
 

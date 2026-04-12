@@ -10,6 +10,9 @@
   <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭、羅東地區的專業美容、做臉、女生保養與放鬆服務。">
   <meta name="keywords" content="A More Beauty, 台北美容, 宜蘭美容, 羅東美容, 做臉, 保養, 放鬆, 羅東做臉, 無痛清粉刺, 婚前保養, 體雕, 精油舒壓, PDRN肌因水光護理">
   
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin>
+  <link rel="dns-prefetch" href="https://i.ibb.co">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -202,21 +205,18 @@
     <a id="dyn-top-link" href="https://lin.ee/c6tfqdR" target="_blank">預約卡位</a>
   </div>
 
-  <div style="display:none;">
-    <img id="logo-src" src="https://i.ibb.co/mCNmPL3s/amore-logo.png" />
-    <img id="price-src" src="https://i.ibb.co/fdP80h7F/S-40124418.jpg" />
-  </div>
-
   <div id="view-home" class="view-section" style="display:block;">
     <div class="nav-bar">
       <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-        <img class="logo-target" src=""> A More Beauty
+        <img src="https://i.ibb.co/mCNmPL3s/amore-logo.png" alt="A More Beauty"> A More Beauty
       </div>
       <div style="font-size:12px; color:#b76e79; cursor:pointer; font-weight:700;" onclick="switchView('vip')">VIP LOGIN</div>
     </div>
 
     <div class="hero">
-      <div class="main-logo-container skeleton-bg"><img class="main-logo-img logo-target" src="" onload="this.parentElement.classList.remove('skeleton-bg')"></div>
+      <div class="main-logo-container skeleton-bg">
+        <img class="main-logo-img" src="https://i.ibb.co/mCNmPL3s/amore-logo.png" fetchpriority="high" onload="this.parentElement.classList.remove('skeleton-bg')">
+      </div>
       <h1>A More Beauty</h1>
       <p>Unveil more beauty and glow within.</p>
       <span class="hero-tag">Ladies Only / 僅服務女性</span>
@@ -400,8 +400,7 @@
             每一個妳，都值得被極致溫柔以待。<br><br>
             A More Beauty 的信念很簡單：<br>
             「為妳拂去歲月與壓力的痕跡，點亮原生的肌膚光澤。」<br><br>
-            在每一次的呼吸與放鬆之間，<br>
-            我們不只保養肌膚，更撫慰靈魂。<br>
+            在每一次的呼吸與放鬆之間，我們不只保養肌膚，更撫慰靈魂。<br>
             歡迎來到 A More Beauty，遇見那個更好的妳。
           </div>
         </div>
@@ -433,7 +432,7 @@
       <div id="tab-price" class="tab-content">
         <div class="price-frame">
           <div class="skeleton-bg" style="border-radius: 5px; min-height: 400px;">
-            <img class="price-img price-target" src="" alt="價目表" style="width:100%; border-radius:5px; display:block;" onload="this.parentElement.classList.remove('skeleton-bg'); this.parentElement.style.minHeight='auto';">
+            <img class="price-img" src="https://i.ibb.co/fdP80h7F/S-40124418.jpg" alt="價目表" style="width:100%; border-radius:5px; display:block;" onload="this.parentElement.classList.remove('skeleton-bg'); this.parentElement.style.minHeight='auto';">
           </div>
         </div>
       </div>
@@ -478,7 +477,7 @@
     <div class="vip-wrapper">
       <div class="back-home-link" onclick="switchView('home')">⭠ 回首頁</div>
       <div id="vip-page-main" class="vip-page active">
-        <div class="vip-logo-container skeleton-bg"><img class="vip-logo-img logo-target" src="" onload="this.parentElement.classList.remove('skeleton-bg')"></div>
+        <div class="vip-logo-container skeleton-bg"><img class="vip-logo-img" src="https://i.ibb.co/mCNmPL3s/amore-logo.png" onload="this.parentElement.classList.remove('skeleton-bg')"></div>
         <h1 class="vip-h1">A More Beauty</h1>
         <div class="vip-subtitle">VIP 會員專屬空間</div>
 
@@ -530,18 +529,16 @@
   </div>
 
 <script>
-    // ★★★ 秘密武器 1：進站「瞬間」讀取快取，客人一秒都不用等 ★★★
     document.addEventListener("DOMContentLoaded", function() {
         var cache = localStorage.getItem('amore_cms_cache');
         if (cache) {
             try {
                 var d = JSON.parse(cache);
-                applyCMSDataToDOM(d); // 瞬間替換畫面
+                applyCMSDataToDOM(d);
             } catch(e) {}
         }
     });
 
-    // 負責將後台資料填入畫面的專屬函數
     function applyCMSDataToDOM(d) {
         if(d.topText) document.getElementById('dyn-top-text').innerText = d.topText;
         if(d.topLink) document.getElementById('dyn-top-link').href = d.topLink;
@@ -566,18 +563,6 @@
     }
 
     window.onload = function() {
-      var logoEl = document.getElementById('logo-src');
-      var priceEl = document.getElementById('price-src');
-      if(logoEl) {
-          var logoTargets = document.getElementsByClassName('logo-target');
-          for(var i=0; i<logoTargets.length; i++) logoTargets[i].src = logoEl.src;
-      }
-      if(priceEl) {
-          var priceTargets = document.getElementsByClassName('price-target');
-          for(var i=0; i<priceTargets.length; i++) priceTargets[i].src = priceEl.src;
-      }
-
-      // ★★★ 秘密武器 2：在背景默默去後台問最新資料，並更新金鑰 ★★★
       fetch('/api/cms', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

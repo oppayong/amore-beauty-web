@@ -5,156 +5,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A More Beauty 系統控制台</title>
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7f9; color: #4a4a4a; padding: 20px; margin: 0; }
-    .container { max-width: 750px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f5f7f9; color: #4a4a4a; padding: 20px; margin: 0; }
+    .container { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     h1 { color: #b76e79; text-align: center; font-size: 24px; margin-bottom: 30px; letter-spacing: 2px; }
+    .section-title { font-size: 18px; color: #b76e79; border-left: 4px solid #b76e79; padding-left: 10px; margin: 40px 0 20px; font-weight: bold; }
     .form-group { margin-bottom: 25px; }
     label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; color: #555; }
-    input[type="text"], input[type="password"], textarea { width: 100%; padding: 12px; border: 1px solid #e1e5eb; border-radius: 8px; box-sizing: border-box; font-size: 14px; transition: border-color 0.3s; background: #fafafa; }
-    input:focus, textarea:focus { border-color: #b76e79; outline: none; background: #fff; }
-    textarea { height: 100px; resize: vertical; }
-    .note { font-size: 12px; color: #999; margin-top: 6px; line-height: 1.5; }
-    .btn { width: 100%; padding: 14px; background: #b76e79; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; letter-spacing: 1px; }
-    .btn:hover { background: #a05d68; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(183,110,121,0.3); }
+    input[type="text"], input[type="password"], textarea { width: 100%; padding: 12px; border: 1px solid #e1e5eb; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
+    .btn-save { width: 100%; padding: 15px; background: #b76e79; color: white; border: none; border-radius: 50px; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 20px; font-weight: bold; }
+    .btn-save:hover { background: #a05d68; transform: translateY(-2px); }
+    #statusMsg { text-align: center; margin-top: 15px; font-size: 14px; min-height: 20px; }
     
-    #login-screen { text-align: center; padding: 20px 0; }
-    #login-screen input { text-align: center; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; }
-    
-    /* 10宮格預覽小圖樣式 */
-    .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    @media (max-width: 600px) { .img-grid { grid-template-columns: 1fr; } }
-    .img-input-box { background: #fffafb; padding: 15px; border-radius: 12px; border: 1px dashed #fce4ec; }
-    .img-input-box label { font-size: 12px; color: #b76e79; margin-bottom: 8px; }
-    .img-input-wrapper { display: flex; gap: 12px; align-items: center; }
-    .img-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 1px solid #e1e5eb; background: #eee; flex-shrink: 0; }
-    
-    .section-title { font-size: 18px; color: #d4af37; border-bottom: 2px solid #fce4ec; padding-bottom: 10px; margin: 35px 0 20px; font-weight: bold; }
+    /* 報表表格樣式 */
+    .report-card { background: #fff5f6; padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid #fce4ec; }
+    .report-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 12px; background: white; }
+    .report-table th { background: #b76e79; color: white; padding: 10px; text-align: center; }
+    .report-table td { border: 1px solid #eee; padding: 10px; text-align: center; }
+    .year-total { font-size: 20px; color: #b76e79; font-weight: bold; text-align: center; margin-bottom: 15px; }
+
+    #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+    .login-box { width: 320px; text-align: center; }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>A MORE BEAUTY<br><span style="font-size: 14px; color:#999; font-weight:normal;">系統控制台</span></h1>
-  
-  <div id="login-screen">
-    <div class="form-group">
-      <input type="password" id="adminPwd" placeholder="請輸入老闆專屬密碼">
-    </div>
-    <button class="btn" onclick="verifyLogin()">登入系統</button>
-    <p id="login-msg" style="color: #b76e79; margin-top: 15px; font-weight: bold;"></p>
-  </div>
-
-  <div id="admin-dashboard" style="display: none;">
-    <div class="section-title">📌 頂部跑馬燈設定</div>
-    <div class="form-group">
-      <label>公告文字</label>
-      <input type="text" id="topText">
-    </div>
-    <div class="form-group">
-      <label>點擊跳轉網址 (LINE連結)</label>
-      <input type="text" id="topLink">
-    </div>
-
-    <div class="section-title">👑 VIP 專區活動設定</div>
-    <div class="form-group">
-      <label>活動主標題</label>
-      <input type="text" id="vipHeader">
-    </div>
-    <div class="form-group">
-      <label>活動詳細內容 (可使用 &lt;br&gt; 換行)</label>
-      <textarea id="vipBody"></textarea>
-      <div class="note">輸入的內容將 100% 顯示於前台。若要分行，請在句子中間加入 &lt;br&gt;。</div>
-    </div>
-
-    <div class="section-title">🖼️ 首頁輪播圖設定 (共 10 張)</div>
-    <div class="note" style="margin-bottom: 15px;">已為您載入原本的 10 張預設美圖。<br>若要更換，直接覆蓋網址即可（旁邊會即時預覽）。若把格子清空，系統會自動幫您補回原本的預設圖，不用擔心破版！</div>
-    
-    <div class="img-grid" id="img-container">
-      </div>
-
-    <button class="btn" style="margin-top: 40px;" onclick="saveData()">💾 儲存並發布至官網</button>
-    <p id="statusMsg" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
+<div id="login-overlay">
+  <div class="login-box">
+    <h1 style="font-family: serif;">A More Beauty</h1>
+    <p style="color:#999; font-size:12px; letter-spacing:2px; margin-bottom:30px;">ADMIN LOGIN</p>
+    <input type="password" id="adminPass" placeholder="請輸入管理密碼" style="text-align:center; margin-bottom:15px;">
+    <button class="btn-save" onclick="checkLogin()">進入系統</button>
+    <p id="login-msg" style="color:#b76e79; font-size:13px; margin-top:15px;"></p>
   </div>
 </div>
 
+<div class="container" id="admin-content" style="display:none;">
+  <h1>系統管理後台</h1>
+
+  <div class="section-title">📊 運營報表即時看板 (2026年度)</div>
+  <div class="report-card">
+    <div class="year-total" id="yearTotalDisplay">讀取中...</div>
+    <div style="overflow-x: auto;">
+        <table class="report-table" id="reportTable">
+            </table>
+    </div>
+  </div>
+
+  <div class="section-title">📢 官網頂部公告設定</div>
+  <div class="form-group">
+    <label>公告文字内容</label>
+    <input type="text" id="topText" placeholder="例如：✨ 慶祝母親節...">
+  </div>
+  <div class="form-group">
+    <label>按鈕跳轉連結 (LINE 網址)</label>
+    <input type="text" id="topLink" placeholder="https://lin.ee/...">
+  </div>
+
+  <div class="section-title">💎 VIP 專屬優惠設定</div>
+  <div class="form-group">
+    <label>VIP 限時活動標題</label>
+    <input type="text" id="vipHeader" placeholder="例如：本月 VIP 獨享回饋">
+  </div>
+  <div class="form-group">
+    <label>活動詳情內容 (HTML)</label>
+    <textarea id="vipBody" rows="3" placeholder="可以使用 <br> 換行"></textarea>
+  </div>
+
+  <div class="section-title">🖼️ 首頁輪播圖更新 (10張)</div>
+  <div id="imageInputs"></div>
+
+  <button class="btn-save" onclick="saveData()">儲存所有更新</button>
+  <div id="statusMsg"></div>
+</div>
+
 <script>
-  // 您原本完美的 10 張不死預設圖
+  let globalPassword = "";
   const defaultImages = [
-    "https://i.ibb.co/N62sSHDc/OA-VISION-5-0.jpg",
-    "https://i.ibb.co/CKz4pPFj/OA-VISION-2-0.jpg",
-    "https://i.ibb.co/TDJGQj0R/OA-VISION-3-0.jpg",
-    "https://i.ibb.co/9HG2DCtt/OA-VISION-4-0.jpg",
-    "https://i.ibb.co/sJWVt0t3/2025-04-21-012828-226-0.jpg",
-    "https://i.ibb.co/8g9bB7kF/OA-VISION-6-0.jpg",
-    "https://i.ibb.co/vx0sC1dr/OA-VISION-7-0.jpg",
-    "https://i.ibb.co/KkHLv9J/OA-VISION-8-0.jpg",
-    "https://i.ibb.co/ZR4VX8PH/OA-VISION-10-0.jpg",
-    "https://i.ibb.co/Rk3zD6HM/OA-VISION-9-0.jpg"
+    "https://i.ibb.co/N62sSHDc/OA-VISION-5-0.jpg", "https://i.ibb.co/CKz4pPFj/OA-VISION-2-0.jpg",
+    "https://i.ibb.co/TDJGQj0R/OA-VISION-3-0.jpg", "https://i.ibb.co/9HG2DCtt/OA-VISION-4-0.jpg",
+    "https://i.ibb.co/sJWVt0t3/2025-04-21-012828-226-0.jpg", "https://i.ibb.co/8g9bB7kF/OA-VISION-6-0.jpg",
+    "https://i.ibb.co/vx0sC1dr/OA-VISION-7-0.jpg", "https://i.ibb.co/KkHLv9J/OA-VISION-8-0.jpg",
+    "https://i.ibb.co/ZR4VX8PH/OA-VISION-10-0.jpg", "https://i.ibb.co/Rk3zD6HM/OA-VISION-9-0.jpg"
   ];
 
-  const imgContainer = document.getElementById('img-container');
-  for(let i = 0; i < 10; i++) {
-      imgContainer.innerHTML += `
-        <div class="img-input-box">
-          <label>圖片 ${i + 1}</label>
-          <div class="img-input-wrapper">
-            <img id="preview${i}" class="img-preview" src="${defaultImages[i]}">
-            <input type="text" id="imgInput${i}" placeholder="貼上新網址..." oninput="updatePreview(${i}, this.value)">
-          </div>
-        </div>
-      `;
-  }
+  window.onload = function() {
+    let imgHtml = "";
+    for(let i=0; i<10; i++) {
+      imgHtml += `<div class="form-group"><label>輪播圖 ${i+1}</label><input type="text" id="imgInput${i}"></div>`;
+    }
+    document.getElementById('imageInputs').innerHTML = imgHtml;
+  };
 
-  function updatePreview(index, val) {
-      document.getElementById('preview'+index).src = val.trim() || defaultImages[index];
-  }
-
-  let globalPassword = "";
-
-  function verifyLogin() {
-    globalPassword = document.getElementById('adminPwd').value;
-    if(!globalPassword) { alert("密碼不能為空"); return; }
-    
-    document.getElementById('login-msg').innerText = "驗證身分中...";
-    
+  function checkLogin() {
+    const pass = document.getElementById('adminPass').value;
     fetch('/api/cms', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: "getConfig", adminPassword: globalPassword })
+      body: JSON.stringify({ action: "getConfig", adminPassword: pass })
     }).then(r => r.json()).then(res => {
       if(res.status === "success") {
-        document.getElementById('login-screen').style.display = "none";
-        document.getElementById('admin-dashboard').style.display = "block";
-        
-        document.getElementById('topText').value = res.data.topText;
-        document.getElementById('topLink').value = res.data.topLink;
-        document.getElementById('vipHeader').value = res.data.vipPromoHeader;
-        document.getElementById('vipBody').value = res.data.vipPromoBody;
-        
-        let savedImgs = [];
-        try { savedImgs = JSON.parse(res.data.carouselImages); } catch(e){}
-        
-        for(let i = 0; i < 10; i++) {
-            let url = savedImgs[i] || defaultImages[i];
-            document.getElementById('imgInput'+i).value = url;
-            document.getElementById('preview'+i).src = url;
-        }
+        globalPassword = pass;
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('admin-content').style.display = 'block';
+        loadConfig(res.data);
+        fetchReport(); // 登入成功後自動抓取報表
       } else {
-        document.getElementById('login-msg').innerText = "❌ " + res.message;
+        document.getElementById('login-msg').innerText = "❌ 密碼錯誤";
       }
-    }).catch(e => {
-        document.getElementById('login-msg').innerText = "連線失敗，請檢查網路。";
+    });
+  }
+
+  function loadConfig(d) {
+    document.getElementById('topText').value = d.topText || "";
+    document.getElementById('topLink').value = d.topLink || "";
+    document.getElementById('vipHeader').value = d.vipPromoHeader || "";
+    document.getElementById('vipBody').value = d.vipPromoBody || "";
+    if(d.carouselImages) {
+        let imgs = JSON.parse(d.carouselImages);
+        for(let i=0; i<10; i++) { if(imgs[i]) document.getElementById('imgInput'+i).value = imgs[i]; }
+    }
+  }
+
+  function fetchReport() {
+    fetch('/api/cms', {
+      method: 'POST',
+      body: JSON.stringify({ action: "getReportData", adminPassword: globalPassword })
+    }).then(r => r.json()).then(res => {
+      if(res.status === "success") {
+        document.getElementById('yearTotalDisplay').innerText = "🏆 全年度總淨利：" + res.yearTotal;
+        let table = document.getElementById('reportTable');
+        let html = "";
+        res.reportRows.forEach((row, index) => {
+            let tag = index === 0 ? "th" : "td";
+            html += `<tr>
+                <${tag}>${row[0]}</${tag}> <${tag}>${row[2]}</${tag}> <${tag}>${row[3]}</${tag}> <${tag}>${row[4]}</${tag}> <${tag}>${row[6]}</${tag}> <${tag}>${row[7]}</${tag}> </tr>`;
+        });
+        table.innerHTML = html;
+      }
     });
   }
 
   function saveData() {
     let imgArray = [];
-    for(let i = 0; i < 10; i++) {
-        let val = document.getElementById('imgInput'+i).value.trim();
-        // 防呆：如果留白，自動塞回預設圖片
-        imgArray.push(val || defaultImages[i]); 
-    }
-
+    for(let i=0; i<10; i++) { imgArray.push(document.getElementById('imgInput'+i).value.trim() || defaultImages[i]); }
     let payload = {
       action: "saveConfig",
       adminPassword: globalPassword,
@@ -164,21 +156,14 @@
       vipPromoBody: document.getElementById('vipBody').value,
       carouselImages: JSON.stringify(imgArray)
     };
-
     document.getElementById('statusMsg').innerText = "儲存更新中...";
-    document.getElementById('statusMsg').style.color = "#d4af37";
-
     fetch('/api/cms', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     }).then(r => r.json()).then(res => {
       if(res.status === "success") {
-        document.getElementById('statusMsg').innerText = "✅ 儲存成功！官網已同步更新。";
+        document.getElementById('statusMsg').innerText = "✅ 儲存成功！已即時同步到官網";
         document.getElementById('statusMsg').style.color = "green";
-      } else {
-        document.getElementById('statusMsg').innerText = "❌ 錯誤：" + res.message;
-        document.getElementById('statusMsg').style.color = "red";
       }
     });
   }

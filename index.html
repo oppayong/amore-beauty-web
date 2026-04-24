@@ -99,6 +99,10 @@
     .social-big-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
     .btn-line { background: #06c755; }
     .btn-ig { background: linear-gradient(45deg, #f09433, #bc1888); }
+    
+    /* ★ 底部專屬預約系統按鈕設計 ★ */
+    .btn-booking-sys { background: linear-gradient(135deg, #b76e79, #c48b9f); box-shadow: 0 5px 15px rgba(183, 110, 121, 0.2); }
+
     .copyright { font-size: 11px; color: #ccc; letter-spacing: 1px; margin-top: 30px; }
     
     #view-vip .vip-wrapper { width: 100%; max-width: 420px; margin: 20px auto; background: rgba(255,255,255,0.98); padding: 40px 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.05); text-align: center; position: relative; min-height: 600px; display: flex; flex-direction: column; box-sizing: border-box; }
@@ -179,11 +183,36 @@
     .skeleton-bg img { position: relative; z-index: 2; }
     .beautician-quote { font-size: clamp(13px, 3.8vw, 17px); white-space: nowrap; margin-bottom: 12px; line-height: 1.5; letter-spacing: 0.5px; }
 
-    /* ★ 精品級：可拖曳懸浮預約按鈕 ★ */
-    #floating-booking-btn {
+    /* ★ 精品級：可拖曳懸浮預約按鈕外框與關閉鍵 ★ */
+    #floating-wrapper {
       position: fixed;
       bottom: 25px;
       right: 20px;
+      z-index: 1002;
+      touch-action: none;
+    }
+    #close-floating {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 22px;
+      height: 22px;
+      background: white;
+      color: var(--primary-color);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
+      transition: 0.3s;
+    }
+    #close-floating:hover { background: #f9f9f9; transform: scale(1.1); }
+
+    #floating-booking-btn {
+      position: relative;
       width: 65px;
       height: 65px;
       background: linear-gradient(135deg, rgba(183, 110, 121, 0.95), rgba(196, 139, 159, 0.95));
@@ -197,7 +226,6 @@
       justify-content: center;
       text-decoration: none;
       box-shadow: 0 4px 15px rgba(183, 110, 121, 0.3), inset 0 0 10px rgba(255,255,255,0.2);
-      z-index: 1002;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       font-size: 13px;
       font-weight: 700;
@@ -209,7 +237,6 @@
       user-select: none;
       -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
-      touch-action: none; /* 防止手機拖曳時畫面跟著捲動 */
     }
     #floating-booking-btn:active { cursor: grabbing; }
     #floating-booking-btn span { pointer-events: none; margin-left: 2px; }
@@ -226,10 +253,13 @@
 </head>
 <body>
 
-  <a href="https://line.me/R/app/2008670533-YB72k6Wm" target="_blank" id="floating-booking-btn">
-    <span>預約</span>
-    <span>系統</span>
-  </a>
+  <div id="floating-wrapper">
+    <div id="close-floating" onclick="document.getElementById('floating-wrapper').style.display='none';">&times;</div>
+    <a href="https://line.me/R/app/2008670533-YB72k6Wm" target="_blank" id="floating-booking-btn">
+      <span>預約</span>
+      <span>系統</span>
+    </a>
+  </div>
 
   <div style="display:none;">
     <h1>A More Beauty 官方網站 - 台北宜蘭美容美體保養首選</h1>
@@ -511,6 +541,7 @@
     </div>
 
     <div class="footer">
+      <a href="https://line.me/R/app/2008670533-YB72k6Wm" target="_blank" class="social-big-btn btn-booking-sys">進入線上預約系統</a>
       <a href="https://lin.ee/c6tfqdR" target="_blank" class="social-big-btn btn-line">官方 LINE 諮詢</a>
       <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" target="_blank" class="social-big-btn btn-ig">追蹤我們的 Instagram</a>
       <div class="copyright">© A MORE BEAUTY. All Rights Reserved.</div>
@@ -553,6 +584,7 @@
           </div>
           
           <div class="vip-social-links">
+            <a href="https://line.me/R/app/2008670533-YB72k6Wm" class="vip-link-btn" style="background: linear-gradient(135deg, #b76e79, #c48b9f); color: white; box-shadow: 0 5px 15px rgba(183, 110, 121, 0.2);" target="_blank">進入線上預約系統</a>
             <a href="https://lin.ee/c6tfqdR" class="vip-link-btn vip-line" target="_blank">線上預約 / 諮詢</a>
             <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" class="vip-link-btn vip-ig" target="_blank">追蹤我們的 Instagram</a>
           </div>
@@ -724,15 +756,17 @@
       if(ph) ph.style.display = page === 'history' ? 'block' : 'none';
     }
 
-    /* ★ 懸浮按鈕：隨意拖曳邏輯 (Draggable FAB) ★ */
+    /* ★ 懸浮按鈕：隨意拖曳與一鍵關閉邏輯 ★ */
     (function() {
-      var fab = document.getElementById('floating-booking-btn');
-      if(!fab) return;
+      var fabWrapper = document.getElementById('floating-wrapper');
+      var fabBtn = document.getElementById('floating-booking-btn');
+      if(!fabWrapper || !fabBtn) return;
       var isDragging = false;
       var startX, startY, initialLeft, initialTop;
       var hasMoved = false;
 
       function dragStart(e) {
+        if(e.target.id === 'close-floating') return; // 點擊關閉按鈕不觸發拖曳
         hasMoved = false;
         var clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
         var clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
@@ -740,16 +774,16 @@
         startX = clientX;
         startY = clientY;
         
-        var rect = fab.getBoundingClientRect();
+        var rect = fabWrapper.getBoundingClientRect();
         initialLeft = rect.left;
         initialTop = rect.top;
         
         isDragging = true;
-        fab.style.transition = 'none';
-        fab.style.right = 'auto'; // 取消預設 right，改用 left 接管
-        fab.style.bottom = 'auto'; // 取消預設 bottom，改用 top 接管
-        fab.style.left = initialLeft + 'px';
-        fab.style.top = initialTop + 'px';
+        fabBtn.style.transition = 'none'; // 拖曳時暫停彈性動畫
+        fabWrapper.style.right = 'auto'; 
+        fabWrapper.style.bottom = 'auto'; 
+        fabWrapper.style.left = initialLeft + 'px';
+        fabWrapper.style.top = initialTop + 'px';
       }
 
       function drag(e) {
@@ -760,7 +794,6 @@
         var dx = clientX - startX;
         var dy = clientY - startY;
         
-        // 容錯範圍：滑動超過 5px 才算是拖曳，否則視為點擊
         if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
           hasMoved = true;
           if(e.cancelable) e.preventDefault(); // 防止手機畫面跟著滾動
@@ -769,34 +802,30 @@
         var newLeft = initialLeft + dx;
         var newTop = initialTop + dy;
         
-        // 邊界限制：防止圈圈被拖出螢幕外面
-        var maxLeft = window.innerWidth - fab.offsetWidth;
-        var maxTop = window.innerHeight - fab.offsetHeight;
+        var maxLeft = window.innerWidth - fabWrapper.offsetWidth;
+        var maxTop = window.innerHeight - fabWrapper.offsetHeight;
         newLeft = Math.max(0, Math.min(newLeft, maxLeft));
         newTop = Math.max(0, Math.min(newTop, maxTop));
         
-        fab.style.left = newLeft + 'px';
-        fab.style.top = newTop + 'px';
+        fabWrapper.style.left = newLeft + 'px';
+        fabWrapper.style.top = newTop + 'px';
       }
 
       function dragEnd(e) {
         isDragging = false;
-        fab.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease'; // 恢復 hover 動畫
+        fabBtn.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease'; 
       }
 
-      // 綁定 Touch 事件 (手機)
-      fab.addEventListener('touchstart', dragStart, {passive: false});
+      fabWrapper.addEventListener('touchstart', dragStart, {passive: false});
       document.addEventListener('touchmove', drag, {passive: false});
       document.addEventListener('touchend', dragEnd);
 
-      // 綁定 Mouse 事件 (電腦)
-      fab.addEventListener('mousedown', dragStart);
+      fabWrapper.addEventListener('mousedown', dragStart);
       document.addEventListener('mousemove', drag);
       document.addEventListener('mouseup', dragEnd);
 
-      // 防止拖曳結束時誤觸跳轉連結
-      fab.addEventListener('click', function(e) {
-        if (hasMoved) { e.preventDefault(); }
+      fabBtn.addEventListener('click', function(e) {
+        if (hasMoved) { e.preventDefault(); } // 確保拖曳放開後，不會誤觸發連結跳轉
       });
     })();
 </script>

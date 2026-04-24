@@ -152,7 +152,6 @@
     #view-vip .vip-t-item { font-size: 14px; color: #444; font-weight: 500; }
     .back-home-link { position: absolute; top: 20px; left: 20px; font-size: 14px; color: #999; cursor: pointer; z-index: 20; }
 
-    /* ★ 遇見 A MORE 專屬美學設計 ★ */
     .brand-story { text-align: center; padding: 30px 20px 50px; position: relative; }
     .brand-quote-mark { font-family: 'Playfair Display', serif; font-size: 80px; color: rgba(183, 110, 121, 0.08); position: absolute; top: -10px; left: 50%; transform: translateX(-50%); z-index: 0; line-height: 1; }
     .brand-story-title { font-family: 'Cinzel', serif; font-size: clamp(11px, 3.2vw, 16px); color: var(--primary-color); letter-spacing: 1px; margin-bottom: 25px; position: relative; z-index: 1; font-weight: 600; white-space: nowrap; }
@@ -180,14 +179,16 @@
     .skeleton-bg img { position: relative; z-index: 2; }
     .beautician-quote { font-size: clamp(13px, 3.8vw, 17px); white-space: nowrap; margin-bottom: 12px; line-height: 1.5; letter-spacing: 0.5px; }
 
-    /* ★ 新增：高質感懸浮預約按鈕 ★ */
-    .floating-booking-btn {
+    /* ★ 精品級：可拖曳懸浮預約按鈕 ★ */
+    #floating-booking-btn {
       position: fixed;
-      bottom: 30px;
+      bottom: 25px;
       right: 20px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #b76e79, #c48b9f);
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, rgba(183, 110, 121, 0.95), rgba(196, 139, 159, 0.95));
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       color: white;
       border-radius: 50%;
       display: flex;
@@ -195,36 +196,39 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      box-shadow: 0 8px 20px rgba(183, 110, 121, 0.4);
-      z-index: 1002; /* 確保在最上層，不會被其他區塊蓋住 */
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 15px rgba(183, 110, 121, 0.3), inset 0 0 10px rgba(255,255,255,0.2);
+      z-index: 1002;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      line-height: 1.2;
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      animation: float-pulse 2.5s infinite; /* 呼吸燈特效 */
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      animation: float-pulse 3s infinite;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: none; /* 防止手機拖曳時畫面跟著捲動 */
     }
-    .floating-booking-btn span { 
-      margin-left: 2px; /* 修正視覺置中 */
-    }
-    .floating-booking-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 12px 25px rgba(183, 110, 121, 0.5);
-      animation: none; /* 滑鼠或手指按住時暫停特效 */
+    #floating-booking-btn:active { cursor: grabbing; }
+    #floating-booking-btn span { pointer-events: none; margin-left: 2px; }
+    #floating-booking-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(183, 110, 121, 0.4), inset 0 0 15px rgba(255,255,255,0.3);
     }
     @keyframes float-pulse {
-      0% { box-shadow: 0 0 0 0 rgba(183, 110, 121, 0.5); }
-      70% { box-shadow: 0 0 0 12px rgba(183, 110, 121, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(183, 110, 121, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(183, 110, 121, 0.5), inset 0 0 10px rgba(255,255,255,0.2); }
+      70% { box-shadow: 0 0 0 12px rgba(183, 110, 121, 0), inset 0 0 10px rgba(255,255,255,0.2); }
+      100% { box-shadow: 0 0 0 0 rgba(183, 110, 121, 0), inset 0 0 10px rgba(255,255,255,0.2); }
     }
   </style>
 </head>
 <body>
 
-  <a href="https://lin.ee/c6tfqdR" target="_blank" class="floating-booking-btn">
-    <span>LINE</span>
+  <a href="https://line.me/R/app/2008670533-YB72k6Wm" target="_blank" id="floating-booking-btn">
     <span>預約</span>
+    <span>系統</span>
   </a>
 
   <div style="display:none;">
@@ -719,6 +723,82 @@
       if(pm) pm.style.display = page === 'main' ? 'block' : 'none';
       if(ph) ph.style.display = page === 'history' ? 'block' : 'none';
     }
+
+    /* ★ 懸浮按鈕：隨意拖曳邏輯 (Draggable FAB) ★ */
+    (function() {
+      var fab = document.getElementById('floating-booking-btn');
+      if(!fab) return;
+      var isDragging = false;
+      var startX, startY, initialLeft, initialTop;
+      var hasMoved = false;
+
+      function dragStart(e) {
+        hasMoved = false;
+        var clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+        var clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+        
+        startX = clientX;
+        startY = clientY;
+        
+        var rect = fab.getBoundingClientRect();
+        initialLeft = rect.left;
+        initialTop = rect.top;
+        
+        isDragging = true;
+        fab.style.transition = 'none';
+        fab.style.right = 'auto'; // 取消預設 right，改用 left 接管
+        fab.style.bottom = 'auto'; // 取消預設 bottom，改用 top 接管
+        fab.style.left = initialLeft + 'px';
+        fab.style.top = initialTop + 'px';
+      }
+
+      function drag(e) {
+        if (!isDragging) return;
+        var clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        var clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+        
+        var dx = clientX - startX;
+        var dy = clientY - startY;
+        
+        // 容錯範圍：滑動超過 5px 才算是拖曳，否則視為點擊
+        if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+          hasMoved = true;
+          if(e.cancelable) e.preventDefault(); // 防止手機畫面跟著滾動
+        }
+        
+        var newLeft = initialLeft + dx;
+        var newTop = initialTop + dy;
+        
+        // 邊界限制：防止圈圈被拖出螢幕外面
+        var maxLeft = window.innerWidth - fab.offsetWidth;
+        var maxTop = window.innerHeight - fab.offsetHeight;
+        newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+        newTop = Math.max(0, Math.min(newTop, maxTop));
+        
+        fab.style.left = newLeft + 'px';
+        fab.style.top = newTop + 'px';
+      }
+
+      function dragEnd(e) {
+        isDragging = false;
+        fab.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease'; // 恢復 hover 動畫
+      }
+
+      // 綁定 Touch 事件 (手機)
+      fab.addEventListener('touchstart', dragStart, {passive: false});
+      document.addEventListener('touchmove', drag, {passive: false});
+      document.addEventListener('touchend', dragEnd);
+
+      // 綁定 Mouse 事件 (電腦)
+      fab.addEventListener('mousedown', dragStart);
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', dragEnd);
+
+      // 防止拖曳結束時誤觸跳轉連結
+      fab.addEventListener('click', function(e) {
+        if (hasMoved) { e.preventDefault(); }
+      });
+    })();
 </script>
 </body>
 </html>

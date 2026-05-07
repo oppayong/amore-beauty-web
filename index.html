@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A More Beauty</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    overflow: hidden;
+    background: #faf6f5;
+  }
+
+  /* =========================================
+     動畫遮罩層 (Splash)
+     ========================================= */
+  .splash {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: #faf6f5;
+    z-index: 9999;
+    transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+  }
+  .splash.slide-up {
+    transform: translateY(-100%);
+  }
+
+  /* 💧 水滴與波紋 */
+  .drop-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; overflow: hidden;
+  }
+  .drop {
+    position: absolute; left: 50%; top: -50px;
+    width: 2px; height: 30px;
+    background: linear-gradient(to bottom, rgba(212,165,116,0), rgba(212,165,116,0.8));
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: dropFall 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  .ripple {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0; height: 0;
+    border: 1px solid rgba(212,165,116,0.6);
+    border-radius: 50%; opacity: 0;
+  }
+  .ripple-1 { animation: rippleExpand 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) 1.2s forwards; }
+  .ripple-2 { animation: rippleExpand 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) 1.5s forwards; }
+
+  @keyframes dropFall {
+    0% { top: -50px; opacity: 1; height: 30px; }
+    80% { top: calc(50% - 15px); opacity: 1; height: 15px; }
+    100% { top: 50%; opacity: 0; height: 0; }
+  }
+  @keyframes rippleExpand {
+    0% { width: 0; height: 0; opacity: 1; border-width: 2px; }
+    100% { width: 400px; height: 400px; opacity: 0; border-width: 0px; }
+  }
+
+  /* 🌸 Logo 圖片 */
+  .logo-container {
+    position: relative;
+    width: 160px; height: 160px;
+    margin-bottom: 2rem;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    animation: fadeInScale 2s cubic-bezier(0.2, 0.8, 0.2, 1) 1.5s forwards;
+  }
+  .logo-png {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    filter: drop-shadow(0 10px 20px rgba(139,111,140,0.1));
+  }
+  @keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.9) translateY(10px); filter: blur(5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+  }
+
+  /* ✨ 文字與閃光 */
+  .brand-text {
+    font-family: 'Georgia', serif;
+    font-size: 1.8rem;
+    color: #8b6f8c;
+    letter-spacing: 4px;
+    display: flex; gap: 0.8rem;
+  }
+  .word {
+    opacity: 0; transform: translateY(10px);
+  }
+  .word:nth-child(1) { animation: wordUp 0.8s ease forwards 3.5s; }
+  .word:nth-child(2) { animation: wordUp 0.8s ease forwards 3.7s; }
+  .word:nth-child(3) { animation: wordUp 0.8s ease forwards 3.9s; }
+
+  @keyframes wordUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .shimmer {
+    position: absolute; top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-20deg);
+    animation: shimmerPass 1.5s ease-in-out 4.5s forwards;
+  }
+  @keyframes shimmerPass {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="splash" id="splash">
+  <div class="drop-container">
+    <div class="drop"></div>
+    <div class="ripple ripple-1"></div>
+    <div class="ripple ripple-2"></div>
+  </div>
+
+  <div class="logo-container">
+    <img src="https://i.ibb.co/mCNmPL3s/amore-logo.png" alt="A More Beauty Logo" class="logo-png">
+  </div>
+
+  <div class="brand-text">
+    <span class="word">A</span>
+    <span class="word">More</span>
+    <span class="word">Beauty</span>
+  </div>
+
+  <div class="shimmer"></div>
+</div>
+
+<script>
+(function() {
+  const splash = document.getElementById('splash');
+
+  // 時間軸排程
+  // 5.0秒：畫面開始往上滑開
+  setTimeout(() => {
+    splash.classList.add('slide-up');
+  }, 5000);
+
+  // 5.8秒：動畫滑開結束，立刻「接力」跳轉到您的主官網 (home.html)
+  // 使用 replace 可以讓客人按手機的「上一頁」時，不會又跑回動畫頁
+  setTimeout(() => {
+    window.location.replace('home.html');
+  }, 5800);
+
+})();
+</script>
+
+</body>
+</html>

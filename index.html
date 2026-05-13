@@ -645,7 +645,23 @@
         if(d.topText) document.getElementById('dyn-top-text').innerText = d.topText;
         if(d.topLink) document.getElementById('dyn-top-link').href = d.topLink;
         
-  
+        if(d.carouselImages && d.carouselImages !== "[]") {
+            try {
+                var imgs = JSON.parse(d.carouselImages);
+                if(imgs.length > 0) {
+                    var track = document.getElementById('portfolio-track');
+                    if(track) {
+                        var newHtml = "";
+                        imgs.forEach(function(url) {
+                            if(url.trim() !== "") {
+                                newHtml += '<div class="p-item"><div class="p-img-box"><img loading="lazy" src="'+url.trim()+'"></div></div>';
+                            }
+                        });
+                        if(newHtml !== "") track.innerHTML = newHtml;
+                    }
+                }
+            } catch(e) {}
+        }
     }
 
     window.onload = function() {

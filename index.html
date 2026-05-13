@@ -252,7 +252,18 @@
   </style>
 </head>
 <body>
-
+<iframe id="splash-iframe" src="splash.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 99999; background: #faf6f5; transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);"></iframe>
+  <script>
+    // 5秒後，將整個動畫視窗優雅地往上拉開
+    setTimeout(function() {
+      var splashFrame = document.getElementById('splash-iframe');
+      if(splashFrame) {
+        splashFrame.style.transform = 'translateY(-100%)';
+        // 0.8秒拉開動畫結束後，徹底刪除這個畫框，完全不佔用您主官網的資源
+        setTimeout(function() { splashFrame.remove(); }, 800);
+      }
+    }, 5000); 
+  </script>
   <div id="floating-wrapper">
     <div id="close-floating" onclick="document.getElementById('floating-wrapper').style.display='none';">&times;</div>
     <a href="https://line.me/R/app/2008670533-YB72k6Wm" target="_blank" id="floating-booking-btn">

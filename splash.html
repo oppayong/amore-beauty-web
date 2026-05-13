@@ -137,22 +137,7 @@
 </div>
 
 <script>
-(function() {
-  const splash = document.getElementById('splash');
 
-  // 時間軸排程
-  // 5.0秒：畫面開始往上滑開
-  setTimeout(() => {
-    splash.classList.add('slide-up');
-  }, 5000);
-
-  // 5.8秒：動畫滑開結束，立刻「接力」跳轉到您的主官網 (home.html)
-  // 使用 replace 可以讓客人按手機的「上一頁」時，不會又跑回動畫頁
-  setTimeout(() => {
-    window.location.replace('home.html');
-  }, 5800);
-
-})();
 </script>
 
 </body>

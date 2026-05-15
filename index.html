@@ -652,8 +652,9 @@
         <div class="vip-subtitle">VIP 會員專屬空間</div>
 
         <div id="login-area">
-          <input type="tel" id="vip-phone" class="vip-input" placeholder="請輸入手機號碼" maxlength="10">
-          <button class="vip-btn" onclick="doSearch()" id="searchBtn">查詢我的餘額</button>
+          <input type="tel" id="vip-phone" class="vip-input" placeholder="請輸入手機號碼" maxlength="15">
+          <input type="password" id="vip-pin" class="vip-input" placeholder="請輸入密碼" maxlength="4" style="margin-top: 10px;">
+          <button class="vip-btn" onclick="doSearch()" id="searchBtn" style="margin-top: 15px;">查詢我的餘額</button>
         </div>
         <div class="vip-error" id="error-msg"></div>
 
@@ -779,12 +780,18 @@
     
     function doSearch() {
       var phoneInput = document.getElementById('vip-phone');
+      var pinInput = document.getElementById('vip-pin'); // 抓取密碼框
       var phone = phoneInput.value.trim(); 
+      var pin = pinInput ? pinInput.value.trim() : "";   // 讀取密碼
+
       var btn = document.getElementById('searchBtn');
       var errorDiv = document.getElementById('error-msg');
       var resultArea = document.getElementById('vip-result-container');
       var loginArea = document.getElementById('login-area');
+
+      // 檢查是否都有輸入
       if(phone.length < 8) { alert("請輸入正確的手機號碼喔！"); return; }
+      if(pin.length !== 4) { alert("請輸入4碼密碼"); return; }
       
       if(errorDiv) errorDiv.style.display = "none";
       btn.innerText = "讀取中..."; btn.style.opacity = "0.7"; btn.disabled = true;
@@ -792,7 +799,8 @@
       fetch('/api/cms', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: "checkBalance", phone: phone })
+          // 👇 把 pin 也一起傳給後台驗證
+          body: JSON.stringify({ action: "checkBalance", phone: phone, pin: pin }) 
       })
       .then(response => response.json())
       .then(res => {

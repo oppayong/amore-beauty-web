@@ -33,6 +33,46 @@
     "priceRange": "$$"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "A More Beauty 在哪裡？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "我們位於宜蘭縣羅東鎮陽明路88號2樓（固得租車右邊樓梯上樓）。專為宜蘭、羅東與台北地區的顧客提供專業美容保養與做臉服務。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "請問有提供哪些美容保養服務？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "我們專注於女性臉部與身體保養，熱門課程包含：PDRN肌因水光護理、AGEs抗糖膠原調理、無瑕液態薇秒、精油舒壓SPA、體雕及暖宮腹燭SPA等。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "男生可以預約做臉或按摩嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不好意思，為維護顧客的隱私與放鬆品質，A More Beauty 採 Ladies Only 政策，僅服務女性顧客，男賓止步。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "請問要如何預約？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "我們採完全預約制，請提前 3-7 天透過官方 LINE 進行預約或諮詢，以確保能為您保留最理想的時段。"
+        }
+      }
+    ]
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root { --primary-color: #b76e79; --accent-color: #d4af37; --text-dark: #4a4a4a; --text-light: #888888; --bg-color: #fdfbfb; --light-bg: #fff0f5; --white: #ffffff; --shadow: 0 4px 20px rgba(0,0,0,0.05); }
@@ -697,7 +737,7 @@
       fetch('/api/cms', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: "getConfig", adminPassword: "Amore888" })
+          body: JSON.stringify({ action: "getConfig"})
       })
       .then(r => r.json())
       .then(res => {

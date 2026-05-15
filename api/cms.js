@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       
       // 如果輸入的密碼 不是 手機號碼的最後4個字
       if (pin !== cleanPhone.slice(-4)) {
-        return res.status(400).json({ status: "error", message: "❌ 密碼錯誤（提示：請輸入手機末四碼）", found: false });
+        return res.status(400).json({ status: "error", message: "❌ 密碼錯誤", found: false });
       }
     }
     // 👆👆👆 驗證防護結束 👆👆👆

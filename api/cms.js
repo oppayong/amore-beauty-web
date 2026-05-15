@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ message: '不允許的方法' });
 
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxvn2KhszNFtcEAczf11vGCb7fRN7RJGHMWvRIr9mP6rgo6-_9tEHs754Bwci77DdKj/exec';
-  const API_KEY = 'AMORE_SECURE_KEY_2026';
+ const GAS_URL = process.env.GAS_URL;
+  const API_KEY = process.env.API_KEY;
 
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;

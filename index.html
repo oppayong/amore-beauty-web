@@ -119,8 +119,8 @@
     .menu-btn::after { content: ""; position: absolute; bottom: -17px; left: 0; width: 0%; height: 3px; background: var(--primary-color); transition: width 0.3s ease; }
     .menu-btn.active::after { width: 100%; }
     .content-display { max-width: 800px; margin: 0 auto 80px; padding: 0 20px; min-height: 400px; }
-    .tab-content { display: none; animation: fadeIn 0.5s; }
-    .tab-content.active { display: block; }
+  .tab-content { position: absolute; left: -9999px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+.tab-content.active { position: relative; left: 0; opacity: 1; pointer-events: auto; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .course-category { margin-bottom: 30px; }
     .cat-title { font-size: 16px; color: var(--primary-color); font-weight: 700; padding-bottom: 8px; border-bottom: 1px solid #eee; margin-bottom: 15px; letter-spacing: 1px; }
@@ -320,20 +320,7 @@
     </a>
   </div>
 
-  <div style="display:none;">
-    <h1>A More Beauty 官方網站 - 台北宜蘭美容美體保養首選</h1>
-    <p>專為女生保養設計的放鬆空間，服務範圍涵蓋宜蘭、羅東與台北。我們專注於解決您的肌膚困擾與放鬆課程並提供以下專業課程：</p>
-    <h2>熱門美容服務項目</h2>
-    <ul>
-        <li>PDRN肌因水光護理</li><li>AGEs抗糖膠原調理</li><li>晶鑽生肌煥膚</li><li>緊緻微波拉提</li>
-        <li>完美無瑕液態薇秒</li><li>精油舒壓 SPA</li><li>頭部抗壓 SPA</li>
-        <li>耳燭 SPA</li><li>小香肩美形雕塑</li><li>女神美背無暇嫩膚調理</li>
-        <li>暖宮腹燭SPA</li><li>彈力美胸護理</li><li>體雕 - 方案 A：纖體熱能勻體保養</li>
-        <li>體雕 - 方案 B：音塑勻體曲線管理</li>
-    </ul>
-    <p>服務地區包含：台北、宜蘭。歡迎透過 Instagram 或官方 LINE 預約體驗。</p>
-    <p>官方 Instagram: <a href="https://www.instagram.com/a.more_beauty___/">@a.more_beauty___</a></p>
-  </div>
+  
 
   <div class="top-announcement">
     <span id="dyn-top-text" style="white-space: nowrap; font-size: clamp(8px, 2.1vw, 13px); letter-spacing: -0.3px;">✨ Google map五星好評-現折$100｜姐妹優惠-兩人預約再折$100</span>
@@ -365,16 +352,16 @@
       <div class="carousel-wrapper">
         <button class="c-nav-btn prev" onclick="scrollCarousel(-1)">&#10094;</button>
         <div class="carousel-track" id="portfolio-track">
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa1.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa2.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa3.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa4.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa5.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa6.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa7.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa8.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa9.jpg"></div></div>
-          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa10.jpg"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa1.jpg"alt="A More Beauty 羅東暖宮腹燭SPA與門市環境"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa2.jpg"alt="A More Beauty 羅東精油舒壓SPA與門市環境"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa3.jpg"alt="A More Beauty 女生專屬精油舒壓SPA"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa4.jpg"alt="A More Beauty 羅東體雕纖體熱能勻體保養"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa5.jpg"alt="A More Beauty 羅東肌膚管理與門市環境"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa6.jpg"alt="A More Beauty 羅東彈力美胸護理"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa7.jpg"alt="A More Beauty 羅東做臉與臉部美容"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa8.jpg"alt="A More Beauty 羅東肌膚管理與女生美容"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa9.jpg"alt="A More Beauty 羅東女性頭部抗壓SPA"></div></div>
+          <div class="p-item"><div class="p-img-box"><img loading="lazy" src="./image/oa10.jpg"alt="A More Beauty 羅東PDRN肌因水光護理推薦"></div></div>
         </div>
         <button class="c-nav-btn next" onclick="scrollCarousel(1)">&#10095;</button>
       </div>

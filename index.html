@@ -179,8 +179,26 @@
     .acc-header::after { content: "+"; color: #ddd; font-size: 18px; font-weight: 300; }
     .accordion.active .acc-header { color: var(--primary-color); font-weight: 600; background: #fffafc; }
     .accordion.active .acc-header::after { content: "-"; color: var(--primary-color); }
-    .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: #fff; padding: 0 15px; font-size: 13px; color: #666; line-height: 1.8; text-align: justify; }
-    .accordion.active .acc-body { padding: 15px; max-height: 1000px; border-top: 1px dashed #eee; }
+        .acc-body { 
+      max-height: 0; 
+      opacity: 0; 
+      overflow: hidden; 
+      /* 改用更順暢的貝茲曲線動畫，並加入淡入淡出效果 */
+      transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease, padding 0.4s ease; 
+      background: #fff; 
+      padding: 0 15px; 
+      font-size: 13px; 
+      color: #666; 
+      line-height: 1.8; 
+      text-align: justify; 
+    }
+    .accordion.active .acc-body { 
+      padding: 15px; 
+      /* 將上限下調至 500px，消滅收合時的「空轉卡頓」 */
+      max-height: 500px; 
+      opacity: 1; 
+      border-top: 1px dashed #eee; 
+    }
     .price-tag { display: block; margin-top: 12px; padding-top: 10px; border-top: 1px solid #f5f5f5; color: #333; font-weight: 600; font-size: 13px; }
     .price-frame { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #eee; line-height: 0; }
     .price-img { width: 100%; display: block; border-radius: 5px; }
@@ -900,8 +918,21 @@
       for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
       var b = document.getElementById('btn-' + tabId);
       if(b) b.classList.add('active');
+    }    function toggleAcc(el) {
+      // 1. 先記住「目前點擊的這個」原本是不是打開的
+      var isActive = el.classList.contains('active');
+      
+      // 2. 把畫面上【所有】的課程都強制關閉
+      var allAcc = document.querySelectorAll('.accordion');
+      for (var i = 0; i < allAcc.length; i++) {
+        allAcc[i].classList.remove('active');
+      }
+      
+      // 3. 如果您點擊的這個原本是關的，就把它打開（達到只開一個的效果）
+      if (!isActive) {
+        el.classList.add('active');
+      }
     }
-    function toggleAcc(el) { el.classList.toggle('active'); }
     function switchView(viewName) {
       var vHome = document.getElementById('view-home');
       var vVip = document.getElementById('view-vip');

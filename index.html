@@ -670,8 +670,10 @@
       <a href="https://line.me/R/app/2008670533-YB72k6Wm" target="_blank" class="social-big-btn btn-booking-sys">進入線上預約系統</a>
       <a href="https://lin.ee/c6tfqdR" target="_blank" class="social-big-btn btn-line">官方 LINE 諮詢</a>
       <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" target="_blank" class="social-big-btn btn-ig">追蹤我們的 Instagram</a>
-      <div class="copyright">© A MORE BEAUTY. All Rights Reserved.</div>
-    </div>
+     <div style="font-size: 11px; color: #999; margin-top: 25px; line-height: 1.8;">
+  本官網嚴格遵守《個人資料保護法》，您的手機號碼與保養紀錄僅供 A More Beauty 內部查詢與會員服務使用。<br>
+  © A MORE BEAUTY. All Rights Reserved.
+</div>
   </div>
 
   <div id="view-vip" class="view-section" style="display:none;">
@@ -698,7 +700,7 @@
             </div>
           </div>
           <div class="vip-card">
-            <div class="vip-welcome" id="user-name"></div>
+           <div class="vip-welcome" id="vip-welcome-name"></div>
             <div class="vip-balance" id="user-balance"></div>
             <div class="vip-label">會員帳戶餘額</div>
             <div class="vip-last-visit" id="last-date"></div>
@@ -847,6 +849,8 @@
             var safeDate = (d.lastDate && d.lastDate !== "undefined") ? d.lastDate : "無紀錄";
             var safeMsg = (d.message && d.message !== "undefined") ? d.message : "";
             document.getElementById('user-name').innerText = "Dear " + safeName;
+            var welcomeEl = document.getElementById('vip-welcome-name');
+if(welcomeEl) welcomeEl.innerText = safeName + "，歡迎回來";
             document.getElementById('user-balance').innerText = "$" + safeBalance;
             document.getElementById('last-date').innerHTML = "🗓️ 上次保養：" + safeDate;
             document.getElementById('smart-msg').innerHTML = safeMsg;

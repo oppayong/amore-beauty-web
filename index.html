@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>A More Beauty 官方網站 | 宜蘭台北美容美體保養首選</title>
+  <link rel="canonical" href="https://amore-beauty-web.vercel.app/" />
   <meta name="google-site-verification" content="fPC8Ev3jsINSPgeVzRf8XdxXGsEqGZiwiMzX_f6P4DM" />
   <meta name="robots" content="index, follow">
   <meta name="description" content="A More Beauty 官方網站。專注於台北與宜蘭、羅東地區的專業美容、做臉、女生保養與放鬆服務。">
@@ -29,6 +30,17 @@
       "postalCode": "265",
       "addressCountry": "TW"
     },
+   "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 24.6789,
+        "longitude": 121.7654
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Nicole",
+        "jobTitle": "主理人 / 高階美容護理師",
+        "description": "專精於問題肌膚管理、精油芳療與高階儀器保養。"
+      },
     "hasMap": "https://maps.app.goo.gl/4JnvZ4SzWesWDVb88",
     "priceRange": "$$"
   }
@@ -677,7 +689,8 @@
         </div>
         <div class="vip-error" id="error-msg"></div>
 
-        <div id="vip-result-container">
+       <div id="vip-result-container" style="display:none;" data-nosnippet>
+            <h3 id="user-name" style="color: #b76e79;"></h3>
           <div id="vip-promo-section">
             <div class="vip-promo-box" onclick="this.classList.toggle('open')">
               <div class="vip-promo-header" id="promo-header"></div>

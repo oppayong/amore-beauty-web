@@ -346,6 +346,58 @@
       70% { box-shadow: 0 0 0 12px rgba(183, 110, 121, 0), inset 0 0 10px rgba(255,255,255,0.2); }
       100% { box-shadow: 0 0 0 0 rgba(183, 110, 121, 0), inset 0 0 10px rgba(255,255,255,0.2); }
     }
+        /* =========================================
+       📱 手機版專屬微調 (RWD 升級)
+       ========================================= */
+    @media (max-width: 768px) {
+      /* 1. 導覽列優化：稍微縮小 Logo 字體，留出更多呼吸空間 */
+      .nav-brand { font-size: 16px; }
+      .nav-brand img { width: 26px; height: 26px; }
+
+      /* 2. 主視覺 Hero 區塊：字體與間距微調 */
+      .hero { padding: 40px 15px 15px; }
+      .main-logo-container { width: 110px; height: 110px; margin-bottom: 15px; }
+      .hero h1 { font-size: 22px; letter-spacing: 1.5px; }
+      .hero p { font-size: 13px; margin-bottom: 10px; }
+      .hero-tag { font-size: 11px; padding: 3px 12px; }
+      .btn-base { padding: 10px 24px; font-size: 13px; }
+
+      /* 3. 頁籤選單優化：改為可以左右滑動，避免擠在一起變兩行 */
+      .menu-grid {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* 讓 iOS 滑動更順暢 */
+        scrollbar-width: none; /* 隱藏捲軸 */
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        gap: 20px;
+      }
+      .menu-grid::-webkit-scrollbar { display: none; }
+      .menu-btn { white-space: nowrap; padding: 6px 4px; font-size: 14px; }
+
+      /* 4. 內容區塊優化：減少左右留白，讓內文更易讀 */
+      .content-display { padding: 0 10px; margin-bottom: 50px; }
+      
+      /* 5. 課程手風琴優化：稍微縮小標題字體，增加點擊區塊 */
+      .cat-title { font-size: 15px; margin-bottom: 10px; }
+      .acc-header { font-size: 13px; padding: 12px 10px; }
+      .acc-body { font-size: 12px; line-height: 1.7; }
+      
+      /* 6. 品牌故事與美容師介紹：字體大小與行距微調 */
+      .brand-story-title { font-size: 14px; white-space: normal; line-height: 1.4;} /* 允許換行，避免太長被截斷 */
+      .brand-story-text { font-size: 13px; line-height: 2; }
+      .beautician-quote { font-size: 14px; white-space: normal; } /* 允許換行 */
+      .beautician-title { font-size: 15px; margin-bottom: 15px; }
+      .beautician-desc { font-size: 13px; line-height: 1.8; }
+      .beautician-sign { font-size: 22px; margin-top: 25px; }
+
+      /* 7. VIP 空間微調：減少內邊距，讓卡片更貼合手機螢幕 */
+      #view-vip .vip-wrapper { padding: 30px 20px; border-radius: 15px; margin: 10px; min-height: 80vh; }
+      #view-vip .vip-logo-container { width: 100px; height: 100px; }
+      #view-vip .vip-h1 { font-size: 24px; }
+      #view-vip .vip-balance { font-size: 36px; }
+    }
   </style>
 </head>
 <body>

@@ -197,27 +197,31 @@
     document.getElementById('stat-booking').innerText = globalConfigData["track_BOOKING" + suffix] || '0';
   }
 
-  function fetchReport() {
-    fetch('/api/cms', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: "getReportData", adminPassword: globalPassword })
-    }).then(r => r.json()).then(res => {
-      if(res.status === "success") {
-        document.getElementById('yearTotalDisplay').innerText = "🏆 全年度總淨利：" + res.yearTotal;
-        let table = document.getElementById('reportTable');
-        let html = "<tr><th>月份</th><th>總營業額</th><th>折讓金額</th><th>實收現金</th><th>材料固定成本</th><th>本月淨利</th></tr>";
-     
-        res.reportRows.forEach((row, index) => {
-            if(index > 0) { // 跳過第一行標題
-              html += `<tr>
-                  <td>${row[0]}</td> <td>${row[2]}</td> <td>${row[3]}</td> <td>${row[4]}</td> <td>${row[6]}</td> <td>${row[7]}</td> </tr>`;
-            }
-        });
-        table.innerHTML = html;
-      }
-    });
-  }
+ function fetchReport() {
+  fetch('/api/cms', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: "getReportData", adminPassword: globalPassword })
+  }).then(r => r.json()).then(res => {
+    if(res.status === "success") {
+      document.getElementById('yearTotalDisplay').innerText = res.yearTotal;
+      let table = document.getElementById('reportTable');
+      // 表頭維持您原設計，但 JS 現在會正確對應 row[0]~row[5]
+      let html = "<tr><th>月份</th><th>總營業額</th><th>折讓金額</th><th>實收現金</th><th>材料固定成本</th><th>本月淨利</th></tr>";
+      res.reportRows.forEach((row) => {
+        html += `<tr>
+          <td>${row[0]}</td> 
+          <td style="color:#06c755; font-weight:bold;">${row[1]}</td> 
+          <td style="color:#e57373;">${row[2]}</td> 
+          <td style="color:#1976d2; font-weight:bold;">${row[3]}</td> 
+          <td style="color:#999;">${row[4]}</td> 
+          <td style="color:#b76e79; font-weight:bold;">${row[5]}</td> 
+        </tr>`;
+      });
+      table.innerHTML = html;
+    }
+  });
+}
 
   function saveData() {
     let payload = {

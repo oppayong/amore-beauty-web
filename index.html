@@ -125,7 +125,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root { --primary-color: #b76e79; --accent-color: #d4af37; --text-dark: #4a4a4a; --text-light: #888888; --bg-color: #fdfbfb; --light-bg: #fff0f5; --white: #ffffff; --shadow: 0 4px 20px rgba(0,0,0,0.05); }
-    body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 0; overflow-x: hidden; line-height: 1.6; }
+    body { 
+      font-family: 'Noto Sans TC', sans-serif; 
+      background-color: var(--bg-color); 
+      color: var(--text-dark); 
+      margin: 0; 
+      padding: 0; 
+      overflow-x: hidden; 
+      line-height: 1.6; 
+      
+      /* ★ 防複製防護罩 ★ */
+      -webkit-user-select: none; 
+      -moz-user-select: none;    
+      -ms-user-select: none;     
+      user-select: none;         
+      -webkit-touch-callout: none; 
+    }
     .top-announcement { background: linear-gradient(to right, #b76e79, #c48b9f); color: #ffffff; text-align: center; padding: 10px 15px; font-size: 13px; letter-spacing: 1.5px; font-weight: 500; position: relative; z-index: 1001; display: flex; flex-direction: column; align-items: center; gap: 5px; }
     .top-announcement a { color: #fff0f5; text-decoration: underline; font-weight: 700; transition: 0.3s; }
     .top-announcement a:hover { color: var(--accent-color); }
@@ -476,7 +491,7 @@
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
 <iframe id="splash-iframe" src="splash.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 99999; background: #faf6f5; transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1); will-change: transform; -webkit-transform: translateZ(0); transform: translateZ(0);"></iframe>
   <script>
     // 5秒後，將整個動畫視窗優雅地往上拉開
@@ -970,7 +985,20 @@
     }
 
     var globalHistory = [];
-    
+    // ★ 進階防禦陣列：安全版熱鍵攔截 ★
+    (function() {
+      document.addEventListener('keydown', function(e) {
+        if (
+          e.keyCode === 123 || // 攔截 F12
+          (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // 攔截 Ctrl+Shift+I/J/C
+          (e.ctrlKey && e.keyCode === 85) // 攔截 Ctrl+U (檢視原始碼)
+        ) {
+          alert("⚠️ 本站內容受版權保護，請尊重 A More Beauty 的設計心血。");
+          e.preventDefault();
+          return false;
+        }
+      });
+    })();
     function doSearch() {
       var phoneInput = document.getElementById('vip-phone');
       var pinInput = document.getElementById('vip-pin'); // 抓取密碼框

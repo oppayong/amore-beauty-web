@@ -1011,7 +1011,31 @@
             var welcomeEl = document.getElementById('vip-welcome-name');
 if(welcomeEl) welcomeEl.innerText = safeName + "，歡迎回來";
             document.getElementById('user-balance').innerText = "$" + safeBalance;
-            document.getElementById('last-date').innerHTML = "🗓️ 上次保養：" + safeDate;
+                      // 🔴 新增：天數差智慧計算與30天回訪折扣通知邏輯
+            var daysText = "";
+            if (d.lastDate && d.lastDate !== "undefined" && d.lastDate !== "無紀錄") {
+              try {
+                // 將日期格式中的 '-' 替換為 '/' 以確保 iOS 系統完美相容
+                var lastDateObj = new Date(d.lastDate.replace(/-/g, '/'));
+                var today = new Date();
+                today.setHours(0,0,0,0);
+                lastDateObj.setHours(0,0,0,0);
+                var diffTime = today.getTime() - lastDateObj.getTime();
+                var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (!isNaN(diffDays) && diffDays >= 0) {
+                  daysText = "（已過 " + diffDays + " 天）";
+                  // 當未滿或剛好 30 天時，動態塞入回訪折扣推播文字
+                  if (diffDays <= 30) {
+                    safeMsg += (safeMsg ? "<br><br>" : "") + "💝 💡 記得把握 30 天內回訪，可享特惠折扣喔！";
+                  }
+                }
+              } catch(e) {
+                console.log("日期計算異常");
+              }
+            }
+            
+            document.getElementById('last-date').innerHTML = "🗓️ 上次保養：" + safeDate + daysText;
             document.getElementById('smart-msg').innerHTML = safeMsg;
             
             if(d.promoHeader && d.promoHeader !== "undefined") {

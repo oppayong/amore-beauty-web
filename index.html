@@ -1011,8 +1011,10 @@
             var welcomeEl = document.getElementById('vip-welcome-name');
 if(welcomeEl) welcomeEl.innerText = safeName + "，歡迎回來";
             document.getElementById('user-balance').innerText = "$" + safeBalance;
-                                  // 🔴 新增：天數差智慧計算與回訪通知邏輯
+                                           // 🔴 新增：天數差智慧計算與回訪通知邏輯（防疊加版）
             var daysText = "";
+            var autoMsg = ""; // 專門用來裝自動計算的推播文字
+            
             if (d.lastDate && d.lastDate !== "undefined" && d.lastDate !== "無紀錄") {
               try {
                 // 將日期格式中的 '-' 替換為 '/' 以確保 iOS 系統完美相容
@@ -1026,12 +1028,11 @@ if(welcomeEl) welcomeEl.innerText = safeName + "，歡迎回來";
                 if (!isNaN(diffDays) && diffDays >= 0) {
                   daysText = "（已過 " + diffDays + " 天）";
                   
-                  // 根據天數，動態塞入不同的專屬推播文案
+                  // 根據天數，決定自動推播文案
                   if (diffDays <= 30) {
-                    safeMsg += (safeMsg ? "<br><br>" : "") + "💝 把握 30 天內回訪，可享專屬折扣喔！";
+                    autoMsg = "💝 💡 記得把握 30 天內回訪，可享特惠折扣喔！";
                   } else {
-                    // 超過 30 天的專屬喚醒文案 (老闆可自行修改引號內的文字)
-                    safeMsg += (safeMsg ? "<br><br>" : "") + "✨ 許久未見，期待能再次為您安排一段專屬的高訂放鬆時光！";
+                    autoMsg = "✨ 許久未見，期待能再次為您安排一段專屬的高訂放鬆時光！";
                   }
                 }
               } catch(e) {
@@ -1039,8 +1040,12 @@ if(welcomeEl) welcomeEl.innerText = safeName + "，歡迎回來";
               }
             }
             
+            // 判斷邏輯：如果後台有手動寫留言 (safeMsg)，就顯示後台的。
+            // 如果後台沒寫，就顯示自動計算的折扣文案 (autoMsg)。
+            var finalMsg = safeMsg ? safeMsg : autoMsg;
+            
             document.getElementById('last-date').innerHTML = "🗓️ 上次保養：" + safeDate + daysText;
-            document.getElementById('smart-msg').innerHTML = safeMsg;
+            document.getElementById('smart-msg').innerHTML = finalMsg;
             
             if(d.promoHeader && d.promoHeader !== "undefined") {
               var ph = document.getElementById('promo-header');

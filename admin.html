@@ -42,7 +42,15 @@
 <div class="container" id="admin-content" style="display:none;">
   <h1>A More Beauty 數位旗艦控制台</h1>
     
-  <div class="section-title">📊 官網即時數據與導流分析</div>
+  <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+    <span>📊 官網即時數據與導流分析</span>
+    <select id="timeFilter" onchange="renderTraffic()" style="padding: 6px 12px; border-radius: 8px; border: 1px solid #b76e79; color: #b76e79; font-weight: bold; cursor: pointer; outline: none;">
+      <option value="all">歷史總累計</option>
+      <option value="year">本年度 (Year)</option>
+      <option value="month">本月份 (Month)</option>
+      <option value="day">本日 (Today)</option>
+    </select>
+  </div>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
     <div style="background: #fff5f6; padding: 20px; border-radius: 12px; border-left: 4px solid #b76e79; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
       <div style="font-size: 13px; color: #888;">官網累積總瀏覽量 (Impressions)</div>
@@ -152,17 +160,41 @@
     });
   }
 
+  let globalConfigData = {}; // 建立一個倉庫把所有數據存起來
+
   function loadConfig(d) {
+    globalConfigData = d; // 把後台傳來的數據存入倉庫
+    
     document.getElementById('topText').value = d.topText || "";
     document.getElementById('topLink').value = d.topLink || "";
     document.getElementById('vipHeader').value = d.vipPromoHeader || "";
     document.getElementById('vipBody').value = d.vipPromoBody || "";
     
-    // ➔ 將新版流量數字塞入看板中
-    document.getElementById('stat-visit').innerText = d.traffic_visit || '0';
-    document.getElementById('stat-line').innerText = d.traffic_line || '0';
-    document.getElementById('stat-ig').innerText = d.traffic_ig || '0';
-    document.getElementById('stat-booking').innerText = d.traffic_booking || '0';
+    // 預設渲染「總累計」的流量數字
+    renderTraffic(); 
+  }
+
+  // 核心功能：根據下拉選單的時間，動態變換數字
+  function renderTraffic() {
+    let filter = document.getElementById('timeFilter').value;
+    let suffix = "_all"; // 預設字尾
+    
+    // 取得當下的本機日期
+    let d = new Date();
+    let y = d.getFullYear();
+    let m = String(d.getMonth() + 1).padStart(2, '0');
+    let day = String(d.getDate()).padStart(2, '0');
+
+    // 根據使用者的選擇，切換要抓取的日期字尾
+    if (filter === "year") suffix = "_" + y;
+    if (filter === "month") suffix = "_" + y + "-" + m;
+    if (filter === "day") suffix = "_" + y + "-" + m + "-" + day;
+
+    // 將對應時間的數字顯示到面板上，如果沒人點過就顯示 0
+    document.getElementById('stat-visit').innerText = globalConfigData["track_TOTAL_VISIT" + suffix] || '0';
+    document.getElementById('stat-line').innerText = globalConfigData["track_LINE" + suffix] || '0';
+    document.getElementById('stat-ig').innerText = globalConfigData["track_IG" + suffix] || '0';
+    document.getElementById('stat-booking').innerText = globalConfigData["track_BOOKING" + suffix] || '0';
   }
 
   function fetchReport() {

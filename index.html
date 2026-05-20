@@ -388,20 +388,21 @@
       .btn-base { padding: 10px 22px; font-size: 12.5px; }
 
       /* 3. 頁籤選單優化：🔴 鎖死上下軸，只允許完美的橫向絲滑滑動 */
-      .menu-grid {
+       .menu-grid {
         flex-wrap: nowrap;
         justify-content: flex-start;
         overflow-x: auto;
-        overflow-y: hidden; /* 🔒 徹底封鎖滑動時的上下晃動 */
-        -webkit-overflow-scrolling: touch; /* 讓 iOS 滑動具備重力絲滑感 */
+        overflow-y: hidden; 
+        -webkit-overflow-scrolling: touch; 
         scrollbar-width: none;
         padding-bottom: 8px;
-        margin-bottom: 22px;
+        margin-bottom: 40px; /* ★ 從 22px 加大到 40px，讓下方標題退後，消除壓迫感 */
         gap: 18px;
       }
       .menu-grid::-webkit-scrollbar { display: none; }
       .menu-btn { white-space: nowrap; padding: 4px 2px; font-size: 13.5px; letter-spacing: 0.5px; }
-      .menu-btn::after { bottom: -11px; height: 2px; } /* 微調底線位置 */
+      .menu-btn::after { bottom: -11px; height: 2px; }
+
 
       /* 4. 內容區塊整體間距調校 */
       .content-display { padding: 0 12px; margin-bottom: 45px; }
@@ -449,12 +450,18 @@
       }
 
       /* 9. 遇見 A MORE (品牌故事與美容師) */
-      .brand-story-title { font-size: 13.5px; white-space: normal; line-height: 1.5; }
-      .brand-story-text { font-size: 12.5px; line-height: 2.1; letter-spacing: 0.8px; }
-      .beautician-quote { font-size: 13.5px; white-space: normal; line-height: 1.4; }
-      .beautician-title { font-size: 14.5px; margin-bottom: 12px; }
-      .beautician-desc { font-size: 12.5px; line-height: 1.9; color: #555; }
-      .beautician-sign { font-size: 20px; margin-top: 20px; }
+      .brand-story { padding: 40px 15px 60px; } /* ★ 增加整個區塊的上下留白 */
+      .brand-story-title { font-size: 13.5px; white-space: normal; line-height: 1.6; margin-bottom: 30px; }
+      .brand-story-text { font-size: 13px; line-height: 2.2; letter-spacing: 1px; } /* ★ 字體微調，行距拉開到 2.2 */
+      .beautician-quote { font-size: 13.5px; white-space: normal; line-height: 1.5; }
+      .beautician-title { font-size: 14.5px; margin-bottom: 15px; }
+      .beautician-desc { 
+        font-size: 13px; 
+        line-height: 2.1; /* ★ 描述區塊行距拉開到 2.1 */
+        color: #555; 
+        margin-bottom: 22px; /* ★ 兩段文字之間的間隔拉大 */
+      }
+      .beautician-sign { font-size: 20px; margin-top: 25px; }
 
       /* 10. VIP 專屬空間 */
       #view-vip .vip-wrapper { padding: 25px 15px; border-radius: 16px; margin: 8px; min-height: 85vh; }
@@ -909,16 +916,28 @@
       }).catch(e => console.log("背景同步完成"));
     };
 
-    function showTab(tabId) {
+        function showTab(tabId) {
       var tabs = document.getElementsByClassName('tab-content');
       for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
       var t = document.getElementById('tab-' + tabId);
       if(t) t.classList.add('active');
+      
       var btns = document.getElementsByClassName('menu-btn');
       for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+      
       var b = document.getElementById('btn-' + tabId);
-      if(b) b.classList.add('active');
-    }    
+      if(b) {
+        b.classList.add('active');
+        
+        // ★ 精品級升級：自動計算並滑動，讓點擊的按鈕完美置中
+        var container = document.querySelector('.menu-grid');
+        if (container) {
+          // 計算要捲動的距離 = 按鈕左側距離 - (螢幕一半寬度) + (按鈕本身一半寬度)
+          var scrollPos = b.offsetLeft - (container.offsetWidth / 2) + (b.offsetWidth / 2);
+          container.scrollTo({ left: scrollPos, behavior: 'smooth' });
+        }
+      }
+    }
   function toggleAcc(el) {
       // 1. 先記住「目前點擊的這個」原本是不是打開的
       var isActive = el.classList.contains('active');

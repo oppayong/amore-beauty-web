@@ -119,13 +119,14 @@
 
   <div class="section-title">💰 門市營運年度財務數據</div>
   <div class="report-card">
-    <div class="year-total" id="yearTotalDisplay">🏆 全年度總淨利：讀取中...</div>
-    <div style="overflow-x: auto;">
-        <table class="report-table" id="reportTable">
-            <tr><th>月份</th><th>總營業額</th><th>折讓金額</th><th>實收現金</th><th>材料固定成本</th><th>本月淨利</th></tr>
-        </table>
-    </div>
+  <div class="year-total" id="yearTotalDisplay">🏆 全年度總淨利：讀取中...</div>
+  <div style="overflow-x: auto;">
+    <table class="report-table" id="reportTable">
+      <!-- 表頭直接對應您的「年度營運報表」A3~H3 欄位 -->
+      <tr><th>月份</th><th>固定成本</th><th>總毛利潤</th><th>當月淨利</th><th>開店天數</th><th>平均日淨利</th><th>總來客數</th><th>新客數</th></tr>
+    </table>
   </div>
+</div>
 
 </div>
 
@@ -204,18 +205,20 @@
     body: JSON.stringify({ action: "getReportData", adminPassword: globalPassword })
   }).then(r => r.json()).then(res => {
     if(res.status === "success") {
-      document.getElementById('yearTotalDisplay').innerText = res.yearTotal;
+      document.getElementById('yearTotalDisplay').innerText = "🏆 全年度總淨利：" + res.yearTotal;
       let table = document.getElementById('reportTable');
-      // 表頭維持您原設計，但 JS 現在會正確對應 row[0]~row[5]
-      let html = "<tr><th>月份</th><th>總營業額</th><th>折讓金額</th><th>實收現金</th><th>材料固定成本</th><th>本月淨利</th></tr>";
+      // 重建表頭與資料列，嚴格對應試算表 A~H 欄位索引 (0~7)
+      let html = "<tr><th>月份</th><th>固定成本</th><th>總毛利潤</th><th>當月淨利</th><th>開店天數</th><th>平均日淨利</th><th>總來客數</th><th>新客數</th></tr>";
       res.reportRows.forEach((row) => {
         html += `<tr>
-          <td>${row[0]}</td> 
-          <td style="color:#06c755; font-weight:bold;">${row[1]}</td> 
-          <td style="color:#e57373;">${row[2]}</td> 
-          <td style="color:#1976d2; font-weight:bold;">${row[3]}</td> 
-          <td style="color:#999;">${row[4]}</td> 
-          <td style="color:#b76e79; font-weight:bold;">${row[5]}</td> 
+          <td>${row[0]}</td>
+          <td>${row[1]}</td>
+          <td style="color:#1976d2;">${row[2]}</td>
+          <td style="color:#b76e79; font-weight:bold;">${row[3]}</td>
+          <td>${row[4]}</td>
+          <td>${row[5]}</td>
+          <td>${row[6]}</td>
+          <td>${row[7]}</td>
         </tr>`;
       });
       table.innerHTML = html;

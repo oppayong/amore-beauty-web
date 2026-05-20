@@ -830,9 +830,9 @@
         </div>
       </div>
     </div> <div class="footer">
-      <a href="https://line.me/R/app/2008670533-YB72k6Wm" target="_blank" class="social-big-btn btn-booking-sys">進入線上預約系統</a>
-      <a href="https://lin.ee/c6tfqdR" target="_blank" class="social-big-btn btn-line">官方 LINE 諮詢</a>
-      <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" target="_blank" class="social-big-btn btn-ig">追蹤我們的 Instagram</a>
+      <a href="https://line.me/R/app/2008670533-YB72k6Wm" target="_blank" class="social-big-btn btn-booking-sys" onclick="reportAnalytics('BOOKING')">進入線上預約系統</a>
+      <a href="https://lin.ee/c6tfqdR" target="_blank" class="social-big-btn btn-line" onclick="reportAnalytics('LINE')">官方 LINE 諮詢</a>
+      <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" target="_blank" class="social-big-btn btn-ig" onclick="reportAnalytics('IG')">追蹤我們的 Instagram</a>
      <div style="font-size: 11px; color: #999; margin-top: 25px; line-height: 1.8;">
   本官網嚴格遵守《個人資料保護法》，您的手機號碼與保養紀錄<br>僅供 A More Beauty 內部查詢與會員服務使用。<br>
   © A MORE BEAUTY. All Rights Reserved.
@@ -876,10 +876,10 @@
             <div class="vip-hot-item"><span class="vip-badge product">熱銷產品</span><span id="top-product"></span></div>
           </div>
           
-          <div class="vip-social-links">
-            <a href="https://line.me/R/app/2008670533-YB72k6Wm" class="vip-link-btn" style="background: linear-gradient(135deg, #b76e79, #c48b9f); color: white; box-shadow: 0 5px 15px rgba(183, 110, 121, 0.2);" target="_blank">進入線上預約系統</a>
-            <a href="https://lin.ee/c6tfqdR" class="vip-link-btn vip-line" target="_blank">線上預約 / 諮詢</a>
-            <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" class="vip-link-btn vip-ig" target="_blank">追蹤我們的 Instagram</a>
+         <div class="vip-social-links">
+            <a href="https://line.me/R/app/2008670533-YB72k6Wm" class="vip-link-btn" style="background: linear-gradient(135deg, #b76e79, #c48b9f); color: white; box-shadow: 0 5px 15px rgba(183, 110, 121, 0.2);" target="_blank" onclick="reportAnalytics('BOOKING')">進入線上預約系統</a>
+            <a href="https://lin.ee/c6tfqdR" class="vip-link-btn vip-line" target="_blank" onclick="reportAnalytics('LINE')">線上預約 / 諮詢</a>
+            <a href="https://www.instagram.com/a.more_beauty___?igsh=MTY0NDBkYzkzNjRjaA%3D%3D&utm_source=qr" class="vip-link-btn vip-ig" target="_blank" onclick="reportAnalytics('IG')">追蹤我們的 Instagram</a>
           </div>
           <div style="margin-top:30px; font-size:11px; color:#ddd;">© A MORE BEAUTY VIP</div>
         </div>
@@ -931,7 +931,19 @@
         }
     }
 
+  // 專門發送導流與流量數據的函數
+    function reportAnalytics(targetName) {
+      fetch('/api/cms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: "trackClick", target: targetName })
+      }).catch(e => console.log("分析統計連線無感應"));
+    }
+
     window.onload = function() {
+      // ➔ 只要有人開網頁，立刻回報累加一次總瀏覽量
+      reportAnalytics('TOTAL_VISIT');
+
       fetch('/api/cms', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

@@ -270,9 +270,24 @@
     #view-vip .vip-promo-box { border: 1px solid #fce4ec; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.3s ease; background: #fff; margin-bottom: 20px; }
     #view-vip .vip-promo-header { background: linear-gradient(to right, #b76e79, #c48b9f); color: white; padding: 15px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
     #view-vip .vip-promo-header::after { content: "▼"; font-size: 10px; transition: transform 0.3s; }
-    #view-vip .vip-promo-body { padding: 0 20px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease; font-size: 14px; line-height: 1.6; color: #555; }
+   #view-vip .vip-promo-body { 
+      padding: 0 20px; 
+      max-height: 0; 
+      opacity: 0; 
+      overflow: hidden; 
+      /* ★ 換上水滴般流暢的貝茲曲線動畫引擎 */
+      transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease, padding 0.4s ease; 
+      font-size: 14px; 
+      line-height: 1.6; 
+      color: #555; 
+    }
     #view-vip .vip-promo-box.open .vip-promo-header::after { transform: rotate(180deg); }
-    #view-vip .vip-promo-box.open .vip-promo-body { max-height: 500px; opacity: 1; padding: 20px; }
+    #view-vip .vip-promo-box.open .vip-promo-body { 
+      /* ★ 高度上限精準下調至 200px，徹底消滅收合時的空轉卡頓 */
+      max-height: 200px; 
+      opacity: 1; 
+      padding: 20px; 
+    }
     #view-vip .vip-history-container { padding: 10px 5px; text-align: left; }
     #view-vip .vip-history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
     #view-vip .vip-history-title { font-size: 18px; font-weight: bold; color: #444; }

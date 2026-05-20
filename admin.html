@@ -14,7 +14,7 @@
     input[type="text"], input[type="password"], textarea { width: 100%; padding: 12px; border: 1px solid #e1e5eb; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
     .btn-save { width: 100%; padding: 15px; background: #b76e79; color: white; border: none; border-radius: 50px; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 20px; font-weight: bold; }
     .btn-save:hover { background: #a05d68; transform: translateY(-2px); }
-    #statusMsg { text-align: center; margin-top: 15px; font-size: 14px; min-height: 20px; }
+    #statusMsg { text-align: center; margin-top: 15px; font-size: 14px; min-height: 20px; font-weight: bold;}
     
     /* 報表表格樣式 */
     .report-card { background: #fff5f6; padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid #fce4ec; }
@@ -40,24 +40,59 @@
 </div>
 
 <div class="container" id="admin-content" style="display:none;">
-  <h1>系統管理後台</h1>
-
-  <div class="section-title">📊 運營報表即時看板 (2026年度)</div>
-  <div class="report-card">
-    <div class="year-total" id="yearTotalDisplay">讀取中...</div>
-    <div style="overflow-x: auto;">
-        <table class="report-table" id="reportTable">
-            </table>
+  <h1>A More Beauty 數位旗艦控制台</h1>
+    
+  <div class="section-title">📊 官網即時數據與導流分析</div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+    <div style="background: #fff5f6; padding: 20px; border-radius: 12px; border-left: 4px solid #b76e79; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+      <div style="font-size: 13px; color: #888;">官網累積總瀏覽量 (Impressions)</div>
+      <div id="stat-visit" style="font-size: 28px; font-weight: 700; color: #b76e79; margin-top: 5px;">0</div>
+    </div>
+    <div style="background: #f4fbf7; padding: 20px; border-radius: 12px; border-left: 4px solid #06c755; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+      <div style="font-size: 13px; color: #888;">LINE 官方帳號導流量</div>
+      <div id="stat-line" style="font-size: 28px; font-weight: 700; color: #06c755; margin-top: 5px;">0</div>
+    </div>
+    <div style="background: #fdf7fc; padding: 20px; border-radius: 12px; border-left: 4px solid #bc1888; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+      <div style="font-size: 13px; color: #888;">Instagram 點擊追蹤量</div>
+      <div id="stat-ig" style="font-size: 28px; font-weight: 700; color: #bc1888; margin-top: 5px;">0</div>
+    </div>
+    <div style="background: #fffbf4; padding: 20px; border-radius: 12px; border-left: 4px solid #d4af37; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+      <div style="font-size: 13px; color: #888;">線上預約系統點擊量</div>
+      <div id="stat-booking" style="font-size: 28px; font-weight: 700; color: #d4af37; margin-top: 5px;">0</div>
     </div>
   </div>
 
-  <div class="section-title">📢 官網頂部公告設定</div>
+  <div class="section-title">🔍 Google 搜尋引擎優化 (SEO) 監測面板</div>
+  <div style="background: #fafafa; padding: 25px; border-radius: 15px; border: 1px solid #eee; margin-bottom: 40px;">
+    <p style="font-size: 14px; color: #555; line-height: 1.6; margin-top: 0;">
+      💡 <b>核心觀念：</b>為求數據 100% 精準且不遭 Google 阻擋，最權威的作法是直接查詢您的 <b>Google Search Console (GSC)</b> 核心知識圖譜。本控制台已無縫綁定您的網站資產。
+    </p>
+    
+    <div style="margin: 20px 0; padding: 15px; background: white; border-radius: 8px; border: 1px dashed #ddd; font-size: 13px; color: #666;">
+      🎯 <b>目前官網強攻之 AI / 搜尋關鍵字：</b><br>
+      <span style="display:inline-block; background:#f5f5f5; padding:3px 8px; border-radius:4px; margin:5px 5px 0 0;">羅東做臉</span>
+      <span style="display:inline-block; background:#f5f5f5; padding:3px 8px; border-radius:4px; margin:5px 5px 0 0;">宜蘭美容美體</span>
+      <span style="display:inline-block; background:#f5f5f5; padding:3px 8px; border-radius:4px; margin:5px 5px 0 0;">PDRN肌因水光護理</span>
+      <span style="display:inline-block; background:#f5f5f5; padding:3px 8px; border-radius:4px; margin:5px 5px 0 0;">羅東清粉刺推薦</span>
+    </div>
+
+    <div style="display:flex; gap:15px; flex-wrap:wrap;">
+      <a href="https://search.google.com/search-console?resource_id=https://amore-beauty-web.vercel.app/" target="_blank" style="background: #4285f4; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 4px 10px rgba(66,133,244,0.3);">
+        📈 登入 Google 官方控制台查看精準關鍵字排名
+      </a>
+      <a href="https://www.google.com/search?q=site:amore-beauty-web.vercel.app" target="_blank" style="background: white; color: #555; border: 1px solid #ccc; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: 500;">
+        🌐 測試目前 Google 實際收錄總網頁數
+      </a>
+    </div>
+  </div>
+
+  <div class="section-title">📢 頂部公告與 VIP 尊榮禮遇管理</div>
   <div class="form-group">
-    <label>公告文字内容</label>
+    <label>網頁最上方跑馬燈文字</label>
     <input type="text" id="topText" placeholder="例如：✨ 慶祝母親節...">
   </div>
   <div class="form-group">
-    <label>按鈕跳轉連結 (LINE 網址)</label>
+    <label>跑馬燈連結網址</label>
     <input type="text" id="topLink" placeholder="https://lin.ee/...">
   </div>
 
@@ -71,37 +106,31 @@
     <textarea id="vipBody" rows="3" placeholder="可以使用 <br> 換行"></textarea>
   </div>
 
-  <div class="section-title">🖼️ 首頁輪播圖更新 (10張)</div>
-  <div id="imageInputs"></div>
-
-  <button class="btn-save" onclick="saveData()">儲存所有更新</button>
+  <button class="btn-save" onclick="saveData()">💾 儲存並更新官網設定</button>
   <div id="statusMsg"></div>
+
+  <div class="section-title">💰 門市營運年度財務數據</div>
+  <div class="report-card">
+    <div class="year-total" id="yearTotalDisplay">🏆 全年度總淨利：讀取中...</div>
+    <div style="overflow-x: auto;">
+        <table class="report-table" id="reportTable">
+            <tr><th>月份</th><th>總營業額</th><th>折讓金額</th><th>實收現金</th><th>材料固定成本</th><th>本月淨利</th></tr>
+        </table>
+    </div>
+  </div>
+
 </div>
 
 <script>
   let globalPassword = "";
-  const defaultImages = [
-    "https://i.ibb.co/N62sSHDc/OA-VISION-5-0.jpg", "https://i.ibb.co/CKz4pPFj/OA-VISION-2-0.jpg",
-    "https://i.ibb.co/TDJGQj0R/OA-VISION-3-0.jpg", "https://i.ibb.co/9HG2DCtt/OA-VISION-4-0.jpg",
-    "https://i.ibb.co/sJWVt0t3/2025-04-21-012828-226-0.jpg", "https://i.ibb.co/8g9bB7kF/OA-VISION-6-0.jpg",
-    "https://i.ibb.co/vx0sC1dr/OA-VISION-7-0.jpg", "https://i.ibb.co/KkHLv9J/OA-VISION-8-0.jpg",
-    "https://i.ibb.co/ZR4VX8PH/OA-VISION-10-0.jpg", "https://i.ibb.co/Rk3zD6HM/OA-VISION-9-0.jpg"
-  ];
 
-  window.onload = function() {
-    let imgHtml = "";
-    for(let i=0; i<10; i++) {
-      imgHtml += `<div class="form-group"><label>輪播圖 ${i+1}</label><input type="text" id="imgInput${i}"></div>`;
-    }
-    document.getElementById('imageInputs').innerHTML = imgHtml;
-  };
-
-function checkLogin() {
+  function checkLogin() {
     const pass = document.getElementById('adminPass').value;
     
     // 💡 改用有密碼保護的 "getReportData" 來驗證身分！
     fetch('/api/cms', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: "getReportData", adminPassword: pass })
     }).then(r => r.json()).then(res => {
       if(res.status === "success") {
@@ -112,6 +141,7 @@ function checkLogin() {
         // 驗證成功後，再去抓取公開的設定資料填入欄位
         fetch('/api/cms', { 
             method: 'POST', 
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: "getConfig" }) 
         }).then(r2 => r2.json()).then(res2 => loadConfig(res2.data));
         
@@ -127,25 +157,30 @@ function checkLogin() {
     document.getElementById('topLink').value = d.topLink || "";
     document.getElementById('vipHeader').value = d.vipPromoHeader || "";
     document.getElementById('vipBody').value = d.vipPromoBody || "";
-    if(d.carouselImages) {
-        let imgs = JSON.parse(d.carouselImages);
-        for(let i=0; i<10; i++) { if(imgs[i]) document.getElementById('imgInput'+i).value = imgs[i]; }
-    }
+    
+    // ➔ 將新版流量數字塞入看板中
+    document.getElementById('stat-visit').innerText = d.traffic_visit || '0';
+    document.getElementById('stat-line').innerText = d.traffic_line || '0';
+    document.getElementById('stat-ig').innerText = d.traffic_ig || '0';
+    document.getElementById('stat-booking').innerText = d.traffic_booking || '0';
   }
 
   function fetchReport() {
     fetch('/api/cms', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: "getReportData", adminPassword: globalPassword })
     }).then(r => r.json()).then(res => {
       if(res.status === "success") {
         document.getElementById('yearTotalDisplay').innerText = "🏆 全年度總淨利：" + res.yearTotal;
         let table = document.getElementById('reportTable');
-        let html = "";
+        let html = "<tr><th>月份</th><th>總營業額</th><th>折讓金額</th><th>實收現金</th><th>材料固定成本</th><th>本月淨利</th></tr>";
+     
         res.reportRows.forEach((row, index) => {
-            let tag = index === 0 ? "th" : "td";
-            html += `<tr>
-                <${tag}>${row[0]}</${tag}> <${tag}>${row[2]}</${tag}> <${tag}>${row[3]}</${tag}> <${tag}>${row[4]}</${tag}> <${tag}>${row[6]}</${tag}> <${tag}>${row[7]}</${tag}> </tr>`;
+            if(index > 0) { // 跳過第一行標題
+              html += `<tr>
+                  <td>${row[0]}</td> <td>${row[2]}</td> <td>${row[3]}</td> <td>${row[4]}</td> <td>${row[6]}</td> <td>${row[7]}</td> </tr>`;
+            }
         });
         table.innerHTML = html;
       }
@@ -153,26 +188,37 @@ function checkLogin() {
   }
 
   function saveData() {
-    let imgArray = [];
-    for(let i=0; i<10; i++) { imgArray.push(document.getElementById('imgInput'+i).value.trim() || defaultImages[i]); }
     let payload = {
       action: "saveConfig",
       adminPassword: globalPassword,
       topText: document.getElementById('topText').value,
       topLink: document.getElementById('topLink').value,
       vipPromoHeader: document.getElementById('vipHeader').value,
-      vipPromoBody: document.getElementById('vipBody').value,
-      carouselImages: JSON.stringify(imgArray)
+      vipPromoBody: document.getElementById('vipBody').value
     };
+    
     document.getElementById('statusMsg').innerText = "儲存更新中...";
+    document.getElementById('statusMsg').style.color = "#555";
+    
     fetch('/api/cms', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
-    }).then(r => r.json()).then(res => {
+    })
+    .then(r => r.json())
+    .then(res => {
       if(res.status === "success") {
-        document.getElementById('statusMsg').innerText = "✅ 儲存成功！已即時同步到官網";
+        document.getElementById('statusMsg').innerText = "✨ 官網設定已成功同步更新！";
         document.getElementById('statusMsg').style.color = "green";
+        setTimeout(() => { document.getElementById('statusMsg').innerText = ""; }, 3000);
+      } else {
+        document.getElementById('statusMsg').innerText = "❌ 儲存失敗：" + res.message;
+        document.getElementById('statusMsg').style.color = "red";
       }
+    })
+    .catch(e => {
+      document.getElementById('statusMsg').innerText = "❌ 伺服器連線異常";
+      document.getElementById('statusMsg').style.color = "red";
     });
   }
 </script>

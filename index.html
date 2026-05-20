@@ -918,7 +918,8 @@
       for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
       var b = document.getElementById('btn-' + tabId);
       if(b) b.classList.add('active');
-    }    function toggleAcc(el) {
+    }    
+  function toggleAcc(el) {
       // 1. 先記住「目前點擊的這個」原本是不是打開的
       var isActive = el.classList.contains('active');
       

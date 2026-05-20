@@ -1011,7 +1011,7 @@
             var welcomeEl = document.getElementById('vip-welcome-name');
 if(welcomeEl) welcomeEl.innerText = safeName + "，歡迎回來";
             document.getElementById('user-balance').innerText = "$" + safeBalance;
-                      // 🔴 新增：天數差智慧計算與30天回訪折扣通知邏輯
+                                  // 🔴 新增：天數差智慧計算與回訪通知邏輯
             var daysText = "";
             if (d.lastDate && d.lastDate !== "undefined" && d.lastDate !== "無紀錄") {
               try {
@@ -1025,9 +1025,13 @@ if(welcomeEl) welcomeEl.innerText = safeName + "，歡迎回來";
                 
                 if (!isNaN(diffDays) && diffDays >= 0) {
                   daysText = "（已過 " + diffDays + " 天）";
-                  // 當未滿或剛好 30 天時，動態塞入回訪折扣推播文字
+                  
+                  // 根據天數，動態塞入不同的專屬推播文案
                   if (diffDays <= 30) {
-                    safeMsg += (safeMsg ? "<br><br>" : "") + "💝 💡 記得把握 30 天內回訪，可享特惠折扣喔！";
+                    safeMsg += (safeMsg ? "<br><br>" : "") + "💝 把握 30 天內回訪，可享專屬折扣喔！";
+                  } else {
+                    // 超過 30 天的專屬喚醒文案 (老闆可自行修改引號內的文字)
+                    safeMsg += (safeMsg ? "<br><br>" : "") + "✨ 許久未見，期待能再次為您安排一段專屬的高訂放鬆時光！";
                   }
                 }
               } catch(e) {

@@ -93,7 +93,20 @@
       </a>
     </div>
   </div>
-
+<div class="section-title">🔍 客戶資料快速查詢 (CRM)</div>
+    <div style="background: white; padding: 25px; border-radius: 15px; border: 1px solid #eee; margin-bottom: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+      <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <input type="text" id="searchCustomerName" placeholder="請輸入客人姓名 (支援模糊搜尋，例如輸入「安」)" style="flex: 1; padding: 12px; border: 1px solid #e1e5eb; border-radius: 8px; font-size: 14px;">
+        <button onclick="searchCustomer()" style="background: #b76e79; color: white; border: none; padding: 0 25px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; white-space: nowrap;">🔍 搜尋</button>
+      </div>
+      <div id="searchResultMsg" style="font-size: 13px; color: #b76e79; margin-bottom: 10px; font-weight: bold;"></div>
+      <div style="overflow-x: auto;">
+        <table class="report-table" id="customerTable" style="display: none; width: 100%;">
+          <tr><th>客戶姓名</th><th>手機號碼</th><th>最近消費日期</th><th>最近施作項目</th><th>歷史來店次數</th></tr>
+          <tbody id="customerTableBody"></tbody>
+        </table>
+      </div>
+    </div>
   <div class="section-title">📢 頂部公告與 VIP 尊榮禮遇管理</div>
   <div class="form-group">
     <label>網頁最上方跑馬燈文字</label>
@@ -258,6 +271,58 @@
     .catch(e => {
       document.getElementById('statusMsg').innerText = "❌ 伺服器連線異常";
       document.getElementById('statusMsg').style.color = "red";
+    });
+  }
+  // 🔍 新增：搜尋客人的連線功能
+  function searchCustomer() {
+    let name = document.getElementById('searchCustomerName').value.trim();
+    let msgEl = document.getElementById('searchResultMsg');
+    let table = document.getElementById('customerTable');
+    let tbody = document.getElementById('customerTableBody');
+
+    if(!name) {
+      msgEl.innerText = "⚠️ 請先輸入要搜尋的客人姓名";
+      return;
+    }
+
+    msgEl.innerText = "⏳ 資料庫搜尋中，請稍候...";
+    msgEl.style.color = "#555";
+    table.style.display = "none";
+    tbody.innerHTML = "";
+
+    fetch('/api/cms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: "searchCustomer", searchName: name, adminPassword: globalPassword })
+    })
+    .then(r => r.json())
+    .then(res => {
+      if(res.status === "success") {
+        if(res.data.length === 0) {
+          msgEl.innerText = "❌ 找不到符合「" + name + "」的客人資料。";
+          msgEl.style.color = "red";
+        } else {
+          msgEl.innerText = "✅ 成功找到 " + res.data.length + " 位相關客戶：";
+          msgEl.style.color = "green";
+          res.data.forEach(c => {
+            tbody.innerHTML += `<tr>
+              <td style="font-weight:bold; color:#b76e79;">${c.name}</td>
+              <td style="letter-spacing: 1px;">${c.phone}</td>
+              <td>${c.lastDate}</td>
+              <td>${c.lastItem}</td>
+              <td>${c.visitCount} 次</td>
+            </tr>`;
+          });
+          table.style.display = "table";
+        }
+      } else {
+        msgEl.innerText = "❌ 搜尋失敗，連線異常";
+        msgEl.style.color = "red";
+      }
+    })
+    .catch(e => {
+      msgEl.innerText = "❌ 伺服器無回應";
+      msgEl.style.color = "red";
     });
   }
 </script>

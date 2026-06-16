@@ -101,10 +101,10 @@
       </div>
       <div id="searchResultMsg" style="font-size: 13px; color: #b76e79; margin-bottom: 10px; font-weight: bold;"></div>
       <div style="overflow-x: auto;">
-        <table class="report-table" id="customerTable" style="display: none; width: 100%;">
-          <tr><th>客戶姓名</th><th>手機號碼</th><th>最近消費日期</th><th>最近施作項目</th><th>歷史來店次數</th></tr>
-          <tbody id="customerTableBody"></tbody>
-        </table>
+       <table class="report-table" id="customerTable" style="display: none; width: 100%;">
+  <tr><th>客戶姓名</th><th>手機號碼</th><th>最近消費日期</th><th>最近施作項目</th><th>最近購買產品</th><th>歷史來店次數</th></tr>
+  <tbody id="customerTableBody"></tbody>
+</table>
       </div>
     </div>
   <div class="section-title">📢 頂部公告與 VIP 尊榮禮遇管理</div>
@@ -309,7 +309,8 @@
               <td style="font-weight:bold; color:#b76e79;">${c.name}</td>
               <td style="letter-spacing: 1px;">${c.phone}</td>
               <td>${c.lastDate}</td>
-              <td>${c.lastItem}</td>
+              <td style="color:#555;">${c.lastService}</td>
+              <td style="color:#1976d2;">${c.lastProduct}</td>
               <td>${c.visitCount} 次</td>
             </tr>`;
           });

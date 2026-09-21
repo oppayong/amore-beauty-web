@@ -175,7 +175,7 @@
         <div style="overflow-x: auto;">
           <table class="data-table" id="dailyTable" style="display: none;">
             <thead>
-              <tr><th>客戶姓名</th><th>施作項目</th><th>施作金額</th><th>購買產品</th><th>產品金額</th><th>儲值金額</th></tr>
+              <tr><th>客戶姓名</th><th>施作項目</th><th>當日總應收</th><th>購買產品</th><th>產品金額</th><th>儲值金額</th></tr>
             </thead>
             <tbody id="dailyTableBody"></tbody>
           </table>
@@ -463,8 +463,8 @@
 
             tbody.innerHTML += `<tr>
               <td style="font-weight:bold; color:var(--primary); font-size:14px;">${c.name || '-'}</td>
-              <td style="color:var(--text-main);">${c.service || '-'}</td>
-              <td style="font-family:monospace; color:#333; font-size:14px;">${renderAmt(c.serviceAmt)}</td>
+              <td style="color:var(--text-main); font-weight:500;">${c.service || '-'}</td>
+              <td style="font-family:monospace; color:#2c3e50; font-size:15px; font-weight:bold;">${renderAmt(c.totalRecvAmt)}</td>
               <td style="color:#1976d2;">${c.product || '-'}</td>
               <td style="font-family:monospace; color:#1976d2; font-size:14px;">${renderAmt(c.productAmt)}</td>
               <td style="font-family:monospace; font-weight:bold; color:#06c755; font-size:14px;">${renderTopup(c.topupAmt)}</td>

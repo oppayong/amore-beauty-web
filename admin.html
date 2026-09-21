@@ -421,7 +421,7 @@
     }).catch(e => { btn.disabled = false; msgEl.innerText = "伺服器無回應"; msgEl.style.color = "red"; });
   }
 
-  // --- 🟢 新增：日曆指定日期查詢功能 ---
+// --- 🟢 新增：日曆指定日期查詢功能 ---
   function fetchDailyRecords() {
     let dateVal = document.getElementById('dailyDatePicker').value; // 格式 YYYY-MM-DD
     if (!dateVal) return;
@@ -447,13 +447,27 @@
         } else {
           msgEl.innerText = "共 " + res.data.length + " 筆交易紀錄"; msgEl.style.color = "#06c755";
           res.data.forEach(c => {
+            
+            // 💡 顯示小工具：有數字才加$，沒有就顯示 -
+            let renderAmt = (amt) => {
+                return amt ? '$' + amt : '-';
+            };
+            
+            // 💡 儲值專用顯示：判斷是不是「當天未儲值」
+            let renderTopup = (amt) => {
+                if (amt === "當天未儲值") {
+                    return '<span style="color:#999; font-weight:400; font-size:12px;">當天未儲值</span>';
+                }
+                return '$' + amt;
+            };
+
             tbody.innerHTML += `<tr>
               <td style="font-weight:bold; color:var(--primary); font-size:14px;">${c.name || '-'}</td>
               <td style="color:var(--text-main);">${c.service || '-'}</td>
-              <td style="font-family:monospace; color:#333;">${c.serviceAmt ? '$'+c.serviceAmt : '-'}</td>
+              <td style="font-family:monospace; color:#333; font-size:14px;">${renderAmt(c.serviceAmt)}</td>
               <td style="color:#1976d2;">${c.product || '-'}</td>
-              <td style="font-family:monospace; color:#1976d2;">${c.productAmt ? '$'+c.productAmt : '-'}</td>
-              <td style="font-family:monospace; font-weight:bold; color:#06c755;">${c.topupAmt ? '$'+c.topupAmt : '-'}</td>
+              <td style="font-family:monospace; color:#1976d2; font-size:14px;">${renderAmt(c.productAmt)}</td>
+              <td style="font-family:monospace; font-weight:bold; color:#06c755; font-size:14px;">${renderTopup(c.topupAmt)}</td>
             </tr>`;
           });
           table.style.display = "table";

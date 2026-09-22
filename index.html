@@ -1146,12 +1146,22 @@ if(welcomeEl) welcomeEl.innerText = safeName + "，歡迎回來";
       });
     }
 
-    function renderHistory() {
+  function renderHistory() {
       var container = document.getElementById('history-content');
       if(!container) return;
       if (globalHistory.length === 0) { container.innerHTML = '<div style="color:#999;text-align:center;">無紀錄</div>'; return; }
+      
+      // 🛡️ XSS 防護：將試算表的文字進行安全消毒，防止惡意代碼破壞排版
+      function safeText(str) {
+         return String(str || '').replace(/[&<>'"]/g, function(tag) {
+             return {'&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'}[tag] || tag;
+         });
+      }
+
       var html = '<div class="vip-timeline">';
-      globalHistory.forEach(function(item) { html += `<div class="vip-timeline-item"><div class="vip-t-date">${item.date}</div><div class="vip-t-content"><div class="vip-t-item">${item.item}</div></div></div>`; });
+      globalHistory.forEach(function(item) { 
+          html += `<div class="vip-timeline-item"><div class="vip-t-date">${safeText(item.date)}</div><div class="vip-t-content"><div class="vip-t-item">${safeText(item.item)}</div></div></div>`; 
+      });
       html += '</div>';
       container.innerHTML = html;
     }

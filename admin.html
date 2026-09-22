@@ -377,7 +377,7 @@
     });
   }
 
-  // --- CRM 模糊搜尋功能 ---
+// --- 🛡️ 資安升級版：CRM 模糊搜尋功能 (含 XSS 防護) ---
   function searchCustomer() {
     let name = document.getElementById('searchCustomerName').value.trim();
     let msgEl = document.getElementById('searchResultMsg');
@@ -389,6 +389,9 @@
 
     msgEl.innerText = "資料庫調閱中..."; msgEl.style.color = "var(--text-sub)";
     btn.disabled = true; table.style.display = "none"; tbody.innerHTML = "";
+
+    // 🛡️ XSS 消毒過濾器：拔除惡意標籤
+    let s = (str) => String(str || '').replace(/[&<>'"]/g, tag => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'}[tag] || tag));
 
     fetch('/api/cms', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -402,17 +405,17 @@
           msgEl.innerText = "成功調閱 " + res.data.length + " 筆客戶檔案"; msgEl.style.color = "#06c755";
           res.data.forEach(c => {
             tbody.innerHTML += `<tr>
-              <td style="font-weight:bold; color:var(--primary); font-size:14px;">${c.name}</td>
-              <td style="font-family: monospace; font-size: 13px;">${c.phone}</td>
+              <td style="font-weight:bold; color:var(--primary); font-size:14px;">${s(c.name)}</td>
+              <td style="font-family: monospace; font-size: 13px;">${s(c.phone)}</td>
               <td>
-                <div style="font-size:10px; color:var(--text-sub); margin-bottom:4px;">${c.lastServiceDate}</div>
-                <div style="color:var(--text-main); font-weight:500;">${c.lastService}</div>
+                <div style="font-size:10px; color:var(--text-sub); margin-bottom:4px;">${s(c.lastServiceDate)}</div>
+                <div style="color:var(--text-main); font-weight:500;">${s(c.lastService)}</div>
               </td>
               <td>
-                <div style="font-size:10px; color:var(--text-sub); margin-bottom:4px;">${c.lastProductDate}</div>
-                <div style="color:#1976d2; font-weight:500;">${c.lastProduct}</div>
+                <div style="font-size:10px; color:var(--text-sub); margin-bottom:4px;">${s(c.lastProductDate)}</div>
+                <div style="color:#1976d2; font-weight:500;">${s(c.lastProduct)}</div>
               </td>
-              <td><span style="background:#eee; padding:4px 10px; border-radius:12px; font-weight:bold; color:var(--text-sub); font-size:12px;">${c.visitCount} 次</span></td>
+              <td><span style="background:#eee; padding:4px 10px; border-radius:12px; font-weight:bold; color:var(--text-sub); font-size:12px;">${s(c.visitCount)} 次</span></td>
             </tr>`;
           });
           table.style.display = "table";
@@ -421,12 +424,11 @@
     }).catch(e => { btn.disabled = false; msgEl.innerText = "伺服器無回應"; msgEl.style.color = "red"; });
   }
 
-// --- 🟢 新增：日曆指定日期查詢功能 ---
+  // --- 🛡️ 資安升級版：日曆指定日期查詢功能 (含 XSS 防護) ---
   function fetchDailyRecords() {
-    let dateVal = document.getElementById('dailyDatePicker').value; // 格式 YYYY-MM-DD
+    let dateVal = document.getElementById('dailyDatePicker').value; 
     if (!dateVal) return;
     
-    // 自動切換到日曆分頁，並移除選單的高亮
     switchTab('tab-daily', null);
     document.getElementById('dailyTitle').innerText = "單日營運報表 (" + dateVal + ")";
     
@@ -436,6 +438,9 @@
 
     msgEl.innerText = "日曆資料調閱中..."; msgEl.style.color = "var(--text-sub)";
     table.style.display = "none"; tbody.innerHTML = "";
+
+    // 🛡️ XSS 消毒過濾器
+    let s = (str) => String(str || '').replace(/[&<>'"]/g, tag => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'}[tag] || tag));
 
     fetch('/api/cms', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -447,25 +452,17 @@
         } else {
           msgEl.innerText = "共 " + res.data.length + " 筆交易紀錄"; msgEl.style.color = "#06c755";
           res.data.forEach(c => {
-            
-            // 💡 顯示小工具：有數字才加$，沒有就顯示 -
-            let renderAmt = (amt) => {
-                return amt ? '$' + amt : '-';
-            };
-            
-            // 💡 儲值專用顯示：判斷是不是「當天未儲值」
+            let renderAmt = (amt) => amt ? '$' + s(amt) : '-';
             let renderTopup = (amt) => {
-                if (amt === "當天未儲值") {
-                    return '<span style="color:#999; font-weight:400; font-size:12px;">當天未儲值</span>';
-                }
-                return '$' + amt;
+                if (amt === "當天未儲值") return '<span style="color:#999; font-weight:400; font-size:12px;">當天未儲值</span>';
+                return '$' + s(amt);
             };
 
             tbody.innerHTML += `<tr>
-              <td style="font-weight:bold; color:var(--primary); font-size:14px;">${c.name || '-'}</td>
-              <td style="color:var(--text-main); font-weight:500;">${c.service || '-'}</td>
+              <td style="font-weight:bold; color:var(--primary); font-size:14px;">${s(c.name) || '-'}</td>
+              <td style="color:var(--text-main); font-weight:500;">${s(c.service) || '-'}</td>
               <td style="font-family:monospace; color:#2c3e50; font-size:15px; font-weight:bold;">${renderAmt(c.totalRecvAmt)}</td>
-              <td style="color:#1976d2;">${c.product || '-'}</td>
+              <td style="color:#1976d2;">${s(c.product) || '-'}</td>
               <td style="font-family:monospace; color:#1976d2; font-size:14px;">${renderAmt(c.productAmt)}</td>
               <td style="font-family:monospace; font-weight:bold; color:#06c755; font-size:14px;">${renderTopup(c.topupAmt)}</td>
             </tr>`;

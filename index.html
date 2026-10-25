@@ -504,7 +504,94 @@
       #view-vip .vip-balance { font-size: 34px; }
       #view-vip .vip-welcome { font-size: 14px; }
     }
-  </style>
+  /* ===== 視覺升級覆蓋樣式：第一版暖奶茶、玫瑰豆沙方向 ===== */
+:root{--primary-color:#9c6a62;--accent-color:#b89a67;--text-dark:#34302d;--text-light:#827b75;--bg-color:#fbf8f4;--light-bg:#f4ece4;--white:#fffefa;--shadow:0 18px 50px rgba(79,57,45,.08)}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#fbf8f4;color:#34302d;line-height:1.8}
+.top-announcement{background:linear-gradient(105deg,#73544b,#9b7168);color:#fff;padding:10px 18px;flex-direction:row;justify-content:center;gap:22px;letter-spacing:.7px}
+.top-announcement a{color:#f5e7d3;text-decoration:none}
+.nav-bar{padding:16px max(24px,calc((100vw - 1180px)/2));background:rgba(251,248,244,.94);border-bottom:1px solid rgba(156,106,98,.12)}
+.nav-brand{font-size:17px;letter-spacing:2px;color:#79584f}.nav-brand img{border:0}
+.hero{position:relative;overflow:hidden;padding:76px 20px 76px;background:radial-gradient(ellipse at 50% 15%,#fffdf9 0,#f4ece4 55%,#eee2d8 100%)}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(184,154,103,.25);border-radius:50%;pointer-events:none}
+.hero:before{width:540px;height:540px;top:-350px;left:calc(50% - 270px)}
+.hero:after{width:700px;height:700px;top:-430px;left:calc(50% - 350px)}
+.main-logo-container{width:116px;height:116px;border:5px solid rgba(255,255,255,.86);box-shadow:0 16px 42px rgba(74,51,41,.14)}
+.hero h1{font-size:clamp(30px,4vw,48px)!important;letter-spacing:3px!important;color:#634940!important;margin:24px auto 5px!important}
+.hero p{font-family:Georgia,serif;font-size:17px;color:#8b756b;letter-spacing:1px;margin:12px 0 24px}
+.hero-tag{background:rgba(255,255,255,.72);border-color:rgba(156,106,98,.2);color:#87655c;padding:7px 18px}
+.hero-actions{margin-top:28px;gap:12px}
+.btn-base{padding:14px 30px;border-radius:999px;letter-spacing:1.5px;font-size:14px;box-shadow:0 8px 20px rgba(115,76,70,.1)}
+.btn-booking{background:linear-gradient(130deg,#9c6a62,#b47f78);border-color:#9c6a62;color:#fff;box-shadow:0 10px 25px rgba(80,51,42,.18)}
+.btn-booking:hover{background:#835a52;transform:translateY(-2px)}
+.btn-vip{background:rgba(255,255,255,.55);border-color:#b89a67;color:#72574c}
+.portfolio-section{padding:42px 0 65px;background:#fbf8f4}
+.carousel-track{gap:20px;padding:20px max(6%,calc((100vw - 1220px)/2))}
+.p-item{flex:0 0 clamp(220px,24vw,310px);width:clamp(220px,24vw,310px)}
+.p-img-box{height:clamp(260px,32vw,390px);border-radius:14px;box-shadow:0 16px 36px rgba(48,38,30,.13);background:linear-gradient(145deg,#e8d8c8,#c8a999 45%,#a97f70)}
+.p-item:nth-child(3n+2) .p-img-box{background:linear-gradient(145deg,#eadfcf,#d5b7a3 52%,#a98978)}
+.p-item:nth-child(3n) .p-img-box{background:linear-gradient(145deg,#e9dfd4,#c7b0a0 48%,#957969)}
+.p-img-box::before{display:none}
+.p-img-box img{transition:transform .7s ease;filter:saturate(.86)}
+.menu-container{max-width:1040px;padding:0 24px}
+.menu-grid{gap:28px;border-bottom:1px solid #e7dfd7;padding-bottom:18px;margin-bottom:42px}
+.menu-btn{font-size:14px;letter-spacing:1px;color:#887f78}
+.menu-btn::after{background:#9c6a62;bottom:-19px;height:2px}
+.content-display{max-width:920px;margin:0 auto 100px;padding:0 24px}
+.course-category{padding:25px 0 5px}
+.cat-title{font-size:17px;color:#76574c;border-bottom-color:#e9dfd7;padding-bottom:13px;letter-spacing:2px}
+.accordion{border:1px solid #eee7df;border-radius:12px;box-shadow:0 4px 18px rgba(69,48,34,.045);transition:box-shadow .25s,border-color .25s;background:#fffefa}
+.accordion:hover{border-color:#d9c6b9;box-shadow:0 8px 24px rgba(69,48,34,.08)}
+.acc-header{padding:18px 22px;font-size:15px;color:#48403a}
+.accordion.active .acc-header{background:#fff8f6;color:#9c6a62}
+.acc-body{background:#fffefa}
+.price-tag{color:#8c665b}
+.price-frame{border-radius:14px;padding:14px;box-shadow:0 16px 40px rgba(69,48,34,.09);border-color:#eee5dc;background:#fffefa}
+
+.care-head{color:#76574c}
+.rule-item{padding:16px 20px;border-bottom:1px solid #eee7df}
+.rule-num{color:#ad9066}
+.brand-story{padding:60px 25px 78px;background:linear-gradient(145deg,#f5eee7,#f1e6dc);margin:0 calc((920px - 100vw)/2) 55px}
+.brand-story-title{font-size:19px;letter-spacing:2px;color:#76574c}
+.brand-story-text{color:#625951;line-height:2.2}
+.beautician-section{gap:65px}
+.beautician-img-box{max-width:390px;background:linear-gradient(145deg,#eee2d8,#cbb4a5)}
+.beautician-img-box::after{border-color:#b89a67}
+.beautician-title{color:#76574c}
+.beautician-desc{line-height:2.15;color:#554d49}
+.price-img{object-fit:contain}
+.footer{background:#342f2c;color:#eee8df;border:0;padding:65px 20px 42px}
+.footer .copyright{color:#aaa096}
+.social-big-btn{border-radius:999px;box-shadow:0 7px 20px rgba(0,0,0,.1)}
+.btn-booking-sys{background:linear-gradient(135deg,#9c6a62,#b47f78)}
+#floating-booking-btn{background:linear-gradient(135deg,#9c6a62,#b47f78);border-radius:22px;width:62px;height:62px}
+#close-floating{color:#9c6a62}
+#view-vip .vip-wrapper{border-radius:20px;box-shadow:0 20px 60px rgba(69,48,34,.08);border:1px solid #eee7df;background:#fffefa}
+#view-vip .vip-btn{background:linear-gradient(135deg,#9c6a62,#b47f78)}
+#view-vip .vip-card{border-radius:18px}
+#view-vip .vip-promo-box{border-radius:12px}
+#view-vip .vip-link-btn{border-radius:999px}
+@media(max-width:768px){
+ .top-announcement{font-size:11px;gap:10px;padding:8px}
+ .nav-bar{padding:13px 16px}
+ .hero{padding:60px 16px 52px}
+ .hero h1{font-size:29px!important;letter-spacing:1.5px!important}
+ .hero-actions{flex-wrap:wrap}.btn-base{padding:13px 20px}
+ .portfolio-section{padding:20px 0 45px}
+ .p-item{flex:0 0 76vw;width:76vw}
+ .p-img-box{height:94vw;max-height:420px;border-radius:13px}
+ .menu-container{padding:0 16px}
+ .menu-grid{gap:22px;margin-bottom:30px}
+ .content-display{padding:0 16px;margin-bottom:60px}
+ .brand-story{margin:0 -16px 40px;padding:42px 20px 48px}
+ .beautician-section{gap:32px}
+ .footer{padding:48px 20px 30px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* ===== 視覺升級樣式結束 ===== */
+</style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
 <iframe id="splash-iframe" src="splash.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 99999; background: #faf6f5; transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1); will-change: transform; -webkit-transform: translateZ(0); transform: translateZ(0);"></iframe>

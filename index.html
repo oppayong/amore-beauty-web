@@ -607,6 +607,10 @@ body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#fbf8
  #floating-booking-btn{width:58px;height:58px;font-size:12px}
 }
 @media(min-width:769px){#view-home .carousel-track{padding-left:50px;padding-right:50px}}
+/* VIP 尊榮禮遇：縮短展開動畫並移除外框不必要的全屬性轉場 */
+#view-vip .vip-promo-box{transition:none}
+#view-vip .vip-promo-body{transition:max-height .22s ease-out,opacity .16s ease-out,padding .22s ease-out}
+@media(prefers-reduced-motion:reduce){#view-vip .vip-promo-header::after,#view-vip .vip-promo-body{transition:none!important}}
 </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
